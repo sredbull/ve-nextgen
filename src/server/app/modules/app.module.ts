@@ -6,12 +6,12 @@ import { join } from 'path';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 
 import { SeedService } from 'src/server/console/seed.service';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { AuthModule } from './auth/auth.module';
-import { UsersModule } from './users/users.module';
-import { ThingsModule } from './things/things.module';
-import { OrdersModule } from './orders/orders.module';
+import { AppController } from '../controllers/app.controller';
+import { AppService } from '../services/app.service';
+import { AuthModule } from '../auth/auth.module';
+import { UsersModule } from '../modules/users.module';
+import { ThingsModule } from '../modules/things.module';
+import { OrdersModule } from '../modules/orders.module';
 
 @Module({
   imports: [

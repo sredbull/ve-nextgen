@@ -10,10 +10,10 @@ import {
 
 import { CurrentUser } from '../auth/graphql/gql-auth.decorator';
 import { GqlAuthGuard } from '../auth/graphql/gql-auth.guard';
-import { ThingsService } from '../things/things.service';
-import { User } from '../users/user.entity';
-import { Order } from './order.entity';
-import { OrdersService } from './orders.service';
+import { ThingsService } from '../services/things.service';
+import { User } from '../entities/user.entity';
+import { Order } from '../entities/order.entity';
+import { OrdersService } from '../services/orders.service';
 
 @Resolver((_of) => Order)
 export class OrdersResolver {

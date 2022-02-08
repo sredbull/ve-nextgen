@@ -1,14 +1,14 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { getConnection } from 'typeorm';
-import { UsersModule } from '../users/users.module';
-import { UsersService } from '../users/users.service';
-import { OrdersModule } from './orders.module';
+import { UsersModule } from '../modules/users.module';
+import { UsersService } from '../services/users.service';
+import { OrdersModule } from '../modules/orders.module';
 import { OrdersResolver } from './orders.resolver';
-import { OrdersService } from './orders.service';
+import { OrdersService } from '../services/orders.service';
 import { usersFactory, thingsFactory, ordersFactory } from 'test/factories';
-import { ThingsModule } from '../things/things.module';
-import { ThingsService } from '../things/things.service';
+import { ThingsModule } from '../modules/things.module';
+import { ThingsService } from '../services/things.service';
 
 describe('OrdersResolver', () => {
   let resolver: OrdersResolver;

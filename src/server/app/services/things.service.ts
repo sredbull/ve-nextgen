@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { FindManyOptions, Repository, FindOneOptions } from 'typeorm';
 
-import { Thing } from './thing.entity';
-import { CreateThingDto } from './dto/create-thing.dto';
+import { Thing } from '../entities/thing.entity';
+import { CreateThingDto } from '../dtos/create-thing.dto';
 
 @Injectable()
 export class ThingsService {

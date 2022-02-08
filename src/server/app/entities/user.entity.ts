@@ -8,7 +8,7 @@ import {
 } from 'typeorm';
 import { ObjectType, Field } from '@nestjs/graphql';
 import { Provider } from 'src/common/types/user';
-import { Order } from '../orders/order.entity';
+import { Order } from './order.entity';
 
 @ObjectType()
 @Entity()

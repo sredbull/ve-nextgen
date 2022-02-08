@@ -1,9 +1,9 @@
 import { Controller, Get, Res, Req, UseGuards } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { parse } from 'url';
-import { JwtAuthGuard } from '../app/auth/jwt/jwt-auth.guard';
+import { JwtAuthGuard } from '../auth/jwt/jwt-auth.guard';
 
-import { ViewService } from './view.service';
+import { ViewService } from '../services/view.service';
 
 @Controller('/')
 export class ViewController {

@@ -1,12 +1,12 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { FindManyOptions, FindOneOptions, Repository } from 'typeorm';
-import { ThingsService } from '../things/things.service';
+import { ThingsService } from '../services/things.service';
 import {
   CreateOrderDto,
   CreateOrderFromThingDetailsDto,
-} from './dto/create-order.dto';
-import { Order } from './order.entity';
+} from '../dtos/create-order.dto';
+import { Order } from '../entities/order.entity';
 
 @Injectable()
 export class OrdersService {

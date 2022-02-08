@@ -1,6 +1,6 @@
 import { Inject } from '@nestjs/common';
 import { Console, Command, createSpinner } from 'nestjs-console';
-import { ThingsService } from '../app/things/things.service';
+import { ThingsService } from '../app/services/things.service';
 
 @Console()
 export class SeedService {

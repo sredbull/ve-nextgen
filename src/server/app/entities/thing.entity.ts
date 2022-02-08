@@ -7,7 +7,7 @@ import {
   OneToMany,
 } from 'typeorm';
 import { ObjectType, Field } from '@nestjs/graphql';
-import { Order } from '../orders/order.entity';
+import { Order } from './order.entity';
 
 @ObjectType()
 @Entity()

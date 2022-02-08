@@ -1,5 +1,5 @@
-import { Thing } from '../../things/thing.entity';
-import { User } from '../../users/user.entity';
+import { Thing } from '../entities/thing.entity';
+import { User } from '../entities/user.entity';
 
 export class CreateOrderDto {
   alias: string;

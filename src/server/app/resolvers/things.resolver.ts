@@ -1,8 +1,8 @@
 import { Resolver, Query } from '@nestjs/graphql';
 import { Inject } from '@nestjs/common';
 import { FindManyOptions } from 'typeorm';
-import { Thing } from './thing.entity';
-import { ThingsService } from './things.service';
+import { Thing } from '../entities/thing.entity';
+import { ThingsService } from '../services/things.service';
 
 @Resolver((_of) => Thing)
 export class ThingsResolver {

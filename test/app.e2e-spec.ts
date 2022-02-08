@@ -1,17 +1,17 @@
 import * as request from 'supertest';
 import { Test } from '@nestjs/testing';
-import { AppModule } from 'src/server/app/app.module';
+import { AppModule } from 'src/server/app/modules/app.module';
 import { INestApplication } from '@nestjs/common';
 import { getConnection } from 'typeorm';
 import * as cookieParser from 'cookie-parser';
 
 import { usersFactory, ordersFactory, thingsFactory } from 'test/factories';
-import { UsersService } from 'src/server/app/users/users.service';
-import { User } from 'src/server/app/users/user.entity';
-import { Order } from 'src/server/app/orders/order.entity';
-import { OrdersService } from 'src/server/app/orders/orders.service';
+import { UsersService } from 'src/server/app/services/users.service';
+import { User } from 'src/server/app/entities/user.entity';
+import { Order } from 'src/server/app/entities/order.entity';
+import { OrdersService } from 'src/server/app/services/orders.service';
 import { JwtAuthService } from 'src/server/app/auth/jwt/jwt-auth.service';
-import { ThingsService } from 'src/server/app/things/things.service';
+import { ThingsService } from 'src/server/app/services/things.service';
 import { login } from './utils';
 
 describe('Application', () => {
