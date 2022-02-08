@@ -1,4 +1,4 @@
-import { Provider } from 'src/server/common/types/user';
+import { Provider } from 'src/common/types/user';
 
 export class CreateUserDto {
   provider: Provider;
