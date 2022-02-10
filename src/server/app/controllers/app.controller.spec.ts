@@ -11,11 +11,4 @@ describe('AppController', () => {
       providers: [AppService],
     }).compile();
   });
-
-  describe('getHello', () => {
-    it('should return hello message', () => {
-      const appController = app.get<AppController>(AppController);
-      expect(appController.getHello()).toBe('Hello from NestJS!');
-    });
-  });
 });

@@ -8,7 +8,7 @@ import {
 } from 'typeorm';
 import { ObjectType, Field } from '@nestjs/graphql';
 import { Provider } from 'src/common/types/user';
-import { Order } from './order.entity';
+import { Page } from './page.entity';
 
 @ObjectType()
 @Entity()
@@ -32,10 +32,6 @@ export class User {
   @Field()
   @Column({ nullable: false })
   name?: string;
-
-  @Field((_type) => [Order], { nullable: 'items' })
-  @OneToMany((_type) => Order, (order) => order.user)
-  orders?: Order[];
 
   @Field()
   @Column()
