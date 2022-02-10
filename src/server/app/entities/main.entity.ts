@@ -3,10 +3,8 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  ManyToOne,
 } from 'typeorm';
 import { ObjectType, Field } from '@nestjs/graphql';
-import { User } from './user.entity';
 
 @ObjectType()
 export abstract class Main {
