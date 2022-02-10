@@ -1,6 +1,6 @@
 import * as request from 'supertest';
 import { Test } from '@nestjs/testing';
-import { AppModule } from 'src/server/app/modules/app.module';
+import { AppModule } from 'src/server/app/app.module';
 import { INestApplication } from '@nestjs/common';
 import { getConnection } from 'typeorm';
 import * as cookieParser from 'cookie-parser';
