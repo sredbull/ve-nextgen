@@ -4,11 +4,9 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  OneToMany,
 } from 'typeorm';
 import { ObjectType, Field } from '@nestjs/graphql';
 import { Provider } from 'src/common/types/user';
-import { Page } from './page.entity';
 
 @ObjectType()
 @Entity()
