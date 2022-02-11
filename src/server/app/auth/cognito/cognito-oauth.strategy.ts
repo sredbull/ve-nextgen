@@ -3,8 +3,7 @@ import { Strategy } from 'passport-oauth2';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import axios from 'axios';
-
-import { UsersService } from '../../services/users.service';
+import { UserRepository } from '../../repositories/user.repository';
 
 @Injectable()
 export class CognitoOauthStrategy extends PassportStrategy(
@@ -16,7 +15,7 @@ export class CognitoOauthStrategy extends PassportStrategy(
 
   constructor(
     configService: ConfigService,
-    private readonly usersService: UsersService,
+    private readonly userRepository: UserRepository,
   ) {
     super({
       authorizationURL: CognitoOauthStrategy.authorizationUrl(
@@ -68,11 +67,11 @@ export class CognitoOauthStrategy extends PassportStrategy(
       providerId = userinfo.username;
     }
 
-    let user = await this.usersService.findOne({
+    let user = await this.userRepository.findOne({
       where: { provider, providerId },
     });
     if (!user) {
-      user = await this.usersService.create({
+      user = await this.userRepository.create({
         provider,
         providerId,
         name: userinfo.name,

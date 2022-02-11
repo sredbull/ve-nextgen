@@ -9,7 +9,8 @@ import { SeedService } from 'src/server/console/seed.service';
 import { AppController } from './controllers/app.controller';
 import { AppService } from './services/app.service';
 import { AuthModule } from './auth/auth.module';
-import { UsersModule } from './modules/users.module';
+import { UserModule } from './modules/user.module';
+import { PageModule } from './modules/page.module';
 
 @Module({
   imports: [
@@ -33,7 +34,8 @@ import { UsersModule } from './modules/users.module';
     }),
     ConsoleModule,
     AuthModule,
-    UsersModule,
+    UserModule,
+    PageModule,
   ],
   providers: [SeedService, AppService],
   controllers: [AppController],

@@ -1,13 +1,17 @@
-import { Controller, Get, Res, Req, UseGuards } from '@nestjs/common';
+import { Controller, Get, Res, Req, UseGuards, Inject } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { parse } from 'url';
 import { JwtAuthGuard } from '../auth/jwt/jwt-auth.guard';
 
 import { ViewService } from '../services/view.service';
+import { PageRepository } from '../repositories/page.repository';
 
 @Controller('/')
 export class ViewController {
-  constructor(private viewService: ViewService) {}
+  constructor(
+    private viewService: ViewService,
+    @Inject(PageRepository) private pageRepository: PageRepository,
+  ) {}
 
   async handler(req: Request, res: Response) {
     const parsedUrl = parse(req.url, true);
