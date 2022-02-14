@@ -4,7 +4,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConsoleModule } from 'nestjs-console';
 import { join } from 'path';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-
 import { SeedService } from 'src/server/console/seed.service';
 import { AppController } from './controllers/app.controller';
 import { AppService } from './services/app.service';

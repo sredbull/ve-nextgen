@@ -1,6 +1,5 @@
 import { NestFactory } from '@nestjs/core';
 import * as cookieParser from 'cookie-parser';
-
 import { ServerModule } from 'src/server/app/server.module';
 
 async function bootstrap() {

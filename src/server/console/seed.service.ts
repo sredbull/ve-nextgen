@@ -1,4 +1,3 @@
-import { Inject } from '@nestjs/common';
 import { Console, Command, createSpinner } from 'nestjs-console';
 
 @Console()
