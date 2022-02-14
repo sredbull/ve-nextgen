@@ -12,10 +12,14 @@ export class _PageRepository {
   ) {}
 
   findOne(params: FindOneOptions<Page> = {}) {
-    return this.pageRepository.findOne(params);
+    return this.pageRepository.findOne(
+      Object.assign(params, { relations: ['head', 'head.meta'] }),
+    );
   }
 
   findAll(params: FindManyOptions<Page> = {}) {
-    return this.pageRepository.find(params);
+    return this.pageRepository.find(
+      Object.assign(params, { relations: ['head', 'head.meta'] }),
+    );
   }
 }

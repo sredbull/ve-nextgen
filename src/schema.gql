@@ -19,7 +19,6 @@ scalar DateTime
 
 type Meta {
   id: Float!
-  head: Meta!
   charset: String!
   description: String!
   robots: String!
@@ -28,7 +27,6 @@ type Meta {
 
 type Head {
   id: Float!
-  page: Page!
   title: String!
   meta: Meta!
 }

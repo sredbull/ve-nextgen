@@ -1,22 +1,14 @@
-import {
-  Column,
-  Entity,
-  PrimaryGeneratedColumn,
-  OneToOne,
-  TableInheritance,
-} from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn, OneToOne } from 'typeorm';
 import { ObjectType, Field } from '@nestjs/graphql';
 import { Head } from '../head.entity';
 
 @ObjectType()
-@Entity()
-@TableInheritance({ column: { type: 'varchar', name: 'type' } })
+@Entity({ name: 'head_meta' })
 export class Meta {
   @Field()
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Field((_type) => Meta)
   @OneToOne((_type) => Head, (head) => head.meta, { nullable: false })
   head: Meta;
 

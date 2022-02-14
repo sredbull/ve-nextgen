@@ -1,16 +1,21 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToOne,
+  JoinColumn,
+} from 'typeorm';
 import { ObjectType, Field } from '@nestjs/graphql';
 import { Page } from '../page.entity';
 import { Meta } from './head/meta.entity';
 
 @ObjectType()
-@Entity()
+@Entity({ name: 'page_head' })
 export class Head {
   @Field()
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Field((_type) => Page)
   @OneToOne((_type) => Page, (page) => page.head, { nullable: false })
   page: Page;
 
@@ -20,5 +25,6 @@ export class Head {
 
   @Field((_type) => Meta)
   @OneToOne((_type) => Meta, (meta) => meta.head, { nullable: false })
+  @JoinColumn()
   meta: Meta;
 }
