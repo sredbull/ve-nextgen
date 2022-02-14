@@ -1,12 +1,14 @@
 import { Resolver, Query } from '@nestjs/graphql';
 import { Inject } from '@nestjs/common';
-import { PageRepository } from '../repositories/page.repository';
+import { _PageRepository } from '../repositories/page.repository';
 import { FindManyOptions } from 'typeorm';
 import { Page } from '../entities/page.entity';
 
 @Resolver((_of) => Page)
 export class PageResolver {
-  constructor(@Inject(PageRepository) private pageRepository: PageRepository) {}
+  constructor(
+    @Inject(_PageRepository) private pageRepository: _PageRepository,
+  ) {}
 
   @Query((_returns) => [Page])
   async Pages(params: FindManyOptions<Page> = {}): Promise<Page[]> {

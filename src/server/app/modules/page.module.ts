@@ -4,11 +4,11 @@ import { Page } from '../entities/page.entity';
 import { Head } from '../entities/page/head.entity';
 import { Meta } from '../entities/page/head/meta.entity';
 import { PageResolver } from '../resolvers/page.resolver';
-import { PageRepository } from '../repositories/page.repository';
+import { _PageRepository } from '../repositories/page.repository';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Page, Head, Meta])],
-  providers: [PageRepository, PageResolver],
-  exports: [PageRepository],
+  providers: [_PageRepository, PageResolver],
+  exports: [_PageRepository],
 })
 export class PageModule {}

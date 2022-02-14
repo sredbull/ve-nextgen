@@ -4,13 +4,13 @@ import { parse } from 'url';
 import { JwtAuthGuard } from '../auth/jwt/jwt-auth.guard';
 
 import { ViewService } from '../services/view.service';
-import { PageRepository } from '../repositories/page.repository';
+import { _PageRepository } from '../repositories/page.repository';
 
 @Controller('/')
 export class ViewController {
   constructor(
     private viewService: ViewService,
-    @Inject(PageRepository) private pageRepository: PageRepository,
+    @Inject(_PageRepository) private pageRepository: _PageRepository,
   ) {}
 
   async handler(req: Request, res: Response) {

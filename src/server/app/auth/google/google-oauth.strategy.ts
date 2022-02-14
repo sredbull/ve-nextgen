@@ -2,13 +2,13 @@ import { PassportStrategy } from '@nestjs/passport';
 import { Profile, Strategy } from 'passport-google-oauth20';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { UserRepository } from '../../repositories/user.repository';
+import { _UserRepository } from '../../repositories/user.repository';
 
 @Injectable()
 export class GoogleOauthStrategy extends PassportStrategy(Strategy, 'google') {
   constructor(
     configService: ConfigService,
-    private readonly userRepository: UserRepository,
+    private readonly userRepository: _UserRepository,
   ) {
     super({
       clientID: configService.get<string>('OAUTH_GOOGLE_ID'),

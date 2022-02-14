@@ -5,7 +5,7 @@ import { FindManyOptions, FindOneOptions, Repository } from 'typeorm';
 import { Page } from '../entities/page.entity';
 
 @Injectable()
-export class PageRepository {
+export class _PageRepository {
   constructor(
     @InjectRepository(Page)
     private pageRepository: Repository<Page>,
