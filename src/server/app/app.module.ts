@@ -11,6 +11,8 @@ import { AppService } from './services/app.service';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './modules/user.module';
 import { PageModule } from './modules/page.module';
+import { HeadModule } from './modules/page/head.module';
+import { MetaModule } from './modules/page/head/meta.module';
 
 @Module({
   imports: [
@@ -26,6 +28,8 @@ import { PageModule } from './modules/page.module';
         type: 'postgres',
         url: configService.get<string>('DATABASE_URL'),
         autoLoadEntities: true,
+        synchronize: true,
+        logging: true,
         ssl:
           configService.get<string>('NODE_ENV') === 'production'
             ? { rejectUnauthorized: false }
@@ -37,6 +41,8 @@ import { PageModule } from './modules/page.module';
     AuthModule,
     UserModule,
     PageModule,
+    HeadModule,
+    MetaModule,
   ],
   providers: [SeedService, AppService],
   controllers: [AppController],
