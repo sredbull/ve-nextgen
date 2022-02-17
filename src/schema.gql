@@ -20,6 +20,8 @@ scalar DateTime
 type meta {
   charset: String!
   description: String!
+  noindex: Boolean!
+  nofollow: Boolean!
   robots: String!
   viewport: String!
 }
@@ -156,6 +158,8 @@ type headMaxAggregate {
 type MetaDeleteResponse {
   charset: String
   description: String
+  noindex: Boolean
+  nofollow: Boolean
   robots: String
   viewport: String
 }
@@ -518,6 +522,8 @@ input CreateOneMetaInput {
 input CreateMeta {
   charset: String
   description: String
+  noindex: Boolean
+  nofollow: Boolean
   robots: String
   viewport: String
 }
@@ -538,6 +544,8 @@ input UpdateOneMetaInput {
 input UpdateMeta {
   charset: String
   description: String
+  noindex: Boolean
+  nofollow: Boolean
   robots: String
   viewport: String
 }

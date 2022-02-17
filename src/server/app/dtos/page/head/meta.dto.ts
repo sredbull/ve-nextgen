@@ -10,6 +10,12 @@ export class MetaDTO extends MainDTO {
   description!: string;
 
   @Field()
+  noindex!: boolean;
+
+  @Field()
+  nofollow!: boolean;
+
+  @Field()
   robots!: string;
 
   @Field()

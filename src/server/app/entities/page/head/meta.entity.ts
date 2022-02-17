@@ -13,6 +13,12 @@ export class Meta extends Main {
   @Column({ nullable: false })
   description: string;
 
+  @Column({ default: false, nullable: false })
+  noindex: boolean;
+
+  @Column({ default: false, nullable: false })
+  nofollow: boolean;
+
   @Column({ nullable: false })
   robots: string;
 
