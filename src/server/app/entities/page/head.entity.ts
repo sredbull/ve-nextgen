@@ -11,7 +11,7 @@ export class Head extends Main {
   @Column({ nullable: false })
   title: string;
 
-  @OneToOne((_type) => Meta, (meta) => meta.head, { nullable: false })
+  @OneToOne((_type) => Meta, (meta) => meta.head, { nullable: false, cascade: true })
   @JoinColumn()
   meta: Meta;
 }

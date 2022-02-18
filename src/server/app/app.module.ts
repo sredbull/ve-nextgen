@@ -13,6 +13,12 @@ import { UserModule } from './modules/user.module';
 import { PageModule } from './modules/page.module';
 import { HeadModule } from './modules/page/head.module';
 import { MetaModule } from './modules/page/head/meta.module';
+import { BodyModule } from './modules/page/body.module';
+import { HeaderModule } from './modules/page/body/header.module';
+import { FooterModule } from './modules/page/body/footer.module';
+import { MainModule } from './modules/page/body/main.module';
+import { NavigationModule } from './modules/page/body/navigation.module';
+import { SidebarModule } from './modules/page/body/sidebar.module';
 
 @Module({
   imports: [
@@ -43,6 +49,12 @@ import { MetaModule } from './modules/page/head/meta.module';
     PageModule,
     HeadModule,
     MetaModule,
+    BodyModule,
+    HeaderModule,
+    FooterModule,
+    MainModule,
+    NavigationModule,
+    SidebarModule,
   ],
   providers: [SeedService, AppService],
   controllers: [AppController],

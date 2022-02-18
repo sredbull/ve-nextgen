@@ -16,8 +16,24 @@ const PAGE_QUERY = gql`
         description
         noindex
         nofollow
-        robots
         viewport
+      }
+    }
+    body {
+      header {
+        type
+      }
+      navigation {
+        title
+      }
+      main {
+        title
+      }
+      sidebar {
+        title
+      }
+      footer {
+        title
       }
     }
   }
@@ -45,6 +61,7 @@ const Index: NextPage<{ data: string }> = (props) => {
         <html lang={res.data.page.lang} />
       </Head>
 
+      <header>{res.data.page.body.header.type}</header>
       <h1>Hello from NextJS! - Home</h1>
       {data}
     </>

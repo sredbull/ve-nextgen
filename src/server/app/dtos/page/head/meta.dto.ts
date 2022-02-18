@@ -16,8 +16,5 @@ export class MetaDTO extends MainDTO {
   nofollow!: boolean;
 
   @Field()
-  robots!: string;
-
-  @Field()
   viewport!: string;
 }

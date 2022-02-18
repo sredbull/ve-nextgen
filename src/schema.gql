@@ -22,7 +22,6 @@ type meta {
   description: String!
   noindex: Boolean!
   nofollow: Boolean!
-  robots: String!
   viewport: String!
 }
 
@@ -31,9 +30,39 @@ type head {
   meta: meta!
 }
 
+type header {
+  type: String!
+}
+
+type navigation {
+  title: String!
+}
+
+type main {
+  title: String!
+}
+
+type sidebar {
+  title: String!
+}
+
+type footer {
+  title: String!
+}
+
+type body {
+  title: String!
+  header: header!
+  navigation: navigation!
+  main: main!
+  sidebar: sidebar!
+  footer: footer!
+}
+
 type page {
   lang: String!
   head: head!
+  body: body!
 }
 
 type DeleteManyResponse {
@@ -160,7 +189,6 @@ type MetaDeleteResponse {
   description: String
   noindex: Boolean
   nofollow: Boolean
-  robots: String
   viewport: String
 }
 
@@ -201,6 +229,270 @@ type metaMinAggregate {
 }
 
 type metaMaxAggregate {
+  id: ID
+}
+
+type BodyDeleteResponse {
+  title: String
+}
+
+type bodyEdge {
+  """The node containing the body"""
+  node: body!
+
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+}
+
+type BodyConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [bodyEdge!]!
+}
+
+type bodyAggregateGroupBy {
+  id: ID
+}
+
+type bodyCountAggregate {
+  id: Int
+}
+
+type bodySumAggregate {
+  id: Float
+}
+
+type bodyAvgAggregate {
+  id: Float
+}
+
+type bodyMinAggregate {
+  id: ID
+}
+
+type bodyMaxAggregate {
+  id: ID
+}
+
+type HeaderDeleteResponse {
+  type: String
+}
+
+type headerEdge {
+  """The node containing the header"""
+  node: header!
+
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+}
+
+type HeaderConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [headerEdge!]!
+}
+
+type headerAggregateGroupBy {
+  id: ID
+}
+
+type headerCountAggregate {
+  id: Int
+}
+
+type headerSumAggregate {
+  id: Float
+}
+
+type headerAvgAggregate {
+  id: Float
+}
+
+type headerMinAggregate {
+  id: ID
+}
+
+type headerMaxAggregate {
+  id: ID
+}
+
+type FooterDeleteResponse {
+  title: String
+}
+
+type footerEdge {
+  """The node containing the footer"""
+  node: footer!
+
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+}
+
+type FooterConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [footerEdge!]!
+}
+
+type footerAggregateGroupBy {
+  id: ID
+}
+
+type footerCountAggregate {
+  id: Int
+}
+
+type footerSumAggregate {
+  id: Float
+}
+
+type footerAvgAggregate {
+  id: Float
+}
+
+type footerMinAggregate {
+  id: ID
+}
+
+type footerMaxAggregate {
+  id: ID
+}
+
+type MainDeleteResponse {
+  title: String
+}
+
+type mainEdge {
+  """The node containing the main"""
+  node: main!
+
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+}
+
+type MainConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [mainEdge!]!
+}
+
+type mainAggregateGroupBy {
+  id: ID
+}
+
+type mainCountAggregate {
+  id: Int
+}
+
+type mainSumAggregate {
+  id: Float
+}
+
+type mainAvgAggregate {
+  id: Float
+}
+
+type mainMinAggregate {
+  id: ID
+}
+
+type mainMaxAggregate {
+  id: ID
+}
+
+type NavigationDeleteResponse {
+  title: String
+}
+
+type navigationEdge {
+  """The node containing the navigation"""
+  node: navigation!
+
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+}
+
+type NavigationConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [navigationEdge!]!
+}
+
+type navigationAggregateGroupBy {
+  id: ID
+}
+
+type navigationCountAggregate {
+  id: Int
+}
+
+type navigationSumAggregate {
+  id: Float
+}
+
+type navigationAvgAggregate {
+  id: Float
+}
+
+type navigationMinAggregate {
+  id: ID
+}
+
+type navigationMaxAggregate {
+  id: ID
+}
+
+type SidebarDeleteResponse {
+  title: String
+}
+
+type sidebarEdge {
+  """The node containing the sidebar"""
+  node: sidebar!
+
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+}
+
+type SidebarConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [sidebarEdge!]!
+}
+
+type sidebarAggregateGroupBy {
+  id: ID
+}
+
+type sidebarCountAggregate {
+  id: Int
+}
+
+type sidebarSumAggregate {
+  id: Float
+}
+
+type sidebarAvgAggregate {
+  id: Float
+}
+
+type sidebarMinAggregate {
+  id: ID
+}
+
+type sidebarMaxAggregate {
   id: ID
 }
 
@@ -249,6 +541,90 @@ type Query {
     """Specify to sort results."""
     sorting: [metaSort!] = []
   ): MetaConnection!
+  body(
+    """The id of the record to find."""
+    id: ID!
+  ): body
+  bodies(
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: bodyFilter = {}
+
+    """Specify to sort results."""
+    sorting: [bodySort!] = []
+  ): BodyConnection!
+  header(
+    """The id of the record to find."""
+    id: ID!
+  ): header
+  headers(
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: headerFilter = {}
+
+    """Specify to sort results."""
+    sorting: [headerSort!] = []
+  ): HeaderConnection!
+  footer(
+    """The id of the record to find."""
+    id: ID!
+  ): footer
+  footers(
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: footerFilter = {}
+
+    """Specify to sort results."""
+    sorting: [footerSort!] = []
+  ): FooterConnection!
+  main(
+    """The id of the record to find."""
+    id: ID!
+  ): main
+  mains(
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: mainFilter = {}
+
+    """Specify to sort results."""
+    sorting: [mainSort!] = []
+  ): MainConnection!
+  navigation(
+    """The id of the record to find."""
+    id: ID!
+  ): navigation
+  navigations(
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: navigationFilter = {}
+
+    """Specify to sort results."""
+    sorting: [navigationSort!] = []
+  ): NavigationConnection!
+  sidebar(
+    """The id of the record to find."""
+    id: ID!
+  ): sidebar
+  sidebars(
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: sidebarFilter = {}
+
+    """Specify to sort results."""
+    sorting: [sidebarSort!] = []
+  ): SidebarConnection!
 }
 
 input CursorPaging {
@@ -361,8 +737,105 @@ enum metaSortFields {
   id
 }
 
+input bodyFilter {
+  and: [bodyFilter!]
+  or: [bodyFilter!]
+  id: IDFilterComparison
+}
+
+input bodySort {
+  field: bodySortFields!
+  direction: SortDirection!
+  nulls: SortNulls
+}
+
+enum bodySortFields {
+  id
+}
+
+input headerFilter {
+  and: [headerFilter!]
+  or: [headerFilter!]
+  id: IDFilterComparison
+}
+
+input headerSort {
+  field: headerSortFields!
+  direction: SortDirection!
+  nulls: SortNulls
+}
+
+enum headerSortFields {
+  id
+}
+
+input footerFilter {
+  and: [footerFilter!]
+  or: [footerFilter!]
+  id: IDFilterComparison
+}
+
+input footerSort {
+  field: footerSortFields!
+  direction: SortDirection!
+  nulls: SortNulls
+}
+
+enum footerSortFields {
+  id
+}
+
+input mainFilter {
+  and: [mainFilter!]
+  or: [mainFilter!]
+  id: IDFilterComparison
+}
+
+input mainSort {
+  field: mainSortFields!
+  direction: SortDirection!
+  nulls: SortNulls
+}
+
+enum mainSortFields {
+  id
+}
+
+input navigationFilter {
+  and: [navigationFilter!]
+  or: [navigationFilter!]
+  id: IDFilterComparison
+}
+
+input navigationSort {
+  field: navigationSortFields!
+  direction: SortDirection!
+  nulls: SortNulls
+}
+
+enum navigationSortFields {
+  id
+}
+
+input sidebarFilter {
+  and: [sidebarFilter!]
+  or: [sidebarFilter!]
+  id: IDFilterComparison
+}
+
+input sidebarSort {
+  field: sidebarSortFields!
+  direction: SortDirection!
+  nulls: SortNulls
+}
+
+enum sidebarSortFields {
+  id
+}
+
 type Mutation {
   setHeadOnPage(input: SetHeadOnPageInput!): page!
+  setBodyOnPage(input: SetBodyOnPageInput!): page!
   createOnePage(input: CreateOnePageInput!): page!
   createManyPages(input: CreateManyPagesInput!): [page!]!
   updateOnePage(input: UpdateOnePageInput!): page!
@@ -382,9 +855,58 @@ type Mutation {
   updateManyMetas(input: UpdateManyMetasInput!): UpdateManyResponse!
   deleteOneMeta(input: DeleteOneMetaInput!): MetaDeleteResponse!
   deleteManyMetas(input: DeleteManyMetasInput!): DeleteManyResponse!
+  setHeaderOnBody(input: SetHeaderOnBodyInput!): body!
+  setNavigationOnBody(input: SetNavigationOnBodyInput!): body!
+  setMainOnBody(input: SetMainOnBodyInput!): body!
+  setSidebarOnBody(input: SetSidebarOnBodyInput!): body!
+  setFooterOnBody(input: SetFooterOnBodyInput!): body!
+  createOneBody(input: CreateOneBodyInput!): body!
+  createManyBodies(input: CreateManyBodiesInput!): [body!]!
+  updateOneBody(input: UpdateOneBodyInput!): body!
+  updateManyBodies(input: UpdateManyBodiesInput!): UpdateManyResponse!
+  deleteOneBody(input: DeleteOneBodyInput!): BodyDeleteResponse!
+  deleteManyBodies(input: DeleteManyBodiesInput!): DeleteManyResponse!
+  createOneHeader(input: CreateOneHeaderInput!): header!
+  createManyHeaders(input: CreateManyHeadersInput!): [header!]!
+  updateOneHeader(input: UpdateOneHeaderInput!): header!
+  updateManyHeaders(input: UpdateManyHeadersInput!): UpdateManyResponse!
+  deleteOneHeader(input: DeleteOneHeaderInput!): HeaderDeleteResponse!
+  deleteManyHeaders(input: DeleteManyHeadersInput!): DeleteManyResponse!
+  createOneFooter(input: CreateOneFooterInput!): footer!
+  createManyFooters(input: CreateManyFootersInput!): [footer!]!
+  updateOneFooter(input: UpdateOneFooterInput!): footer!
+  updateManyFooters(input: UpdateManyFootersInput!): UpdateManyResponse!
+  deleteOneFooter(input: DeleteOneFooterInput!): FooterDeleteResponse!
+  deleteManyFooters(input: DeleteManyFootersInput!): DeleteManyResponse!
+  createOneMain(input: CreateOneMainInput!): main!
+  createManyMains(input: CreateManyMainsInput!): [main!]!
+  updateOneMain(input: UpdateOneMainInput!): main!
+  updateManyMains(input: UpdateManyMainsInput!): UpdateManyResponse!
+  deleteOneMain(input: DeleteOneMainInput!): MainDeleteResponse!
+  deleteManyMains(input: DeleteManyMainsInput!): DeleteManyResponse!
+  createOneNavigation(input: CreateOneNavigationInput!): navigation!
+  createManyNavigations(input: CreateManyNavigationsInput!): [navigation!]!
+  updateOneNavigation(input: UpdateOneNavigationInput!): navigation!
+  updateManyNavigations(input: UpdateManyNavigationsInput!): UpdateManyResponse!
+  deleteOneNavigation(input: DeleteOneNavigationInput!): NavigationDeleteResponse!
+  deleteManyNavigations(input: DeleteManyNavigationsInput!): DeleteManyResponse!
+  createOneSidebar(input: CreateOneSidebarInput!): sidebar!
+  createManySidebars(input: CreateManySidebarsInput!): [sidebar!]!
+  updateOneSidebar(input: UpdateOneSidebarInput!): sidebar!
+  updateManySidebars(input: UpdateManySidebarsInput!): UpdateManyResponse!
+  deleteOneSidebar(input: DeleteOneSidebarInput!): SidebarDeleteResponse!
+  deleteManySidebars(input: DeleteManySidebarsInput!): DeleteManyResponse!
 }
 
 input SetHeadOnPageInput {
+  """The id of the record."""
+  id: ID!
+
+  """The id of relation."""
+  relationId: ID!
+}
+
+input SetBodyOnPageInput {
   """The id of the record."""
   id: ID!
 
@@ -524,7 +1046,6 @@ input CreateMeta {
   description: String
   noindex: Boolean
   nofollow: Boolean
-  robots: String
   viewport: String
 }
 
@@ -546,7 +1067,6 @@ input UpdateMeta {
   description: String
   noindex: Boolean
   nofollow: Boolean
-  robots: String
   viewport: String
 }
 
@@ -577,5 +1097,381 @@ input DeleteManyMetasInput {
 input metaDeleteFilter {
   and: [metaDeleteFilter!]
   or: [metaDeleteFilter!]
+  id: IDFilterComparison
+}
+
+input SetHeaderOnBodyInput {
+  """The id of the record."""
+  id: ID!
+
+  """The id of relation."""
+  relationId: ID!
+}
+
+input SetNavigationOnBodyInput {
+  """The id of the record."""
+  id: ID!
+
+  """The id of relation."""
+  relationId: ID!
+}
+
+input SetMainOnBodyInput {
+  """The id of the record."""
+  id: ID!
+
+  """The id of relation."""
+  relationId: ID!
+}
+
+input SetSidebarOnBodyInput {
+  """The id of the record."""
+  id: ID!
+
+  """The id of relation."""
+  relationId: ID!
+}
+
+input SetFooterOnBodyInput {
+  """The id of the record."""
+  id: ID!
+
+  """The id of relation."""
+  relationId: ID!
+}
+
+input CreateOneBodyInput {
+  """The record to create"""
+  body: CreateBody!
+}
+
+input CreateBody {
+  title: String
+}
+
+input CreateManyBodiesInput {
+  """Array of records to create"""
+  bodies: [CreateBody!]!
+}
+
+input UpdateOneBodyInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: UpdateBody!
+}
+
+input UpdateBody {
+  title: String
+}
+
+input UpdateManyBodiesInput {
+  """Filter used to find fields to update"""
+  filter: bodyUpdateFilter!
+
+  """The update to apply to all records found using the filter"""
+  update: UpdateBody!
+}
+
+input bodyUpdateFilter {
+  and: [bodyUpdateFilter!]
+  or: [bodyUpdateFilter!]
+  id: IDFilterComparison
+}
+
+input DeleteOneBodyInput {
+  """The id of the record to delete."""
+  id: ID!
+}
+
+input DeleteManyBodiesInput {
+  """Filter to find records to delete"""
+  filter: bodyDeleteFilter!
+}
+
+input bodyDeleteFilter {
+  and: [bodyDeleteFilter!]
+  or: [bodyDeleteFilter!]
+  id: IDFilterComparison
+}
+
+input CreateOneHeaderInput {
+  """The record to create"""
+  header: CreateHeader!
+}
+
+input CreateHeader {
+  type: String
+}
+
+input CreateManyHeadersInput {
+  """Array of records to create"""
+  headers: [CreateHeader!]!
+}
+
+input UpdateOneHeaderInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: UpdateHeader!
+}
+
+input UpdateHeader {
+  type: String
+}
+
+input UpdateManyHeadersInput {
+  """Filter used to find fields to update"""
+  filter: headerUpdateFilter!
+
+  """The update to apply to all records found using the filter"""
+  update: UpdateHeader!
+}
+
+input headerUpdateFilter {
+  and: [headerUpdateFilter!]
+  or: [headerUpdateFilter!]
+  id: IDFilterComparison
+}
+
+input DeleteOneHeaderInput {
+  """The id of the record to delete."""
+  id: ID!
+}
+
+input DeleteManyHeadersInput {
+  """Filter to find records to delete"""
+  filter: headerDeleteFilter!
+}
+
+input headerDeleteFilter {
+  and: [headerDeleteFilter!]
+  or: [headerDeleteFilter!]
+  id: IDFilterComparison
+}
+
+input CreateOneFooterInput {
+  """The record to create"""
+  footer: CreateFooter!
+}
+
+input CreateFooter {
+  title: String
+}
+
+input CreateManyFootersInput {
+  """Array of records to create"""
+  footers: [CreateFooter!]!
+}
+
+input UpdateOneFooterInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: UpdateFooter!
+}
+
+input UpdateFooter {
+  title: String
+}
+
+input UpdateManyFootersInput {
+  """Filter used to find fields to update"""
+  filter: footerUpdateFilter!
+
+  """The update to apply to all records found using the filter"""
+  update: UpdateFooter!
+}
+
+input footerUpdateFilter {
+  and: [footerUpdateFilter!]
+  or: [footerUpdateFilter!]
+  id: IDFilterComparison
+}
+
+input DeleteOneFooterInput {
+  """The id of the record to delete."""
+  id: ID!
+}
+
+input DeleteManyFootersInput {
+  """Filter to find records to delete"""
+  filter: footerDeleteFilter!
+}
+
+input footerDeleteFilter {
+  and: [footerDeleteFilter!]
+  or: [footerDeleteFilter!]
+  id: IDFilterComparison
+}
+
+input CreateOneMainInput {
+  """The record to create"""
+  main: CreateMain!
+}
+
+input CreateMain {
+  title: String
+}
+
+input CreateManyMainsInput {
+  """Array of records to create"""
+  mains: [CreateMain!]!
+}
+
+input UpdateOneMainInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: UpdateMain!
+}
+
+input UpdateMain {
+  title: String
+}
+
+input UpdateManyMainsInput {
+  """Filter used to find fields to update"""
+  filter: mainUpdateFilter!
+
+  """The update to apply to all records found using the filter"""
+  update: UpdateMain!
+}
+
+input mainUpdateFilter {
+  and: [mainUpdateFilter!]
+  or: [mainUpdateFilter!]
+  id: IDFilterComparison
+}
+
+input DeleteOneMainInput {
+  """The id of the record to delete."""
+  id: ID!
+}
+
+input DeleteManyMainsInput {
+  """Filter to find records to delete"""
+  filter: mainDeleteFilter!
+}
+
+input mainDeleteFilter {
+  and: [mainDeleteFilter!]
+  or: [mainDeleteFilter!]
+  id: IDFilterComparison
+}
+
+input CreateOneNavigationInput {
+  """The record to create"""
+  navigation: CreateNavigation!
+}
+
+input CreateNavigation {
+  title: String
+}
+
+input CreateManyNavigationsInput {
+  """Array of records to create"""
+  navigations: [CreateNavigation!]!
+}
+
+input UpdateOneNavigationInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: UpdateNavigation!
+}
+
+input UpdateNavigation {
+  title: String
+}
+
+input UpdateManyNavigationsInput {
+  """Filter used to find fields to update"""
+  filter: navigationUpdateFilter!
+
+  """The update to apply to all records found using the filter"""
+  update: UpdateNavigation!
+}
+
+input navigationUpdateFilter {
+  and: [navigationUpdateFilter!]
+  or: [navigationUpdateFilter!]
+  id: IDFilterComparison
+}
+
+input DeleteOneNavigationInput {
+  """The id of the record to delete."""
+  id: ID!
+}
+
+input DeleteManyNavigationsInput {
+  """Filter to find records to delete"""
+  filter: navigationDeleteFilter!
+}
+
+input navigationDeleteFilter {
+  and: [navigationDeleteFilter!]
+  or: [navigationDeleteFilter!]
+  id: IDFilterComparison
+}
+
+input CreateOneSidebarInput {
+  """The record to create"""
+  sidebar: CreateSidebar!
+}
+
+input CreateSidebar {
+  title: String
+}
+
+input CreateManySidebarsInput {
+  """Array of records to create"""
+  sidebars: [CreateSidebar!]!
+}
+
+input UpdateOneSidebarInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: UpdateSidebar!
+}
+
+input UpdateSidebar {
+  title: String
+}
+
+input UpdateManySidebarsInput {
+  """Filter used to find fields to update"""
+  filter: sidebarUpdateFilter!
+
+  """The update to apply to all records found using the filter"""
+  update: UpdateSidebar!
+}
+
+input sidebarUpdateFilter {
+  and: [sidebarUpdateFilter!]
+  or: [sidebarUpdateFilter!]
+  id: IDFilterComparison
+}
+
+input DeleteOneSidebarInput {
+  """The id of the record to delete."""
+  id: ID!
+}
+
+input DeleteManySidebarsInput {
+  """Filter to find records to delete"""
+  filter: sidebarDeleteFilter!
+}
+
+input sidebarDeleteFilter {
+  and: [sidebarDeleteFilter!]
+  or: [sidebarDeleteFilter!]
   id: IDFilterComparison
 }
