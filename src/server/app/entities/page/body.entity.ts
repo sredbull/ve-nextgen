@@ -8,6 +8,8 @@ import { Navigation } from './body/navigation.entity';
 import { Main } from './body/main.entity';
 import { Sidebar } from './body/sidebar.entity';
 import { Footer } from './body/footer.entity';
+import { Extended } from './body/footer/extended.entity';
+import { Simple } from './body/footer/simple.entity';
 
 @Entity({ name: 'page_body' })
 export class Body extends MainEntity {
@@ -32,5 +34,5 @@ export class Body extends MainEntity {
 
   @OneToOne((_type) => Footer, (footer) => footer.body, { nullable: false, cascade: true })
   @JoinColumn()
-  footer: Footer;
+  footer: Extended | Simple;
 }

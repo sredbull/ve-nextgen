@@ -35,7 +35,7 @@ import { SidebarModule } from './modules/page/body/sidebar.module';
         url: configService.get<string>('DATABASE_URL'),
         autoLoadEntities: true,
         synchronize: true,
-        logging: true,
+        logging: false,
         ssl:
           configService.get<string>('NODE_ENV') === 'production'
             ? { rejectUnauthorized: false }

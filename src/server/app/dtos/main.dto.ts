@@ -1,7 +1,8 @@
 import { IDField } from '@nestjs-query/query-graphql';
-import { GraphQLISODateTime, Field, ID } from '@nestjs/graphql';
+import { GraphQLISODateTime, Field, ID, ObjectType } from '@nestjs/graphql';
 
-export abstract class MainDTO {
+@ObjectType('main')
+export class MainDTO {
   @IDField(() => ID)
   id!: number;
 

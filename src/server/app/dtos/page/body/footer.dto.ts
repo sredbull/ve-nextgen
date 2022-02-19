@@ -1,8 +1,18 @@
-import { Field, ObjectType } from '@nestjs/graphql';
-import { MainDTO as MainEntityDTO } from '../../main.dto';
+import { Field, ObjectType, createUnionType } from '@nestjs/graphql';
+import { MainDTO } from '../../main.dto';
+import { ExtendedDTO } from './footer/extended.dto';
+import { SimpleDTO } from './footer/simple.dto';
 
-@ObjectType('footer')
-export class FooterDTO extends MainEntityDTO {
+export const FooterUnion = createUnionType({
+  name: 'FooterUnion',
+  types: () => [ExtendedDTO, SimpleDTO],
+  resolveType: (value) => {
+    return value.type
+  }
+});
+
+@ObjectType('page_body_footer')
+export class FooterDTO extends MainDTO {
   @Field()
-  title!: string;
+  type: string;
 }

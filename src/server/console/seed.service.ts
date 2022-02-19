@@ -6,6 +6,7 @@ import { Curved } from '../app/entities/page/body/header/curved.entity';
 
 import { InjectConnection } from '@nestjs/typeorm';
 import { Connection, Repository } from 'typeorm';
+import { Extended } from '../app/entities/page/body/footer/extended.entity';
 
 @Console()
 export class SeedService {
@@ -21,8 +22,8 @@ export class SeedService {
     spin.start('Seeding the DB');
 
     const pageRepo: Repository<Page> = this.connection.getRepository(Page);
-    const curvedRepo: Repository<Curved> =
-      this.connection.getRepository(Curved);
+    const curvedRepo: Repository<Curved> = this.connection.getRepository(Curved);
+    const extendedRepo: Repository<Extended> = this.connection.getRepository(Extended);  
 
     let curved = curvedRepo.create({
       title: 'Curvy header',
@@ -30,6 +31,14 @@ export class SeedService {
     });
     
     curved = await curvedRepo.save(curved);
+
+    let extended = extendedRepo.create({
+      title: 'It\'s my footer',
+      subTitle: 'ain\'t that right, or what?',
+      copyright: 'Sven Roodbol 2022',
+    });
+    
+    extended = await extendedRepo.save(extended);
 
     const page = pageRepo.create({
       lang: 'en',
@@ -51,9 +60,7 @@ export class SeedService {
         sidebar: {
           title: 'sidebar titel',
         },
-        footer: {
-          title: 'footer titel',
-        },
+        footer: extended,
       },
     });
 

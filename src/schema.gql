@@ -18,6 +18,9 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 scalar DateTime
 
 type meta {
+  id: ID!
+  created: DateTime!
+  updated_at: DateTime!
   charset: String!
   description: String!
   noindex: Boolean!
@@ -26,40 +29,101 @@ type meta {
 }
 
 type head {
+  id: ID!
+  created: DateTime!
+  updated_at: DateTime!
   title: String!
   meta: meta!
 }
 
-type header {
+type page_body_header {
+  id: ID!
+  created: DateTime!
+  updated_at: DateTime!
   type: String!
 }
 
 type navigation {
-  title: String!
-}
-
-type main {
+  id: ID!
+  created: DateTime!
+  updated_at: DateTime!
   title: String!
 }
 
 type sidebar {
+  id: ID!
+  created: DateTime!
+  updated_at: DateTime!
   title: String!
 }
 
-type footer {
+type page_body_footer {
+  id: ID!
+  created: DateTime!
+  updated_at: DateTime!
+  type: String!
+}
+
+type main {
+  id: ID!
+  created: DateTime!
+  updated_at: DateTime!
   title: String!
 }
 
 type body {
-  title: String!
-  header: header!
+  id: ID!
+  created: DateTime!
+  updated_at: DateTime!
+  header: HeaderUnion!
   navigation: navigation!
   main: main!
   sidebar: sidebar!
-  footer: footer!
+  footer: FooterUnion!
+}
+
+union HeaderUnion = page_body_header_curved | page_body_header_skewed
+
+type page_body_header_curved {
+  id: ID!
+  created: DateTime!
+  updated_at: DateTime!
+  title: String!
+  subTitle: String!
+}
+
+type page_body_header_skewed {
+  id: ID!
+  created: DateTime!
+  updated_at: DateTime!
+  title: String!
+  subTitle: String!
+}
+
+union FooterUnion = page_body_footer_extended | page_body_footer_simple
+
+type page_body_footer_extended {
+  id: ID!
+  created: DateTime!
+  updated_at: DateTime!
+  title: String!
+  subTitle: String!
+  copyright: String!
+}
+
+type page_body_footer_simple {
+  id: ID!
+  created: DateTime!
+  updated_at: DateTime!
+  title: String!
+  subTitle: String!
+  copyright: String!
 }
 
 type page {
+  id: ID!
+  created: DateTime!
+  updated_at: DateTime!
   lang: String!
   head: head!
   body: body!
@@ -71,6 +135,9 @@ type DeleteManyResponse {
 }
 
 type PageDeleteResponse {
+  id: ID
+  created: DateTime
+  updated_at: DateTime
   lang: String
 }
 
@@ -137,6 +204,9 @@ type pageMaxAggregate {
 }
 
 type HeadDeleteResponse {
+  id: ID
+  created: DateTime
+  updated_at: DateTime
   title: String
 }
 
@@ -185,6 +255,9 @@ type headMaxAggregate {
 }
 
 type MetaDeleteResponse {
+  id: ID
+  created: DateTime
+  updated_at: DateTime
   charset: String
   description: String
   noindex: Boolean
@@ -233,7 +306,9 @@ type metaMaxAggregate {
 }
 
 type BodyDeleteResponse {
-  title: String
+  id: ID
+  created: DateTime
+  updated_at: DateTime
 }
 
 type bodyEdge {
@@ -276,95 +351,104 @@ type bodyMaxAggregate {
   id: ID
 }
 
-type HeaderDeleteResponse {
+type Page_body_headerDeleteResponse {
+  id: ID
+  created: DateTime
+  updated_at: DateTime
   type: String
 }
 
-type headerEdge {
-  """The node containing the header"""
-  node: header!
+type page_body_headerEdge {
+  """The node containing the page_body_header"""
+  node: page_body_header!
 
   """Cursor for this node."""
   cursor: ConnectionCursor!
 }
 
-type HeaderConnection {
+type Page_body_headerConnection {
   """Paging information"""
   pageInfo: PageInfo!
 
   """Array of edges."""
-  edges: [headerEdge!]!
+  edges: [page_body_headerEdge!]!
 }
 
-type headerAggregateGroupBy {
+type page_body_headerAggregateGroupBy {
   id: ID
 }
 
-type headerCountAggregate {
+type page_body_headerCountAggregate {
   id: Int
 }
 
-type headerSumAggregate {
+type page_body_headerSumAggregate {
   id: Float
 }
 
-type headerAvgAggregate {
+type page_body_headerAvgAggregate {
   id: Float
 }
 
-type headerMinAggregate {
+type page_body_headerMinAggregate {
   id: ID
 }
 
-type headerMaxAggregate {
+type page_body_headerMaxAggregate {
   id: ID
 }
 
-type FooterDeleteResponse {
-  title: String
+type Page_body_footerDeleteResponse {
+  id: ID
+  created: DateTime
+  updated_at: DateTime
+  type: String
 }
 
-type footerEdge {
-  """The node containing the footer"""
-  node: footer!
+type page_body_footerEdge {
+  """The node containing the page_body_footer"""
+  node: page_body_footer!
 
   """Cursor for this node."""
   cursor: ConnectionCursor!
 }
 
-type FooterConnection {
+type Page_body_footerConnection {
   """Paging information"""
   pageInfo: PageInfo!
 
   """Array of edges."""
-  edges: [footerEdge!]!
+  edges: [page_body_footerEdge!]!
 }
 
-type footerAggregateGroupBy {
+type page_body_footerAggregateGroupBy {
   id: ID
 }
 
-type footerCountAggregate {
+type page_body_footerCountAggregate {
   id: Int
 }
 
-type footerSumAggregate {
+type page_body_footerSumAggregate {
   id: Float
 }
 
-type footerAvgAggregate {
+type page_body_footerAvgAggregate {
   id: Float
 }
 
-type footerMinAggregate {
+type page_body_footerMinAggregate {
   id: ID
 }
 
-type footerMaxAggregate {
+type page_body_footerMaxAggregate {
   id: ID
 }
 
 type MainDeleteResponse {
+  id: ID
+  created: DateTime
+  updated_at: DateTime
   title: String
 }
 
@@ -409,6 +493,9 @@ type mainMaxAggregate {
 }
 
 type NavigationDeleteResponse {
+  id: ID
+  created: DateTime
+  updated_at: DateTime
   title: String
 }
 
@@ -453,6 +540,9 @@ type navigationMaxAggregate {
 }
 
 type SidebarDeleteResponse {
+  id: ID
+  created: DateTime
+  updated_at: DateTime
   title: String
 }
 
@@ -555,34 +645,34 @@ type Query {
     """Specify to sort results."""
     sorting: [bodySort!] = []
   ): BodyConnection!
-  header(
+  page_body_header(
     """The id of the record to find."""
     id: ID!
-  ): header
-  headers(
+  ): page_body_header
+  page_body_headers(
     """Limit or page results."""
     paging: CursorPaging = {first: 10}
 
     """Specify to filter the records returned."""
-    filter: headerFilter = {}
+    filter: page_body_headerFilter = {}
 
     """Specify to sort results."""
-    sorting: [headerSort!] = []
-  ): HeaderConnection!
-  footer(
+    sorting: [page_body_headerSort!] = []
+  ): Page_body_headerConnection!
+  page_body_footer(
     """The id of the record to find."""
     id: ID!
-  ): footer
-  footers(
+  ): page_body_footer
+  page_body_footers(
     """Limit or page results."""
     paging: CursorPaging = {first: 10}
 
     """Specify to filter the records returned."""
-    filter: footerFilter = {}
+    filter: page_body_footerFilter = {}
 
     """Specify to sort results."""
-    sorting: [footerSort!] = []
-  ): FooterConnection!
+    sorting: [page_body_footerSort!] = []
+  ): Page_body_footerConnection!
   main(
     """The id of the record to find."""
     id: ID!
@@ -753,35 +843,35 @@ enum bodySortFields {
   id
 }
 
-input headerFilter {
-  and: [headerFilter!]
-  or: [headerFilter!]
+input page_body_headerFilter {
+  and: [page_body_headerFilter!]
+  or: [page_body_headerFilter!]
   id: IDFilterComparison
 }
 
-input headerSort {
-  field: headerSortFields!
+input page_body_headerSort {
+  field: page_body_headerSortFields!
   direction: SortDirection!
   nulls: SortNulls
 }
 
-enum headerSortFields {
+enum page_body_headerSortFields {
   id
 }
 
-input footerFilter {
-  and: [footerFilter!]
-  or: [footerFilter!]
+input page_body_footerFilter {
+  and: [page_body_footerFilter!]
+  or: [page_body_footerFilter!]
   id: IDFilterComparison
 }
 
-input footerSort {
-  field: footerSortFields!
+input page_body_footerSort {
+  field: page_body_footerSortFields!
   direction: SortDirection!
   nulls: SortNulls
 }
 
-enum footerSortFields {
+enum page_body_footerSortFields {
   id
 }
 
@@ -866,18 +956,18 @@ type Mutation {
   updateManyBodies(input: UpdateManyBodiesInput!): UpdateManyResponse!
   deleteOneBody(input: DeleteOneBodyInput!): BodyDeleteResponse!
   deleteManyBodies(input: DeleteManyBodiesInput!): DeleteManyResponse!
-  createOneHeader(input: CreateOneHeaderInput!): header!
-  createManyHeaders(input: CreateManyHeadersInput!): [header!]!
-  updateOneHeader(input: UpdateOneHeaderInput!): header!
-  updateManyHeaders(input: UpdateManyHeadersInput!): UpdateManyResponse!
-  deleteOneHeader(input: DeleteOneHeaderInput!): HeaderDeleteResponse!
-  deleteManyHeaders(input: DeleteManyHeadersInput!): DeleteManyResponse!
-  createOneFooter(input: CreateOneFooterInput!): footer!
-  createManyFooters(input: CreateManyFootersInput!): [footer!]!
-  updateOneFooter(input: UpdateOneFooterInput!): footer!
-  updateManyFooters(input: UpdateManyFootersInput!): UpdateManyResponse!
-  deleteOneFooter(input: DeleteOneFooterInput!): FooterDeleteResponse!
-  deleteManyFooters(input: DeleteManyFootersInput!): DeleteManyResponse!
+  createOnePage_body_header(input: CreateOnePage_body_headerInput!): page_body_header!
+  createManyPage_body_headers(input: CreateManyPage_body_headersInput!): [page_body_header!]!
+  updateOnePage_body_header(input: UpdateOnePage_body_headerInput!): page_body_header!
+  updateManyPage_body_headers(input: UpdateManyPage_body_headersInput!): UpdateManyResponse!
+  deleteOnePage_body_header(input: DeleteOnePage_body_headerInput!): Page_body_headerDeleteResponse!
+  deleteManyPage_body_headers(input: DeleteManyPage_body_headersInput!): DeleteManyResponse!
+  createOnePage_body_footer(input: CreateOnePage_body_footerInput!): page_body_footer!
+  createManyPage_body_footers(input: CreateManyPage_body_footersInput!): [page_body_footer!]!
+  updateOnePage_body_footer(input: UpdateOnePage_body_footerInput!): page_body_footer!
+  updateManyPage_body_footers(input: UpdateManyPage_body_footersInput!): UpdateManyResponse!
+  deleteOnePage_body_footer(input: DeleteOnePage_body_footerInput!): Page_body_footerDeleteResponse!
+  deleteManyPage_body_footers(input: DeleteManyPage_body_footersInput!): DeleteManyResponse!
   createOneMain(input: CreateOneMainInput!): main!
   createManyMains(input: CreateManyMainsInput!): [main!]!
   updateOneMain(input: UpdateOneMainInput!): main!
@@ -920,6 +1010,9 @@ input CreateOnePageInput {
 }
 
 input CreatePage {
+  id: ID
+  created: DateTime
+  updated_at: DateTime
   lang: String
 }
 
@@ -937,6 +1030,9 @@ input UpdateOnePageInput {
 }
 
 input UpdatePage {
+  id: ID
+  created: DateTime
+  updated_at: DateTime
   lang: String
 }
 
@@ -984,6 +1080,9 @@ input CreateOneHeadInput {
 }
 
 input CreateHead {
+  id: ID
+  created: DateTime
+  updated_at: DateTime
   title: String
 }
 
@@ -1001,6 +1100,9 @@ input UpdateOneHeadInput {
 }
 
 input UpdateHead {
+  id: ID
+  created: DateTime
+  updated_at: DateTime
   title: String
 }
 
@@ -1042,6 +1144,9 @@ input CreateOneMetaInput {
 }
 
 input CreateMeta {
+  id: ID
+  created: DateTime
+  updated_at: DateTime
   charset: String
   description: String
   noindex: Boolean
@@ -1063,6 +1168,9 @@ input UpdateOneMetaInput {
 }
 
 input UpdateMeta {
+  id: ID
+  created: DateTime
+  updated_at: DateTime
   charset: String
   description: String
   noindex: Boolean
@@ -1146,7 +1254,9 @@ input CreateOneBodyInput {
 }
 
 input CreateBody {
-  title: String
+  id: ID
+  created: DateTime
+  updated_at: DateTime
 }
 
 input CreateManyBodiesInput {
@@ -1163,7 +1273,9 @@ input UpdateOneBodyInput {
 }
 
 input UpdateBody {
-  title: String
+  id: ID
+  created: DateTime
+  updated_at: DateTime
 }
 
 input UpdateManyBodiesInput {
@@ -1196,115 +1308,127 @@ input bodyDeleteFilter {
   id: IDFilterComparison
 }
 
-input CreateOneHeaderInput {
+input CreateOnePage_body_headerInput {
   """The record to create"""
-  header: CreateHeader!
+  page_body_header: CreatePage_body_header!
 }
 
-input CreateHeader {
+input CreatePage_body_header {
+  id: ID
+  created: DateTime
+  updated_at: DateTime
   type: String
 }
 
-input CreateManyHeadersInput {
+input CreateManyPage_body_headersInput {
   """Array of records to create"""
-  headers: [CreateHeader!]!
+  page_body_headers: [CreatePage_body_header!]!
 }
 
-input UpdateOneHeaderInput {
+input UpdateOnePage_body_headerInput {
   """The id of the record to update"""
   id: ID!
 
   """The update to apply."""
-  update: UpdateHeader!
+  update: UpdatePage_body_header!
 }
 
-input UpdateHeader {
+input UpdatePage_body_header {
+  id: ID
+  created: DateTime
+  updated_at: DateTime
   type: String
 }
 
-input UpdateManyHeadersInput {
+input UpdateManyPage_body_headersInput {
   """Filter used to find fields to update"""
-  filter: headerUpdateFilter!
+  filter: page_body_headerUpdateFilter!
 
   """The update to apply to all records found using the filter"""
-  update: UpdateHeader!
+  update: UpdatePage_body_header!
 }
 
-input headerUpdateFilter {
-  and: [headerUpdateFilter!]
-  or: [headerUpdateFilter!]
+input page_body_headerUpdateFilter {
+  and: [page_body_headerUpdateFilter!]
+  or: [page_body_headerUpdateFilter!]
   id: IDFilterComparison
 }
 
-input DeleteOneHeaderInput {
+input DeleteOnePage_body_headerInput {
   """The id of the record to delete."""
   id: ID!
 }
 
-input DeleteManyHeadersInput {
+input DeleteManyPage_body_headersInput {
   """Filter to find records to delete"""
-  filter: headerDeleteFilter!
+  filter: page_body_headerDeleteFilter!
 }
 
-input headerDeleteFilter {
-  and: [headerDeleteFilter!]
-  or: [headerDeleteFilter!]
+input page_body_headerDeleteFilter {
+  and: [page_body_headerDeleteFilter!]
+  or: [page_body_headerDeleteFilter!]
   id: IDFilterComparison
 }
 
-input CreateOneFooterInput {
+input CreateOnePage_body_footerInput {
   """The record to create"""
-  footer: CreateFooter!
+  page_body_footer: CreatePage_body_footer!
 }
 
-input CreateFooter {
-  title: String
+input CreatePage_body_footer {
+  id: ID
+  created: DateTime
+  updated_at: DateTime
+  type: String
 }
 
-input CreateManyFootersInput {
+input CreateManyPage_body_footersInput {
   """Array of records to create"""
-  footers: [CreateFooter!]!
+  page_body_footers: [CreatePage_body_footer!]!
 }
 
-input UpdateOneFooterInput {
+input UpdateOnePage_body_footerInput {
   """The id of the record to update"""
   id: ID!
 
   """The update to apply."""
-  update: UpdateFooter!
+  update: UpdatePage_body_footer!
 }
 
-input UpdateFooter {
-  title: String
+input UpdatePage_body_footer {
+  id: ID
+  created: DateTime
+  updated_at: DateTime
+  type: String
 }
 
-input UpdateManyFootersInput {
+input UpdateManyPage_body_footersInput {
   """Filter used to find fields to update"""
-  filter: footerUpdateFilter!
+  filter: page_body_footerUpdateFilter!
 
   """The update to apply to all records found using the filter"""
-  update: UpdateFooter!
+  update: UpdatePage_body_footer!
 }
 
-input footerUpdateFilter {
-  and: [footerUpdateFilter!]
-  or: [footerUpdateFilter!]
+input page_body_footerUpdateFilter {
+  and: [page_body_footerUpdateFilter!]
+  or: [page_body_footerUpdateFilter!]
   id: IDFilterComparison
 }
 
-input DeleteOneFooterInput {
+input DeleteOnePage_body_footerInput {
   """The id of the record to delete."""
   id: ID!
 }
 
-input DeleteManyFootersInput {
+input DeleteManyPage_body_footersInput {
   """Filter to find records to delete"""
-  filter: footerDeleteFilter!
+  filter: page_body_footerDeleteFilter!
 }
 
-input footerDeleteFilter {
-  and: [footerDeleteFilter!]
-  or: [footerDeleteFilter!]
+input page_body_footerDeleteFilter {
+  and: [page_body_footerDeleteFilter!]
+  or: [page_body_footerDeleteFilter!]
   id: IDFilterComparison
 }
 
@@ -1314,6 +1438,9 @@ input CreateOneMainInput {
 }
 
 input CreateMain {
+  id: ID
+  created: DateTime
+  updated_at: DateTime
   title: String
 }
 
@@ -1331,6 +1458,9 @@ input UpdateOneMainInput {
 }
 
 input UpdateMain {
+  id: ID
+  created: DateTime
+  updated_at: DateTime
   title: String
 }
 
@@ -1370,6 +1500,9 @@ input CreateOneNavigationInput {
 }
 
 input CreateNavigation {
+  id: ID
+  created: DateTime
+  updated_at: DateTime
   title: String
 }
 
@@ -1387,6 +1520,9 @@ input UpdateOneNavigationInput {
 }
 
 input UpdateNavigation {
+  id: ID
+  created: DateTime
+  updated_at: DateTime
   title: String
 }
 
@@ -1426,6 +1562,9 @@ input CreateOneSidebarInput {
 }
 
 input CreateSidebar {
+  id: ID
+  created: DateTime
+  updated_at: DateTime
   title: String
 }
 
@@ -1443,6 +1582,9 @@ input UpdateOneSidebarInput {
 }
 
 input UpdateSidebar {
+  id: ID
+  created: DateTime
+  updated_at: DateTime
   title: String
 }
 
