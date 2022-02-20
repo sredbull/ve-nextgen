@@ -23,25 +23,13 @@ export class SeedService {
     spin.start('Seeding the DB');
 
     const pageRepo: Repository<Page> = this.connection.getRepository(Page);
-    const curvedRepo: Repository<Curved> = this.connection.getRepository(Curved);
-    const extendedRepo: Repository<Extended> = this.connection.getRepository(Extended);  
-    const navigationRepo: Repository<Navigation> = this.connection.getRepository(Navigation);  
-    const ARepo: Repository<A> = this.connection.getRepository(A);  
-
-    let curved = curvedRepo.create({
-      title: 'Curvy header',
-      subTitle: 'cool huh?',
-    });
-    
-    curved = await curvedRepo.save(curved);
-
-    let extended = extendedRepo.create({
-      title: 'It\'s my footer',
-      subTitle: 'ain\'t that right, or what?',
-      copyright: 'Sven Roodbol 2022',
-    });
-    
-    extended = await extendedRepo.save(extended);
+    const curvedRepo: Repository<Curved> =
+      this.connection.getRepository(Curved);
+    const extendedRepo: Repository<Extended> =
+      this.connection.getRepository(Extended);
+    const navigationRepo: Repository<Navigation> =
+      this.connection.getRepository(Navigation);
+    const ARepo: Repository<A> = this.connection.getRepository(A);
 
     const page = pageRepo.create({
       lang: 'en',
@@ -53,21 +41,39 @@ export class SeedService {
         },
       },
       body: {
-        header: curved,
-        navigation: await navigationRepo.save(navigationRepo.create({
-          title: 'main-navigation',
-          items: [
-            await ARepo.save(ARepo.create({ href: '/home', rel: RelEnum.NOFOLLOW })),
-            await ARepo.save(ARepo.create({ href: '/profile', rel: RelEnum.NOFOLLOW, target: TargetEnum.BLANK }))
-          ],
-        })),
+        header: await curvedRepo.save(
+          curvedRepo.create({ title: 'Curvy header', subTitle: 'cool huh?' }),
+        ),
+        navigation: await navigationRepo.save(
+          navigationRepo.create({
+            title: 'main-navigation',
+            items: [
+              await ARepo.save(
+                ARepo.create({ href: '/home', rel: RelEnum.NOFOLLOW }),
+              ),
+              await ARepo.save(
+                ARepo.create({
+                  href: '/profile',
+                  rel: RelEnum.NOFOLLOW,
+                  target: TargetEnum.BLANK,
+                }),
+              ),
+            ],
+          }),
+        ),
         main: {
           title: 'main titel',
         },
         sidebar: {
           title: 'sidebar titel',
         },
-        footer: extended,
+        footer: await extendedRepo.save(
+          extendedRepo.create({
+            title: "It's my footer",
+            subTitle: "ain't that right, or what?",
+            copyright: 'Sven Roodbol 2022',
+          }),
+        ),
       },
     });
 
