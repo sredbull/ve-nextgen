@@ -7,7 +7,7 @@ import * as cookieParser from 'cookie-parser';
 
 import { usersFactory, ordersFactory, thingsFactory } from 'test/factories';
 import { UsersService } from 'src/server/app/services/users.service';
-import { User } from 'src/server/app/entities/user.entity';
+import { User } from 'src/server/app/models/user/user.entity';
 import { Order } from 'src/server/app/entities/order.entity';
 import { OrdersService } from 'src/server/app/services/orders.service';
 import { JwtAuthService } from 'src/server/app/auth/jwt/jwt-auth.service';

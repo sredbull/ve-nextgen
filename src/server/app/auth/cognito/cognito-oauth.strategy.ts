@@ -3,7 +3,7 @@ import { Strategy } from 'passport-oauth2';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import axios from 'axios';
-import { _UserRepository } from '../../repositories/user.repository';
+import { _UserRepository } from '../../models/user/user.repository';
 
 @Injectable()
 export class CognitoOauthStrategy extends PassportStrategy(

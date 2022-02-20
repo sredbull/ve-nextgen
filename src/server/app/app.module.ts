@@ -6,20 +6,20 @@ import { ConsoleModule } from 'nestjs-console';
 import { join } from 'path';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { SeedService } from 'src/server/console/seed.service';
-import { AppController } from './controllers/app.controller';
-import { AppService } from './services/app.service';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
-import { UserModule } from './modules/user.module';
-import { PageModule } from './modules/page.module';
-import { HeadModule } from './modules/page/head.module';
-import { MetaModule } from './modules/page/head/meta.module';
-import { BodyModule } from './modules/page/body.module';
-import { HeaderModule } from './modules/page/body/header.module';
-import { FooterModule } from './modules/page/body/footer.module';
-import { MainModule } from './modules/page/body/main.module';
-import { NavigationModule } from './modules/page/body/navigation.module';
-import { SidebarModule } from './modules/page/body/sidebar.module';
-import { AModule } from './modules/common/a.module';
+import { UserModule } from './models/user/user.module';
+import { PageModule } from './models/page/page.module';
+import { HeadModule } from './models/page/head/head.module';
+import { MetaModule } from './models/page/head/meta/meta.module';
+import { BodyModule } from './models/page/body/body.module';
+import { HeaderModule } from './models/page/body/header/header.module';
+import { FooterModule } from './models/page/body/footer/footer.module';
+import { MainModule } from './models/page/body/main/main.module';
+import { NavigationModule } from './models/page/body/navigation/navigation.module';
+import { SidebarModule } from './models/page/body/sidebar/sidebar.module';
+import { AModule } from './models/common/a.module';
 
 @Module({
   imports: [

@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { UserModule } from '../../modules/user.module';
+import { UserModule } from '../../models/user/user.module';
 import { JwtAuthModule } from '../jwt/jwt-auth.module';
 import { CognitoOauthController } from './cognito-oauth.controller';
 import { CognitoOauthStrategy } from './cognito-oauth.strategy';

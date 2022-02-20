@@ -1,13 +1,13 @@
 import { Console, Command, createSpinner } from 'nestjs-console';
 
-import { Page } from '../app/entities/page.entity';
-import { Curved } from '../app/entities/page/body/header/curved.entity';
+import { Page } from '../app/models/page/page.entity';
+import { Curved } from '../app/models/page/body/header/curved/curved.entity';
 
 import { InjectConnection } from '@nestjs/typeorm';
 import { Connection, Repository } from 'typeorm';
-import { Extended } from '../app/entities/page/body/footer/extended.entity';
-import { Navigation } from '../app/entities/page/body/navigation.entity';
-import { A, RelEnum, TargetEnum } from '../app/entities/common/a.entity';
+import { Extended } from '../app/models/page/body/footer/extended/extended.entity';
+import { Navigation } from '../app/models/page/body/navigation/navigation.entity';
+import { A, RelEnum, TargetEnum } from '../app/models/common/a.entity';
 
 @Console()
 export class SeedService {
