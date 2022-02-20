@@ -93,7 +93,6 @@
     "eslint-plugin-prettier": "^4.0.0",
     "faker": "^6.6.6",
     "fishery": "^2.1.0",
-    "graphql-zeus": "4.0.4",
     "jest": "^27.5.1",
     "prettier": "^2.5.1",
     "supertest": "^6.2.2",
