@@ -19,6 +19,7 @@ import { FooterModule } from './modules/page/body/footer.module';
 import { MainModule } from './modules/page/body/main.module';
 import { NavigationModule } from './modules/page/body/navigation.module';
 import { SidebarModule } from './modules/page/body/sidebar.module';
+import { AModule } from './modules/common/a.module';
 
 @Module({
   imports: [
@@ -55,6 +56,7 @@ import { SidebarModule } from './modules/page/body/sidebar.module';
     MainModule,
     NavigationModule,
     SidebarModule,
+    AModule,
   ],
   providers: [SeedService, AppService],
   controllers: [AppController],

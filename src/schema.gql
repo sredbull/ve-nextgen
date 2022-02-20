@@ -43,11 +43,95 @@ type page_body_header {
   type: String!
 }
 
-type navigation {
+type CommonA {
+  id: ID!
+  created: DateTime!
+  updated_at: DateTime!
+  href: String!
+  rel: RelEnum!
+  target: TargetEnum!
+}
+
+enum RelEnum {
+  ALTERNATE
+  AUTHOR
+  BOOKMARK
+  EXTERNAL
+  HELP
+  LICENSE
+  NEXT
+  NOFOLLOW
+  NOREFERRER
+  NOOPENER
+  PREV
+  SEARCH
+  TAG
+}
+
+enum TargetEnum {
+  BLANK
+  PARENT
+  SELF
+  TOP
+}
+
+type PageBodyNavigation {
   id: ID!
   created: DateTime!
   updated_at: DateTime!
   title: String!
+  items(
+    """Specify to filter the records returned."""
+    filter: CommonAFilter = {}
+
+    """Specify to sort results."""
+    sorting: [CommonASort!] = []
+  ): [CommonA!]
+}
+
+input CommonAFilter {
+  and: [CommonAFilter!]
+  or: [CommonAFilter!]
+  id: IDFilterComparison
+}
+
+input IDFilterComparison {
+  is: Boolean
+  isNot: Boolean
+  eq: ID
+  neq: ID
+  gt: ID
+  gte: ID
+  lt: ID
+  lte: ID
+  like: ID
+  notLike: ID
+  iLike: ID
+  notILike: ID
+  in: [ID!]
+  notIn: [ID!]
+}
+
+input CommonASort {
+  field: CommonASortFields!
+  direction: SortDirection!
+  nulls: SortNulls
+}
+
+enum CommonASortFields {
+  id
+}
+
+"""Sort Directions"""
+enum SortDirection {
+  ASC
+  DESC
+}
+
+"""Sort Nulls Options"""
+enum SortNulls {
+  NULLS_FIRST
+  NULLS_LAST
 }
 
 type sidebar {
@@ -76,7 +160,7 @@ type body {
   created: DateTime!
   updated_at: DateTime!
   header: HeaderUnion!
-  navigation: navigation!
+  navigation: PageBodyNavigation!
   main: main!
   sidebar: sidebar!
   footer: FooterUnion!
@@ -492,50 +576,50 @@ type mainMaxAggregate {
   id: ID
 }
 
-type NavigationDeleteResponse {
+type PageBodyNavigationDeleteResponse {
   id: ID
   created: DateTime
   updated_at: DateTime
   title: String
 }
 
-type navigationEdge {
-  """The node containing the navigation"""
-  node: navigation!
+type PageBodyNavigationEdge {
+  """The node containing the PageBodyNavigation"""
+  node: PageBodyNavigation!
 
   """Cursor for this node."""
   cursor: ConnectionCursor!
 }
 
-type NavigationConnection {
+type PageBodyNavigationConnection {
   """Paging information"""
   pageInfo: PageInfo!
 
   """Array of edges."""
-  edges: [navigationEdge!]!
+  edges: [PageBodyNavigationEdge!]!
 }
 
-type navigationAggregateGroupBy {
+type PageBodyNavigationAggregateGroupBy {
   id: ID
 }
 
-type navigationCountAggregate {
+type PageBodyNavigationCountAggregate {
   id: Int
 }
 
-type navigationSumAggregate {
+type PageBodyNavigationSumAggregate {
   id: Float
 }
 
-type navigationAvgAggregate {
+type PageBodyNavigationAvgAggregate {
   id: Float
 }
 
-type navigationMinAggregate {
+type PageBodyNavigationMinAggregate {
   id: ID
 }
 
-type navigationMaxAggregate {
+type PageBodyNavigationMaxAggregate {
   id: ID
 }
 
@@ -583,6 +667,55 @@ type sidebarMinAggregate {
 }
 
 type sidebarMaxAggregate {
+  id: ID
+}
+
+type CommonADeleteResponse {
+  id: ID
+  created: DateTime
+  updated_at: DateTime
+  href: String
+  rel: RelEnum
+  target: TargetEnum
+}
+
+type CommonAEdge {
+  """The node containing the CommonA"""
+  node: CommonA!
+
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+}
+
+type CommonAConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [CommonAEdge!]!
+}
+
+type CommonAAggregateGroupBy {
+  id: ID
+}
+
+type CommonACountAggregate {
+  id: Int
+}
+
+type CommonASumAggregate {
+  id: Float
+}
+
+type CommonAAvgAggregate {
+  id: Float
+}
+
+type CommonAMinAggregate {
+  id: ID
+}
+
+type CommonAMaxAggregate {
   id: ID
 }
 
@@ -687,20 +820,20 @@ type Query {
     """Specify to sort results."""
     sorting: [mainSort!] = []
   ): MainConnection!
-  navigation(
+  pageBodyNavigation(
     """The id of the record to find."""
     id: ID!
-  ): navigation
-  navigations(
+  ): PageBodyNavigation
+  pageBodyNavigations(
     """Limit or page results."""
     paging: CursorPaging = {first: 10}
 
     """Specify to filter the records returned."""
-    filter: navigationFilter = {}
+    filter: PageBodyNavigationFilter = {}
 
     """Specify to sort results."""
-    sorting: [navigationSort!] = []
-  ): NavigationConnection!
+    sorting: [PageBodyNavigationSort!] = []
+  ): PageBodyNavigationConnection!
   sidebar(
     """The id of the record to find."""
     id: ID!
@@ -715,6 +848,20 @@ type Query {
     """Specify to sort results."""
     sorting: [sidebarSort!] = []
   ): SidebarConnection!
+  commonA(
+    """The id of the record to find."""
+    id: ID!
+  ): CommonA
+  commonAS(
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: CommonAFilter = {}
+
+    """Specify to sort results."""
+    sorting: [CommonASort!] = []
+  ): CommonAConnection!
 }
 
 input CursorPaging {
@@ -737,23 +884,6 @@ input pageFilter {
   id: IDFilterComparison
 }
 
-input IDFilterComparison {
-  is: Boolean
-  isNot: Boolean
-  eq: ID
-  neq: ID
-  gt: ID
-  gte: ID
-  lt: ID
-  lte: ID
-  like: ID
-  notLike: ID
-  iLike: ID
-  notILike: ID
-  in: [ID!]
-  notIn: [ID!]
-}
-
 input pageSort {
   field: pageSortFields!
   direction: SortDirection!
@@ -762,18 +892,6 @@ input pageSort {
 
 enum pageSortFields {
   id
-}
-
-"""Sort Directions"""
-enum SortDirection {
-  ASC
-  DESC
-}
-
-"""Sort Nulls Options"""
-enum SortNulls {
-  NULLS_FIRST
-  NULLS_LAST
 }
 
 input headFilter {
@@ -891,19 +1009,19 @@ enum mainSortFields {
   id
 }
 
-input navigationFilter {
-  and: [navigationFilter!]
-  or: [navigationFilter!]
+input PageBodyNavigationFilter {
+  and: [PageBodyNavigationFilter!]
+  or: [PageBodyNavigationFilter!]
   id: IDFilterComparison
 }
 
-input navigationSort {
-  field: navigationSortFields!
+input PageBodyNavigationSort {
+  field: PageBodyNavigationSortFields!
   direction: SortDirection!
   nulls: SortNulls
 }
 
-enum navigationSortFields {
+enum PageBodyNavigationSortFields {
   id
 }
 
@@ -974,18 +1092,26 @@ type Mutation {
   updateManyMains(input: UpdateManyMainsInput!): UpdateManyResponse!
   deleteOneMain(input: DeleteOneMainInput!): MainDeleteResponse!
   deleteManyMains(input: DeleteManyMainsInput!): DeleteManyResponse!
-  createOneNavigation(input: CreateOneNavigationInput!): navigation!
-  createManyNavigations(input: CreateManyNavigationsInput!): [navigation!]!
-  updateOneNavigation(input: UpdateOneNavigationInput!): navigation!
-  updateManyNavigations(input: UpdateManyNavigationsInput!): UpdateManyResponse!
-  deleteOneNavigation(input: DeleteOneNavigationInput!): NavigationDeleteResponse!
-  deleteManyNavigations(input: DeleteManyNavigationsInput!): DeleteManyResponse!
+  addItemsToPageBodyNavigation(input: AddItemsToPageBodyNavigationInput!): PageBodyNavigation!
+  setItemsOnPageBodyNavigation(input: SetItemsOnPageBodyNavigationInput!): PageBodyNavigation!
+  createOnePageBodyNavigation(input: CreateOnePageBodyNavigationInput!): PageBodyNavigation!
+  createManyPageBodyNavigations(input: CreateManyPageBodyNavigationsInput!): [PageBodyNavigation!]!
+  updateOnePageBodyNavigation(input: UpdateOnePageBodyNavigationInput!): PageBodyNavigation!
+  updateManyPageBodyNavigations(input: UpdateManyPageBodyNavigationsInput!): UpdateManyResponse!
+  deleteOnePageBodyNavigation(input: DeleteOnePageBodyNavigationInput!): PageBodyNavigationDeleteResponse!
+  deleteManyPageBodyNavigations(input: DeleteManyPageBodyNavigationsInput!): DeleteManyResponse!
   createOneSidebar(input: CreateOneSidebarInput!): sidebar!
   createManySidebars(input: CreateManySidebarsInput!): [sidebar!]!
   updateOneSidebar(input: UpdateOneSidebarInput!): sidebar!
   updateManySidebars(input: UpdateManySidebarsInput!): UpdateManyResponse!
   deleteOneSidebar(input: DeleteOneSidebarInput!): SidebarDeleteResponse!
   deleteManySidebars(input: DeleteManySidebarsInput!): DeleteManyResponse!
+  createOneCommonA(input: CreateOneCommonAInput!): CommonA!
+  createManyCommonAS(input: CreateManyCommonASInput!): [CommonA!]!
+  updateOneCommonA(input: UpdateOneCommonAInput!): CommonA!
+  updateManyCommonAS(input: UpdateManyCommonASInput!): UpdateManyResponse!
+  deleteOneCommonA(input: DeleteOneCommonAInput!): CommonADeleteResponse!
+  deleteManyCommonAS(input: DeleteManyCommonASInput!): DeleteManyResponse!
 }
 
 input SetHeadOnPageInput {
@@ -1494,65 +1620,81 @@ input mainDeleteFilter {
   id: IDFilterComparison
 }
 
-input CreateOneNavigationInput {
-  """The record to create"""
-  navigation: CreateNavigation!
+input AddItemsToPageBodyNavigationInput {
+  """The id of the record."""
+  id: ID!
+
+  """The ids of the relations."""
+  relationIds: [ID!]!
 }
 
-input CreateNavigation {
+input SetItemsOnPageBodyNavigationInput {
+  """The id of the record."""
+  id: ID!
+
+  """The ids of the relations."""
+  relationIds: [ID!]!
+}
+
+input CreateOnePageBodyNavigationInput {
+  """The record to create"""
+  pageBodyNavigation: CreatePageBodyNavigation!
+}
+
+input CreatePageBodyNavigation {
   id: ID
   created: DateTime
   updated_at: DateTime
   title: String
 }
 
-input CreateManyNavigationsInput {
+input CreateManyPageBodyNavigationsInput {
   """Array of records to create"""
-  navigations: [CreateNavigation!]!
+  pageBodyNavigations: [CreatePageBodyNavigation!]!
 }
 
-input UpdateOneNavigationInput {
+input UpdateOnePageBodyNavigationInput {
   """The id of the record to update"""
   id: ID!
 
   """The update to apply."""
-  update: UpdateNavigation!
+  update: UpdatePageBodyNavigation!
 }
 
-input UpdateNavigation {
+input UpdatePageBodyNavigation {
   id: ID
   created: DateTime
   updated_at: DateTime
   title: String
 }
 
-input UpdateManyNavigationsInput {
+input UpdateManyPageBodyNavigationsInput {
   """Filter used to find fields to update"""
-  filter: navigationUpdateFilter!
+  filter: PageBodyNavigationUpdateFilter!
 
   """The update to apply to all records found using the filter"""
-  update: UpdateNavigation!
+  update: UpdatePageBodyNavigation!
 }
 
-input navigationUpdateFilter {
-  and: [navigationUpdateFilter!]
-  or: [navigationUpdateFilter!]
+input PageBodyNavigationUpdateFilter {
+  and: [PageBodyNavigationUpdateFilter!]
+  or: [PageBodyNavigationUpdateFilter!]
   id: IDFilterComparison
 }
 
-input DeleteOneNavigationInput {
+input DeleteOnePageBodyNavigationInput {
   """The id of the record to delete."""
   id: ID!
 }
 
-input DeleteManyNavigationsInput {
+input DeleteManyPageBodyNavigationsInput {
   """Filter to find records to delete"""
-  filter: navigationDeleteFilter!
+  filter: PageBodyNavigationDeleteFilter!
 }
 
-input navigationDeleteFilter {
-  and: [navigationDeleteFilter!]
-  or: [navigationDeleteFilter!]
+input PageBodyNavigationDeleteFilter {
+  and: [PageBodyNavigationDeleteFilter!]
+  or: [PageBodyNavigationDeleteFilter!]
   id: IDFilterComparison
 }
 
@@ -1615,5 +1757,71 @@ input DeleteManySidebarsInput {
 input sidebarDeleteFilter {
   and: [sidebarDeleteFilter!]
   or: [sidebarDeleteFilter!]
+  id: IDFilterComparison
+}
+
+input CreateOneCommonAInput {
+  """The record to create"""
+  commonA: CreateCommonA!
+}
+
+input CreateCommonA {
+  id: ID
+  created: DateTime
+  updated_at: DateTime
+  href: String
+  rel: RelEnum
+  target: TargetEnum
+}
+
+input CreateManyCommonASInput {
+  """Array of records to create"""
+  commonAS: [CreateCommonA!]!
+}
+
+input UpdateOneCommonAInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: UpdateCommonA!
+}
+
+input UpdateCommonA {
+  id: ID
+  created: DateTime
+  updated_at: DateTime
+  href: String
+  rel: RelEnum
+  target: TargetEnum
+}
+
+input UpdateManyCommonASInput {
+  """Filter used to find fields to update"""
+  filter: CommonAUpdateFilter!
+
+  """The update to apply to all records found using the filter"""
+  update: UpdateCommonA!
+}
+
+input CommonAUpdateFilter {
+  and: [CommonAUpdateFilter!]
+  or: [CommonAUpdateFilter!]
+  id: IDFilterComparison
+}
+
+input DeleteOneCommonAInput {
+  """The id of the record to delete."""
+  id: ID!
+}
+
+input DeleteManyCommonASInput {
+  """Filter to find records to delete"""
+  filter: CommonADeleteFilter!
+}
+
+input CommonADeleteFilter {
+  and: [CommonADeleteFilter!]
+  or: [CommonADeleteFilter!]
   id: IDFilterComparison
 }

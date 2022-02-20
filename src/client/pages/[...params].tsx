@@ -6,7 +6,7 @@ import { NextSeo } from 'next-seo';
 import Head from 'next/head';
 
 const PAGE_QUERY = gql`
-  query page($id: ID!) {
+  query Page($id: ID!) {
 	page(id: $id) {
     lang
     head {
@@ -21,19 +21,33 @@ const PAGE_QUERY = gql`
     }
     body {
       header {
-        type
+        ... on page_body_header_curved {
+          title
+          subTitle
+        }
+        ... on page_body_header_skewed {
+          title
+          subTitle
+        }
       }
       navigation {
-        title
-      }
-      main {
-        title
-      }
-      sidebar {
-        title
+        items {
+          href
+          rel
+          target
+        }
       }
       footer {
-        title
+        ... on page_body_footer_extended {
+          title
+          subTitle
+          copyright
+        }
+        ... on page_body_footer_simple {
+          title
+          subTitle
+          copyright
+        }
       }
     }
   }
@@ -64,6 +78,7 @@ const Index: NextPage<{ data: string }> = (props) => {
       <header>{res.data.page.body.header.type}</header>
       <h1>Hello from NextJS! - Home</h1>
       {data}
+      <pre>{JSON.stringify(res.data.page.body, null, 4)}</pre>
     </>
   );
 };

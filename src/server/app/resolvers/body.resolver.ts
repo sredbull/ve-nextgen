@@ -20,7 +20,7 @@ export class BodyResolver extends CRUDResolver(BodyDTO) {
   }
 
   @ResolveField('header', () => HeaderUnion)
-  header(@Parent() page: Page) {}
+  header() {}
 
   @ResolveField('footer', () => FooterUnion)
   footer() {}

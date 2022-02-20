@@ -1,4 +1,5 @@
-import { Column, Entity, OneToOne } from 'typeorm';
+import { Column, Entity, OneToOne, OneToMany } from 'typeorm';
+import { A } from '../../common/a.entity';
 import { Main } from '../../main.entity';
 import { Body } from '../body.entity';
 
@@ -9,4 +10,7 @@ export class Navigation extends Main {
 
   @Column({ nullable: false })
   title: string;
+
+  @OneToMany((_type) => A, (a) => a.navigation, { nullable: true })
+  items?: A[]
 }
