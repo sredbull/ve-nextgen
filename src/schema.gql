@@ -17,7 +17,7 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
-type meta {
+type PageHeadMeta {
   id: ID!
   created: DateTime!
   updated_at: DateTime!
@@ -28,15 +28,15 @@ type meta {
   viewport: String!
 }
 
-type head {
+type PageHead {
   id: ID!
   created: DateTime!
   updated_at: DateTime!
   title: String!
-  meta: meta!
+  meta: PageHeadMeta!
 }
 
-type page_body_header {
+type PageBodyHeader {
   id: ID!
   created: DateTime!
   updated_at: DateTime!
@@ -134,41 +134,41 @@ enum SortNulls {
   NULLS_LAST
 }
 
-type sidebar {
+type PageBodySidebar {
   id: ID!
   created: DateTime!
   updated_at: DateTime!
   title: String!
 }
 
-type page_body_footer {
+type PageBodyFooter {
   id: ID!
   created: DateTime!
   updated_at: DateTime!
   type: String!
 }
 
-type main {
+type PageBodyMain {
   id: ID!
   created: DateTime!
   updated_at: DateTime!
   title: String!
 }
 
-type body {
+type PageBody {
   id: ID!
   created: DateTime!
   updated_at: DateTime!
   header: HeaderUnion!
   navigation: PageBodyNavigation!
-  main: main!
-  sidebar: sidebar!
+  main: PageBodyMain!
+  sidebar: PageBodySidebar!
   footer: FooterUnion!
 }
 
-union HeaderUnion = page_body_header_curved | page_body_header_skewed
+union HeaderUnion = PageBodyHeaderCurved | PageBodyHeaderSkewed
 
-type page_body_header_curved {
+type PageBodyHeaderCurved {
   id: ID!
   created: DateTime!
   updated_at: DateTime!
@@ -176,7 +176,7 @@ type page_body_header_curved {
   subTitle: String!
 }
 
-type page_body_header_skewed {
+type PageBodyHeaderSkewed {
   id: ID!
   created: DateTime!
   updated_at: DateTime!
@@ -184,18 +184,9 @@ type page_body_header_skewed {
   subTitle: String!
 }
 
-union FooterUnion = page_body_footer_extended | page_body_footer_simple
+union FooterUnion = PageBodyFooterExtended | PageBodyFooterSimple
 
-type page_body_footer_extended {
-  id: ID!
-  created: DateTime!
-  updated_at: DateTime!
-  title: String!
-  subTitle: String!
-  copyright: String!
-}
-
-type page_body_footer_simple {
+type PageBodyFooterExtended {
   id: ID!
   created: DateTime!
   updated_at: DateTime!
@@ -204,13 +195,22 @@ type page_body_footer_simple {
   copyright: String!
 }
 
-type page {
+type PageBodyFooterSimple {
+  id: ID!
+  created: DateTime!
+  updated_at: DateTime!
+  title: String!
+  subTitle: String!
+  copyright: String!
+}
+
+type Page {
   id: ID!
   created: DateTime!
   updated_at: DateTime!
   lang: String!
-  head: head!
-  body: body!
+  head: PageHead!
+  body: PageBody!
 }
 
 type DeleteManyResponse {
@@ -230,9 +230,9 @@ type UpdateManyResponse {
   updatedCount: Int!
 }
 
-type pageEdge {
-  """The node containing the page"""
-  node: page!
+type PageEdge {
+  """The node containing the Page"""
+  node: Page!
 
   """Cursor for this node."""
   cursor: ConnectionCursor!
@@ -260,85 +260,85 @@ type PageConnection {
   pageInfo: PageInfo!
 
   """Array of edges."""
-  edges: [pageEdge!]!
+  edges: [PageEdge!]!
 }
 
-type pageAggregateGroupBy {
+type PageAggregateGroupBy {
   id: ID
 }
 
-type pageCountAggregate {
+type PageCountAggregate {
   id: Int
 }
 
-type pageSumAggregate {
+type PageSumAggregate {
   id: Float
 }
 
-type pageAvgAggregate {
+type PageAvgAggregate {
   id: Float
 }
 
-type pageMinAggregate {
+type PageMinAggregate {
   id: ID
 }
 
-type pageMaxAggregate {
+type PageMaxAggregate {
   id: ID
 }
 
-type HeadDeleteResponse {
+type PageHeadDeleteResponse {
   id: ID
   created: DateTime
   updated_at: DateTime
   title: String
 }
 
-type headEdge {
-  """The node containing the head"""
-  node: head!
+type PageHeadEdge {
+  """The node containing the PageHead"""
+  node: PageHead!
 
   """Cursor for this node."""
   cursor: ConnectionCursor!
 }
 
-type HeadConnection {
+type PageHeadConnection {
   """Paging information"""
   pageInfo: PageInfo!
 
   """Array of edges."""
-  edges: [headEdge!]!
+  edges: [PageHeadEdge!]!
 }
 
-type headAggregateGroupBy {
+type PageHeadAggregateGroupBy {
   id: ID
   title: String
 }
 
-type headCountAggregate {
+type PageHeadCountAggregate {
   id: Int
   title: Int
 }
 
-type headSumAggregate {
+type PageHeadSumAggregate {
   id: Float
 }
 
-type headAvgAggregate {
+type PageHeadAvgAggregate {
   id: Float
 }
 
-type headMinAggregate {
+type PageHeadMinAggregate {
   id: ID
   title: String
 }
 
-type headMaxAggregate {
+type PageHeadMaxAggregate {
   id: ID
   title: String
 }
 
-type MetaDeleteResponse {
+type PageHeadMetaDeleteResponse {
   id: ID
   created: DateTime
   updated_at: DateTime
@@ -349,230 +349,230 @@ type MetaDeleteResponse {
   viewport: String
 }
 
-type metaEdge {
-  """The node containing the meta"""
-  node: meta!
+type PageHeadMetaEdge {
+  """The node containing the PageHeadMeta"""
+  node: PageHeadMeta!
 
   """Cursor for this node."""
   cursor: ConnectionCursor!
 }
 
-type MetaConnection {
+type PageHeadMetaConnection {
   """Paging information"""
   pageInfo: PageInfo!
 
   """Array of edges."""
-  edges: [metaEdge!]!
+  edges: [PageHeadMetaEdge!]!
 }
 
-type metaAggregateGroupBy {
+type PageHeadMetaAggregateGroupBy {
   id: ID
 }
 
-type metaCountAggregate {
+type PageHeadMetaCountAggregate {
   id: Int
 }
 
-type metaSumAggregate {
+type PageHeadMetaSumAggregate {
   id: Float
 }
 
-type metaAvgAggregate {
+type PageHeadMetaAvgAggregate {
   id: Float
 }
 
-type metaMinAggregate {
+type PageHeadMetaMinAggregate {
   id: ID
 }
 
-type metaMaxAggregate {
+type PageHeadMetaMaxAggregate {
   id: ID
 }
 
-type BodyDeleteResponse {
+type PageBodyDeleteResponse {
   id: ID
   created: DateTime
   updated_at: DateTime
 }
 
-type bodyEdge {
-  """The node containing the body"""
-  node: body!
+type PageBodyEdge {
+  """The node containing the PageBody"""
+  node: PageBody!
 
   """Cursor for this node."""
   cursor: ConnectionCursor!
 }
 
-type BodyConnection {
+type PageBodyConnection {
   """Paging information"""
   pageInfo: PageInfo!
 
   """Array of edges."""
-  edges: [bodyEdge!]!
+  edges: [PageBodyEdge!]!
 }
 
-type bodyAggregateGroupBy {
+type PageBodyAggregateGroupBy {
   id: ID
 }
 
-type bodyCountAggregate {
+type PageBodyCountAggregate {
   id: Int
 }
 
-type bodySumAggregate {
+type PageBodySumAggregate {
   id: Float
 }
 
-type bodyAvgAggregate {
+type PageBodyAvgAggregate {
   id: Float
 }
 
-type bodyMinAggregate {
+type PageBodyMinAggregate {
   id: ID
 }
 
-type bodyMaxAggregate {
+type PageBodyMaxAggregate {
   id: ID
 }
 
-type Page_body_headerDeleteResponse {
-  id: ID
-  created: DateTime
-  updated_at: DateTime
-  type: String
-}
-
-type page_body_headerEdge {
-  """The node containing the page_body_header"""
-  node: page_body_header!
-
-  """Cursor for this node."""
-  cursor: ConnectionCursor!
-}
-
-type Page_body_headerConnection {
-  """Paging information"""
-  pageInfo: PageInfo!
-
-  """Array of edges."""
-  edges: [page_body_headerEdge!]!
-}
-
-type page_body_headerAggregateGroupBy {
-  id: ID
-}
-
-type page_body_headerCountAggregate {
-  id: Int
-}
-
-type page_body_headerSumAggregate {
-  id: Float
-}
-
-type page_body_headerAvgAggregate {
-  id: Float
-}
-
-type page_body_headerMinAggregate {
-  id: ID
-}
-
-type page_body_headerMaxAggregate {
-  id: ID
-}
-
-type Page_body_footerDeleteResponse {
+type PageBodyHeaderDeleteResponse {
   id: ID
   created: DateTime
   updated_at: DateTime
   type: String
 }
 
-type page_body_footerEdge {
-  """The node containing the page_body_footer"""
-  node: page_body_footer!
+type PageBodyHeaderEdge {
+  """The node containing the PageBodyHeader"""
+  node: PageBodyHeader!
 
   """Cursor for this node."""
   cursor: ConnectionCursor!
 }
 
-type Page_body_footerConnection {
+type PageBodyHeaderConnection {
   """Paging information"""
   pageInfo: PageInfo!
 
   """Array of edges."""
-  edges: [page_body_footerEdge!]!
+  edges: [PageBodyHeaderEdge!]!
 }
 
-type page_body_footerAggregateGroupBy {
+type PageBodyHeaderAggregateGroupBy {
   id: ID
 }
 
-type page_body_footerCountAggregate {
+type PageBodyHeaderCountAggregate {
   id: Int
 }
 
-type page_body_footerSumAggregate {
+type PageBodyHeaderSumAggregate {
   id: Float
 }
 
-type page_body_footerAvgAggregate {
+type PageBodyHeaderAvgAggregate {
   id: Float
 }
 
-type page_body_footerMinAggregate {
+type PageBodyHeaderMinAggregate {
   id: ID
 }
 
-type page_body_footerMaxAggregate {
+type PageBodyHeaderMaxAggregate {
   id: ID
 }
 
-type MainDeleteResponse {
+type PageBodyFooterDeleteResponse {
+  id: ID
+  created: DateTime
+  updated_at: DateTime
+  type: String
+}
+
+type PageBodyFooterEdge {
+  """The node containing the PageBodyFooter"""
+  node: PageBodyFooter!
+
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+}
+
+type PageBodyFooterConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [PageBodyFooterEdge!]!
+}
+
+type PageBodyFooterAggregateGroupBy {
+  id: ID
+}
+
+type PageBodyFooterCountAggregate {
+  id: Int
+}
+
+type PageBodyFooterSumAggregate {
+  id: Float
+}
+
+type PageBodyFooterAvgAggregate {
+  id: Float
+}
+
+type PageBodyFooterMinAggregate {
+  id: ID
+}
+
+type PageBodyFooterMaxAggregate {
+  id: ID
+}
+
+type PageBodyMainDeleteResponse {
   id: ID
   created: DateTime
   updated_at: DateTime
   title: String
 }
 
-type mainEdge {
-  """The node containing the main"""
-  node: main!
+type PageBodyMainEdge {
+  """The node containing the PageBodyMain"""
+  node: PageBodyMain!
 
   """Cursor for this node."""
   cursor: ConnectionCursor!
 }
 
-type MainConnection {
+type PageBodyMainConnection {
   """Paging information"""
   pageInfo: PageInfo!
 
   """Array of edges."""
-  edges: [mainEdge!]!
+  edges: [PageBodyMainEdge!]!
 }
 
-type mainAggregateGroupBy {
+type PageBodyMainAggregateGroupBy {
   id: ID
 }
 
-type mainCountAggregate {
+type PageBodyMainCountAggregate {
   id: Int
 }
 
-type mainSumAggregate {
+type PageBodyMainSumAggregate {
   id: Float
 }
 
-type mainAvgAggregate {
+type PageBodyMainAvgAggregate {
   id: Float
 }
 
-type mainMinAggregate {
+type PageBodyMainMinAggregate {
   id: ID
 }
 
-type mainMaxAggregate {
+type PageBodyMainMaxAggregate {
   id: ID
 }
 
@@ -623,50 +623,50 @@ type PageBodyNavigationMaxAggregate {
   id: ID
 }
 
-type SidebarDeleteResponse {
+type PageBodySidebarDeleteResponse {
   id: ID
   created: DateTime
   updated_at: DateTime
   title: String
 }
 
-type sidebarEdge {
-  """The node containing the sidebar"""
-  node: sidebar!
+type PageBodySidebarEdge {
+  """The node containing the PageBodySidebar"""
+  node: PageBodySidebar!
 
   """Cursor for this node."""
   cursor: ConnectionCursor!
 }
 
-type SidebarConnection {
+type PageBodySidebarConnection {
   """Paging information"""
   pageInfo: PageInfo!
 
   """Array of edges."""
-  edges: [sidebarEdge!]!
+  edges: [PageBodySidebarEdge!]!
 }
 
-type sidebarAggregateGroupBy {
+type PageBodySidebarAggregateGroupBy {
   id: ID
 }
 
-type sidebarCountAggregate {
+type PageBodySidebarCountAggregate {
   id: Int
 }
 
-type sidebarSumAggregate {
+type PageBodySidebarSumAggregate {
   id: Float
 }
 
-type sidebarAvgAggregate {
+type PageBodySidebarAvgAggregate {
   id: Float
 }
 
-type sidebarMinAggregate {
+type PageBodySidebarMinAggregate {
   id: ID
 }
 
-type sidebarMaxAggregate {
+type PageBodySidebarMaxAggregate {
   id: ID
 }
 
@@ -725,101 +725,101 @@ type Query {
   page(
     """The id of the record to find."""
     id: ID!
-  ): page
+  ): Page
   pages(
     """Limit or page results."""
     paging: CursorPaging = {first: 10}
 
     """Specify to filter the records returned."""
-    filter: pageFilter = {}
+    filter: PageFilter = {}
 
     """Specify to sort results."""
-    sorting: [pageSort!] = []
+    sorting: [PageSort!] = []
   ): PageConnection!
-  head(
+  pageHead(
     """The id of the record to find."""
     id: ID!
-  ): head
-  heads(
+  ): PageHead
+  pageHeads(
     """Limit or page results."""
     paging: CursorPaging = {first: 10}
 
     """Specify to filter the records returned."""
-    filter: headFilter = {}
+    filter: PageHeadFilter = {}
 
     """Specify to sort results."""
-    sorting: [headSort!] = []
-  ): HeadConnection!
-  meta(
+    sorting: [PageHeadSort!] = []
+  ): PageHeadConnection!
+  pageHeadMeta(
     """The id of the record to find."""
     id: ID!
-  ): meta
-  metas(
+  ): PageHeadMeta
+  pageHeadMetas(
     """Limit or page results."""
     paging: CursorPaging = {first: 10}
 
     """Specify to filter the records returned."""
-    filter: metaFilter = {}
+    filter: PageHeadMetaFilter = {}
 
     """Specify to sort results."""
-    sorting: [metaSort!] = []
-  ): MetaConnection!
-  body(
+    sorting: [PageHeadMetaSort!] = []
+  ): PageHeadMetaConnection!
+  pageBody(
     """The id of the record to find."""
     id: ID!
-  ): body
-  bodies(
+  ): PageBody
+  pageBodies(
     """Limit or page results."""
     paging: CursorPaging = {first: 10}
 
     """Specify to filter the records returned."""
-    filter: bodyFilter = {}
+    filter: PageBodyFilter = {}
 
     """Specify to sort results."""
-    sorting: [bodySort!] = []
-  ): BodyConnection!
-  page_body_header(
+    sorting: [PageBodySort!] = []
+  ): PageBodyConnection!
+  pageBodyHeader(
     """The id of the record to find."""
     id: ID!
-  ): page_body_header
-  page_body_headers(
+  ): PageBodyHeader
+  pageBodyHeaders(
     """Limit or page results."""
     paging: CursorPaging = {first: 10}
 
     """Specify to filter the records returned."""
-    filter: page_body_headerFilter = {}
+    filter: PageBodyHeaderFilter = {}
 
     """Specify to sort results."""
-    sorting: [page_body_headerSort!] = []
-  ): Page_body_headerConnection!
-  page_body_footer(
+    sorting: [PageBodyHeaderSort!] = []
+  ): PageBodyHeaderConnection!
+  pageBodyFooter(
     """The id of the record to find."""
     id: ID!
-  ): page_body_footer
-  page_body_footers(
+  ): PageBodyFooter
+  pageBodyFooters(
     """Limit or page results."""
     paging: CursorPaging = {first: 10}
 
     """Specify to filter the records returned."""
-    filter: page_body_footerFilter = {}
+    filter: PageBodyFooterFilter = {}
 
     """Specify to sort results."""
-    sorting: [page_body_footerSort!] = []
-  ): Page_body_footerConnection!
-  main(
+    sorting: [PageBodyFooterSort!] = []
+  ): PageBodyFooterConnection!
+  pageBodyMain(
     """The id of the record to find."""
     id: ID!
-  ): main
-  mains(
+  ): PageBodyMain
+  pageBodyMains(
     """Limit or page results."""
     paging: CursorPaging = {first: 10}
 
     """Specify to filter the records returned."""
-    filter: mainFilter = {}
+    filter: PageBodyMainFilter = {}
 
     """Specify to sort results."""
-    sorting: [mainSort!] = []
-  ): MainConnection!
+    sorting: [PageBodyMainSort!] = []
+  ): PageBodyMainConnection!
   pageBodyNavigation(
     """The id of the record to find."""
     id: ID!
@@ -834,20 +834,20 @@ type Query {
     """Specify to sort results."""
     sorting: [PageBodyNavigationSort!] = []
   ): PageBodyNavigationConnection!
-  sidebar(
+  pageBodySidebar(
     """The id of the record to find."""
     id: ID!
-  ): sidebar
-  sidebars(
+  ): PageBodySidebar
+  pageBodySidebars(
     """Limit or page results."""
     paging: CursorPaging = {first: 10}
 
     """Specify to filter the records returned."""
-    filter: sidebarFilter = {}
+    filter: PageBodySidebarFilter = {}
 
     """Specify to sort results."""
-    sorting: [sidebarSort!] = []
-  ): SidebarConnection!
+    sorting: [PageBodySidebarSort!] = []
+  ): PageBodySidebarConnection!
   commonA(
     """The id of the record to find."""
     id: ID!
@@ -878,25 +878,25 @@ input CursorPaging {
   last: Int
 }
 
-input pageFilter {
-  and: [pageFilter!]
-  or: [pageFilter!]
+input PageFilter {
+  and: [PageFilter!]
+  or: [PageFilter!]
   id: IDFilterComparison
 }
 
-input pageSort {
-  field: pageSortFields!
+input PageSort {
+  field: PageSortFields!
   direction: SortDirection!
   nulls: SortNulls
 }
 
-enum pageSortFields {
+enum PageSortFields {
   id
 }
 
-input headFilter {
-  and: [headFilter!]
-  or: [headFilter!]
+input PageHeadFilter {
+  and: [PageHeadFilter!]
+  or: [PageHeadFilter!]
   id: IDFilterComparison
   title: StringFieldComparison
 }
@@ -918,94 +918,94 @@ input StringFieldComparison {
   notIn: [String!]
 }
 
-input headSort {
-  field: headSortFields!
+input PageHeadSort {
+  field: PageHeadSortFields!
   direction: SortDirection!
   nulls: SortNulls
 }
 
-enum headSortFields {
+enum PageHeadSortFields {
   id
   title
 }
 
-input metaFilter {
-  and: [metaFilter!]
-  or: [metaFilter!]
+input PageHeadMetaFilter {
+  and: [PageHeadMetaFilter!]
+  or: [PageHeadMetaFilter!]
   id: IDFilterComparison
 }
 
-input metaSort {
-  field: metaSortFields!
+input PageHeadMetaSort {
+  field: PageHeadMetaSortFields!
   direction: SortDirection!
   nulls: SortNulls
 }
 
-enum metaSortFields {
+enum PageHeadMetaSortFields {
   id
 }
 
-input bodyFilter {
-  and: [bodyFilter!]
-  or: [bodyFilter!]
+input PageBodyFilter {
+  and: [PageBodyFilter!]
+  or: [PageBodyFilter!]
   id: IDFilterComparison
 }
 
-input bodySort {
-  field: bodySortFields!
+input PageBodySort {
+  field: PageBodySortFields!
   direction: SortDirection!
   nulls: SortNulls
 }
 
-enum bodySortFields {
+enum PageBodySortFields {
   id
 }
 
-input page_body_headerFilter {
-  and: [page_body_headerFilter!]
-  or: [page_body_headerFilter!]
+input PageBodyHeaderFilter {
+  and: [PageBodyHeaderFilter!]
+  or: [PageBodyHeaderFilter!]
   id: IDFilterComparison
 }
 
-input page_body_headerSort {
-  field: page_body_headerSortFields!
+input PageBodyHeaderSort {
+  field: PageBodyHeaderSortFields!
   direction: SortDirection!
   nulls: SortNulls
 }
 
-enum page_body_headerSortFields {
+enum PageBodyHeaderSortFields {
   id
 }
 
-input page_body_footerFilter {
-  and: [page_body_footerFilter!]
-  or: [page_body_footerFilter!]
+input PageBodyFooterFilter {
+  and: [PageBodyFooterFilter!]
+  or: [PageBodyFooterFilter!]
   id: IDFilterComparison
 }
 
-input page_body_footerSort {
-  field: page_body_footerSortFields!
+input PageBodyFooterSort {
+  field: PageBodyFooterSortFields!
   direction: SortDirection!
   nulls: SortNulls
 }
 
-enum page_body_footerSortFields {
+enum PageBodyFooterSortFields {
   id
 }
 
-input mainFilter {
-  and: [mainFilter!]
-  or: [mainFilter!]
+input PageBodyMainFilter {
+  and: [PageBodyMainFilter!]
+  or: [PageBodyMainFilter!]
   id: IDFilterComparison
 }
 
-input mainSort {
-  field: mainSortFields!
+input PageBodyMainSort {
+  field: PageBodyMainSortFields!
   direction: SortDirection!
   nulls: SortNulls
 }
 
-enum mainSortFields {
+enum PageBodyMainSortFields {
   id
 }
 
@@ -1025,73 +1025,73 @@ enum PageBodyNavigationSortFields {
   id
 }
 
-input sidebarFilter {
-  and: [sidebarFilter!]
-  or: [sidebarFilter!]
+input PageBodySidebarFilter {
+  and: [PageBodySidebarFilter!]
+  or: [PageBodySidebarFilter!]
   id: IDFilterComparison
 }
 
-input sidebarSort {
-  field: sidebarSortFields!
+input PageBodySidebarSort {
+  field: PageBodySidebarSortFields!
   direction: SortDirection!
   nulls: SortNulls
 }
 
-enum sidebarSortFields {
+enum PageBodySidebarSortFields {
   id
 }
 
 type Mutation {
-  setHeadOnPage(input: SetHeadOnPageInput!): page!
-  setBodyOnPage(input: SetBodyOnPageInput!): page!
-  createOnePage(input: CreateOnePageInput!): page!
-  createManyPages(input: CreateManyPagesInput!): [page!]!
-  updateOnePage(input: UpdateOnePageInput!): page!
+  setHeadOnPage(input: SetHeadOnPageInput!): Page!
+  setBodyOnPage(input: SetBodyOnPageInput!): Page!
+  createOnePage(input: CreateOnePageInput!): Page!
+  createManyPages(input: CreateManyPagesInput!): [Page!]!
+  updateOnePage(input: UpdateOnePageInput!): Page!
   updateManyPages(input: UpdateManyPagesInput!): UpdateManyResponse!
   deleteOnePage(input: DeleteOnePageInput!): PageDeleteResponse!
   deleteManyPages(input: DeleteManyPagesInput!): DeleteManyResponse!
-  setMetaOnHead(input: SetMetaOnHeadInput!): head!
-  createOneHead(input: CreateOneHeadInput!): head!
-  createManyHeads(input: CreateManyHeadsInput!): [head!]!
-  updateOneHead(input: UpdateOneHeadInput!): head!
-  updateManyHeads(input: UpdateManyHeadsInput!): UpdateManyResponse!
-  deleteOneHead(input: DeleteOneHeadInput!): HeadDeleteResponse!
-  deleteManyHeads(input: DeleteManyHeadsInput!): DeleteManyResponse!
-  createOneMeta(input: CreateOneMetaInput!): meta!
-  createManyMetas(input: CreateManyMetasInput!): [meta!]!
-  updateOneMeta(input: UpdateOneMetaInput!): meta!
-  updateManyMetas(input: UpdateManyMetasInput!): UpdateManyResponse!
-  deleteOneMeta(input: DeleteOneMetaInput!): MetaDeleteResponse!
-  deleteManyMetas(input: DeleteManyMetasInput!): DeleteManyResponse!
-  setHeaderOnBody(input: SetHeaderOnBodyInput!): body!
-  setNavigationOnBody(input: SetNavigationOnBodyInput!): body!
-  setMainOnBody(input: SetMainOnBodyInput!): body!
-  setSidebarOnBody(input: SetSidebarOnBodyInput!): body!
-  setFooterOnBody(input: SetFooterOnBodyInput!): body!
-  createOneBody(input: CreateOneBodyInput!): body!
-  createManyBodies(input: CreateManyBodiesInput!): [body!]!
-  updateOneBody(input: UpdateOneBodyInput!): body!
-  updateManyBodies(input: UpdateManyBodiesInput!): UpdateManyResponse!
-  deleteOneBody(input: DeleteOneBodyInput!): BodyDeleteResponse!
-  deleteManyBodies(input: DeleteManyBodiesInput!): DeleteManyResponse!
-  createOnePage_body_header(input: CreateOnePage_body_headerInput!): page_body_header!
-  createManyPage_body_headers(input: CreateManyPage_body_headersInput!): [page_body_header!]!
-  updateOnePage_body_header(input: UpdateOnePage_body_headerInput!): page_body_header!
-  updateManyPage_body_headers(input: UpdateManyPage_body_headersInput!): UpdateManyResponse!
-  deleteOnePage_body_header(input: DeleteOnePage_body_headerInput!): Page_body_headerDeleteResponse!
-  deleteManyPage_body_headers(input: DeleteManyPage_body_headersInput!): DeleteManyResponse!
-  createOnePage_body_footer(input: CreateOnePage_body_footerInput!): page_body_footer!
-  createManyPage_body_footers(input: CreateManyPage_body_footersInput!): [page_body_footer!]!
-  updateOnePage_body_footer(input: UpdateOnePage_body_footerInput!): page_body_footer!
-  updateManyPage_body_footers(input: UpdateManyPage_body_footersInput!): UpdateManyResponse!
-  deleteOnePage_body_footer(input: DeleteOnePage_body_footerInput!): Page_body_footerDeleteResponse!
-  deleteManyPage_body_footers(input: DeleteManyPage_body_footersInput!): DeleteManyResponse!
-  createOneMain(input: CreateOneMainInput!): main!
-  createManyMains(input: CreateManyMainsInput!): [main!]!
-  updateOneMain(input: UpdateOneMainInput!): main!
-  updateManyMains(input: UpdateManyMainsInput!): UpdateManyResponse!
-  deleteOneMain(input: DeleteOneMainInput!): MainDeleteResponse!
-  deleteManyMains(input: DeleteManyMainsInput!): DeleteManyResponse!
+  setMetaOnPageHead(input: SetMetaOnPageHeadInput!): PageHead!
+  createOnePageHead(input: CreateOnePageHeadInput!): PageHead!
+  createManyPageHeads(input: CreateManyPageHeadsInput!): [PageHead!]!
+  updateOnePageHead(input: UpdateOnePageHeadInput!): PageHead!
+  updateManyPageHeads(input: UpdateManyPageHeadsInput!): UpdateManyResponse!
+  deleteOnePageHead(input: DeleteOnePageHeadInput!): PageHeadDeleteResponse!
+  deleteManyPageHeads(input: DeleteManyPageHeadsInput!): DeleteManyResponse!
+  createOnePageHeadMeta(input: CreateOnePageHeadMetaInput!): PageHeadMeta!
+  createManyPageHeadMetas(input: CreateManyPageHeadMetasInput!): [PageHeadMeta!]!
+  updateOnePageHeadMeta(input: UpdateOnePageHeadMetaInput!): PageHeadMeta!
+  updateManyPageHeadMetas(input: UpdateManyPageHeadMetasInput!): UpdateManyResponse!
+  deleteOnePageHeadMeta(input: DeleteOnePageHeadMetaInput!): PageHeadMetaDeleteResponse!
+  deleteManyPageHeadMetas(input: DeleteManyPageHeadMetasInput!): DeleteManyResponse!
+  setHeaderOnPageBody(input: SetHeaderOnPageBodyInput!): PageBody!
+  setNavigationOnPageBody(input: SetNavigationOnPageBodyInput!): PageBody!
+  setMainOnPageBody(input: SetMainOnPageBodyInput!): PageBody!
+  setSidebarOnPageBody(input: SetSidebarOnPageBodyInput!): PageBody!
+  setFooterOnPageBody(input: SetFooterOnPageBodyInput!): PageBody!
+  createOnePageBody(input: CreateOnePageBodyInput!): PageBody!
+  createManyPageBodies(input: CreateManyPageBodiesInput!): [PageBody!]!
+  updateOnePageBody(input: UpdateOnePageBodyInput!): PageBody!
+  updateManyPageBodies(input: UpdateManyPageBodiesInput!): UpdateManyResponse!
+  deleteOnePageBody(input: DeleteOnePageBodyInput!): PageBodyDeleteResponse!
+  deleteManyPageBodies(input: DeleteManyPageBodiesInput!): DeleteManyResponse!
+  createOnePageBodyHeader(input: CreateOnePageBodyHeaderInput!): PageBodyHeader!
+  createManyPageBodyHeaders(input: CreateManyPageBodyHeadersInput!): [PageBodyHeader!]!
+  updateOnePageBodyHeader(input: UpdateOnePageBodyHeaderInput!): PageBodyHeader!
+  updateManyPageBodyHeaders(input: UpdateManyPageBodyHeadersInput!): UpdateManyResponse!
+  deleteOnePageBodyHeader(input: DeleteOnePageBodyHeaderInput!): PageBodyHeaderDeleteResponse!
+  deleteManyPageBodyHeaders(input: DeleteManyPageBodyHeadersInput!): DeleteManyResponse!
+  createOnePageBodyFooter(input: CreateOnePageBodyFooterInput!): PageBodyFooter!
+  createManyPageBodyFooters(input: CreateManyPageBodyFootersInput!): [PageBodyFooter!]!
+  updateOnePageBodyFooter(input: UpdateOnePageBodyFooterInput!): PageBodyFooter!
+  updateManyPageBodyFooters(input: UpdateManyPageBodyFootersInput!): UpdateManyResponse!
+  deleteOnePageBodyFooter(input: DeleteOnePageBodyFooterInput!): PageBodyFooterDeleteResponse!
+  deleteManyPageBodyFooters(input: DeleteManyPageBodyFootersInput!): DeleteManyResponse!
+  createOnePageBodyMain(input: CreateOnePageBodyMainInput!): PageBodyMain!
+  createManyPageBodyMains(input: CreateManyPageBodyMainsInput!): [PageBodyMain!]!
+  updateOnePageBodyMain(input: UpdateOnePageBodyMainInput!): PageBodyMain!
+  updateManyPageBodyMains(input: UpdateManyPageBodyMainsInput!): UpdateManyResponse!
+  deleteOnePageBodyMain(input: DeleteOnePageBodyMainInput!): PageBodyMainDeleteResponse!
+  deleteManyPageBodyMains(input: DeleteManyPageBodyMainsInput!): DeleteManyResponse!
   addItemsToPageBodyNavigation(input: AddItemsToPageBodyNavigationInput!): PageBodyNavigation!
   setItemsOnPageBodyNavigation(input: SetItemsOnPageBodyNavigationInput!): PageBodyNavigation!
   createOnePageBodyNavigation(input: CreateOnePageBodyNavigationInput!): PageBodyNavigation!
@@ -1100,12 +1100,12 @@ type Mutation {
   updateManyPageBodyNavigations(input: UpdateManyPageBodyNavigationsInput!): UpdateManyResponse!
   deleteOnePageBodyNavigation(input: DeleteOnePageBodyNavigationInput!): PageBodyNavigationDeleteResponse!
   deleteManyPageBodyNavigations(input: DeleteManyPageBodyNavigationsInput!): DeleteManyResponse!
-  createOneSidebar(input: CreateOneSidebarInput!): sidebar!
-  createManySidebars(input: CreateManySidebarsInput!): [sidebar!]!
-  updateOneSidebar(input: UpdateOneSidebarInput!): sidebar!
-  updateManySidebars(input: UpdateManySidebarsInput!): UpdateManyResponse!
-  deleteOneSidebar(input: DeleteOneSidebarInput!): SidebarDeleteResponse!
-  deleteManySidebars(input: DeleteManySidebarsInput!): DeleteManyResponse!
+  createOnePageBodySidebar(input: CreateOnePageBodySidebarInput!): PageBodySidebar!
+  createManyPageBodySidebars(input: CreateManyPageBodySidebarsInput!): [PageBodySidebar!]!
+  updateOnePageBodySidebar(input: UpdateOnePageBodySidebarInput!): PageBodySidebar!
+  updateManyPageBodySidebars(input: UpdateManyPageBodySidebarsInput!): UpdateManyResponse!
+  deleteOnePageBodySidebar(input: DeleteOnePageBodySidebarInput!): PageBodySidebarDeleteResponse!
+  deleteManyPageBodySidebars(input: DeleteManyPageBodySidebarsInput!): DeleteManyResponse!
   createOneCommonA(input: CreateOneCommonAInput!): CommonA!
   createManyCommonAS(input: CreateManyCommonASInput!): [CommonA!]!
   updateOneCommonA(input: UpdateOneCommonAInput!): CommonA!
@@ -1164,15 +1164,15 @@ input UpdatePage {
 
 input UpdateManyPagesInput {
   """Filter used to find fields to update"""
-  filter: pageUpdateFilter!
+  filter: PageUpdateFilter!
 
   """The update to apply to all records found using the filter"""
   update: UpdatePage!
 }
 
-input pageUpdateFilter {
-  and: [pageUpdateFilter!]
-  or: [pageUpdateFilter!]
+input PageUpdateFilter {
+  and: [PageUpdateFilter!]
+  or: [PageUpdateFilter!]
   id: IDFilterComparison
 }
 
@@ -1183,16 +1183,16 @@ input DeleteOnePageInput {
 
 input DeleteManyPagesInput {
   """Filter to find records to delete"""
-  filter: pageDeleteFilter!
+  filter: PageDeleteFilter!
 }
 
-input pageDeleteFilter {
-  and: [pageDeleteFilter!]
-  or: [pageDeleteFilter!]
+input PageDeleteFilter {
+  and: [PageDeleteFilter!]
+  or: [PageDeleteFilter!]
   id: IDFilterComparison
 }
 
-input SetMetaOnHeadInput {
+input SetMetaOnPageHeadInput {
   """The id of the record."""
   id: ID!
 
@@ -1200,76 +1200,76 @@ input SetMetaOnHeadInput {
   relationId: ID!
 }
 
-input CreateOneHeadInput {
+input CreateOnePageHeadInput {
   """The record to create"""
-  head: CreateHead!
+  pageHead: CreatePageHead!
 }
 
-input CreateHead {
+input CreatePageHead {
   id: ID
   created: DateTime
   updated_at: DateTime
   title: String
 }
 
-input CreateManyHeadsInput {
+input CreateManyPageHeadsInput {
   """Array of records to create"""
-  heads: [CreateHead!]!
+  pageHeads: [CreatePageHead!]!
 }
 
-input UpdateOneHeadInput {
+input UpdateOnePageHeadInput {
   """The id of the record to update"""
   id: ID!
 
   """The update to apply."""
-  update: UpdateHead!
+  update: UpdatePageHead!
 }
 
-input UpdateHead {
+input UpdatePageHead {
   id: ID
   created: DateTime
   updated_at: DateTime
   title: String
 }
 
-input UpdateManyHeadsInput {
+input UpdateManyPageHeadsInput {
   """Filter used to find fields to update"""
-  filter: headUpdateFilter!
+  filter: PageHeadUpdateFilter!
 
   """The update to apply to all records found using the filter"""
-  update: UpdateHead!
+  update: UpdatePageHead!
 }
 
-input headUpdateFilter {
-  and: [headUpdateFilter!]
-  or: [headUpdateFilter!]
+input PageHeadUpdateFilter {
+  and: [PageHeadUpdateFilter!]
+  or: [PageHeadUpdateFilter!]
   id: IDFilterComparison
   title: StringFieldComparison
 }
 
-input DeleteOneHeadInput {
+input DeleteOnePageHeadInput {
   """The id of the record to delete."""
   id: ID!
 }
 
-input DeleteManyHeadsInput {
+input DeleteManyPageHeadsInput {
   """Filter to find records to delete"""
-  filter: headDeleteFilter!
+  filter: PageHeadDeleteFilter!
 }
 
-input headDeleteFilter {
-  and: [headDeleteFilter!]
-  or: [headDeleteFilter!]
+input PageHeadDeleteFilter {
+  and: [PageHeadDeleteFilter!]
+  or: [PageHeadDeleteFilter!]
   id: IDFilterComparison
   title: StringFieldComparison
 }
 
-input CreateOneMetaInput {
+input CreateOnePageHeadMetaInput {
   """The record to create"""
-  meta: CreateMeta!
+  pageHeadMeta: CreatePageHeadMeta!
 }
 
-input CreateMeta {
+input CreatePageHeadMeta {
   id: ID
   created: DateTime
   updated_at: DateTime
@@ -1280,20 +1280,20 @@ input CreateMeta {
   viewport: String
 }
 
-input CreateManyMetasInput {
+input CreateManyPageHeadMetasInput {
   """Array of records to create"""
-  metas: [CreateMeta!]!
+  pageHeadMetas: [CreatePageHeadMeta!]!
 }
 
-input UpdateOneMetaInput {
+input UpdateOnePageHeadMetaInput {
   """The id of the record to update"""
   id: ID!
 
   """The update to apply."""
-  update: UpdateMeta!
+  update: UpdatePageHeadMeta!
 }
 
-input UpdateMeta {
+input UpdatePageHeadMeta {
   id: ID
   created: DateTime
   updated_at: DateTime
@@ -1304,37 +1304,37 @@ input UpdateMeta {
   viewport: String
 }
 
-input UpdateManyMetasInput {
+input UpdateManyPageHeadMetasInput {
   """Filter used to find fields to update"""
-  filter: metaUpdateFilter!
+  filter: PageHeadMetaUpdateFilter!
 
   """The update to apply to all records found using the filter"""
-  update: UpdateMeta!
+  update: UpdatePageHeadMeta!
 }
 
-input metaUpdateFilter {
-  and: [metaUpdateFilter!]
-  or: [metaUpdateFilter!]
+input PageHeadMetaUpdateFilter {
+  and: [PageHeadMetaUpdateFilter!]
+  or: [PageHeadMetaUpdateFilter!]
   id: IDFilterComparison
 }
 
-input DeleteOneMetaInput {
+input DeleteOnePageHeadMetaInput {
   """The id of the record to delete."""
   id: ID!
 }
 
-input DeleteManyMetasInput {
+input DeleteManyPageHeadMetasInput {
   """Filter to find records to delete"""
-  filter: metaDeleteFilter!
+  filter: PageHeadMetaDeleteFilter!
 }
 
-input metaDeleteFilter {
-  and: [metaDeleteFilter!]
-  or: [metaDeleteFilter!]
+input PageHeadMetaDeleteFilter {
+  and: [PageHeadMetaDeleteFilter!]
+  or: [PageHeadMetaDeleteFilter!]
   id: IDFilterComparison
 }
 
-input SetHeaderOnBodyInput {
+input SetHeaderOnPageBodyInput {
   """The id of the record."""
   id: ID!
 
@@ -1342,7 +1342,7 @@ input SetHeaderOnBodyInput {
   relationId: ID!
 }
 
-input SetNavigationOnBodyInput {
+input SetNavigationOnPageBodyInput {
   """The id of the record."""
   id: ID!
 
@@ -1350,7 +1350,7 @@ input SetNavigationOnBodyInput {
   relationId: ID!
 }
 
-input SetMainOnBodyInput {
+input SetMainOnPageBodyInput {
   """The id of the record."""
   id: ID!
 
@@ -1358,7 +1358,7 @@ input SetMainOnBodyInput {
   relationId: ID!
 }
 
-input SetSidebarOnBodyInput {
+input SetSidebarOnPageBodyInput {
   """The id of the record."""
   id: ID!
 
@@ -1366,7 +1366,7 @@ input SetSidebarOnBodyInput {
   relationId: ID!
 }
 
-input SetFooterOnBodyInput {
+input SetFooterOnPageBodyInput {
   """The id of the record."""
   id: ID!
 
@@ -1374,249 +1374,249 @@ input SetFooterOnBodyInput {
   relationId: ID!
 }
 
-input CreateOneBodyInput {
+input CreateOnePageBodyInput {
   """The record to create"""
-  body: CreateBody!
+  pageBody: CreatePageBody!
 }
 
-input CreateBody {
+input CreatePageBody {
   id: ID
   created: DateTime
   updated_at: DateTime
 }
 
-input CreateManyBodiesInput {
+input CreateManyPageBodiesInput {
   """Array of records to create"""
-  bodies: [CreateBody!]!
+  pageBodies: [CreatePageBody!]!
 }
 
-input UpdateOneBodyInput {
+input UpdateOnePageBodyInput {
   """The id of the record to update"""
   id: ID!
 
   """The update to apply."""
-  update: UpdateBody!
+  update: UpdatePageBody!
 }
 
-input UpdateBody {
+input UpdatePageBody {
   id: ID
   created: DateTime
   updated_at: DateTime
 }
 
-input UpdateManyBodiesInput {
+input UpdateManyPageBodiesInput {
   """Filter used to find fields to update"""
-  filter: bodyUpdateFilter!
+  filter: PageBodyUpdateFilter!
 
   """The update to apply to all records found using the filter"""
-  update: UpdateBody!
+  update: UpdatePageBody!
 }
 
-input bodyUpdateFilter {
-  and: [bodyUpdateFilter!]
-  or: [bodyUpdateFilter!]
+input PageBodyUpdateFilter {
+  and: [PageBodyUpdateFilter!]
+  or: [PageBodyUpdateFilter!]
   id: IDFilterComparison
 }
 
-input DeleteOneBodyInput {
+input DeleteOnePageBodyInput {
   """The id of the record to delete."""
   id: ID!
 }
 
-input DeleteManyBodiesInput {
+input DeleteManyPageBodiesInput {
   """Filter to find records to delete"""
-  filter: bodyDeleteFilter!
+  filter: PageBodyDeleteFilter!
 }
 
-input bodyDeleteFilter {
-  and: [bodyDeleteFilter!]
-  or: [bodyDeleteFilter!]
+input PageBodyDeleteFilter {
+  and: [PageBodyDeleteFilter!]
+  or: [PageBodyDeleteFilter!]
   id: IDFilterComparison
 }
 
-input CreateOnePage_body_headerInput {
+input CreateOnePageBodyHeaderInput {
   """The record to create"""
-  page_body_header: CreatePage_body_header!
+  pageBodyHeader: CreatePageBodyHeader!
 }
 
-input CreatePage_body_header {
+input CreatePageBodyHeader {
   id: ID
   created: DateTime
   updated_at: DateTime
   type: String
 }
 
-input CreateManyPage_body_headersInput {
+input CreateManyPageBodyHeadersInput {
   """Array of records to create"""
-  page_body_headers: [CreatePage_body_header!]!
+  pageBodyHeaders: [CreatePageBodyHeader!]!
 }
 
-input UpdateOnePage_body_headerInput {
+input UpdateOnePageBodyHeaderInput {
   """The id of the record to update"""
   id: ID!
 
   """The update to apply."""
-  update: UpdatePage_body_header!
+  update: UpdatePageBodyHeader!
 }
 
-input UpdatePage_body_header {
+input UpdatePageBodyHeader {
   id: ID
   created: DateTime
   updated_at: DateTime
   type: String
 }
 
-input UpdateManyPage_body_headersInput {
+input UpdateManyPageBodyHeadersInput {
   """Filter used to find fields to update"""
-  filter: page_body_headerUpdateFilter!
+  filter: PageBodyHeaderUpdateFilter!
 
   """The update to apply to all records found using the filter"""
-  update: UpdatePage_body_header!
+  update: UpdatePageBodyHeader!
 }
 
-input page_body_headerUpdateFilter {
-  and: [page_body_headerUpdateFilter!]
-  or: [page_body_headerUpdateFilter!]
+input PageBodyHeaderUpdateFilter {
+  and: [PageBodyHeaderUpdateFilter!]
+  or: [PageBodyHeaderUpdateFilter!]
   id: IDFilterComparison
 }
 
-input DeleteOnePage_body_headerInput {
+input DeleteOnePageBodyHeaderInput {
   """The id of the record to delete."""
   id: ID!
 }
 
-input DeleteManyPage_body_headersInput {
+input DeleteManyPageBodyHeadersInput {
   """Filter to find records to delete"""
-  filter: page_body_headerDeleteFilter!
+  filter: PageBodyHeaderDeleteFilter!
 }
 
-input page_body_headerDeleteFilter {
-  and: [page_body_headerDeleteFilter!]
-  or: [page_body_headerDeleteFilter!]
+input PageBodyHeaderDeleteFilter {
+  and: [PageBodyHeaderDeleteFilter!]
+  or: [PageBodyHeaderDeleteFilter!]
   id: IDFilterComparison
 }
 
-input CreateOnePage_body_footerInput {
+input CreateOnePageBodyFooterInput {
   """The record to create"""
-  page_body_footer: CreatePage_body_footer!
+  pageBodyFooter: CreatePageBodyFooter!
 }
 
-input CreatePage_body_footer {
+input CreatePageBodyFooter {
   id: ID
   created: DateTime
   updated_at: DateTime
   type: String
 }
 
-input CreateManyPage_body_footersInput {
+input CreateManyPageBodyFootersInput {
   """Array of records to create"""
-  page_body_footers: [CreatePage_body_footer!]!
+  pageBodyFooters: [CreatePageBodyFooter!]!
 }
 
-input UpdateOnePage_body_footerInput {
+input UpdateOnePageBodyFooterInput {
   """The id of the record to update"""
   id: ID!
 
   """The update to apply."""
-  update: UpdatePage_body_footer!
+  update: UpdatePageBodyFooter!
 }
 
-input UpdatePage_body_footer {
+input UpdatePageBodyFooter {
   id: ID
   created: DateTime
   updated_at: DateTime
   type: String
 }
 
-input UpdateManyPage_body_footersInput {
+input UpdateManyPageBodyFootersInput {
   """Filter used to find fields to update"""
-  filter: page_body_footerUpdateFilter!
+  filter: PageBodyFooterUpdateFilter!
 
   """The update to apply to all records found using the filter"""
-  update: UpdatePage_body_footer!
+  update: UpdatePageBodyFooter!
 }
 
-input page_body_footerUpdateFilter {
-  and: [page_body_footerUpdateFilter!]
-  or: [page_body_footerUpdateFilter!]
+input PageBodyFooterUpdateFilter {
+  and: [PageBodyFooterUpdateFilter!]
+  or: [PageBodyFooterUpdateFilter!]
   id: IDFilterComparison
 }
 
-input DeleteOnePage_body_footerInput {
+input DeleteOnePageBodyFooterInput {
   """The id of the record to delete."""
   id: ID!
 }
 
-input DeleteManyPage_body_footersInput {
+input DeleteManyPageBodyFootersInput {
   """Filter to find records to delete"""
-  filter: page_body_footerDeleteFilter!
+  filter: PageBodyFooterDeleteFilter!
 }
 
-input page_body_footerDeleteFilter {
-  and: [page_body_footerDeleteFilter!]
-  or: [page_body_footerDeleteFilter!]
+input PageBodyFooterDeleteFilter {
+  and: [PageBodyFooterDeleteFilter!]
+  or: [PageBodyFooterDeleteFilter!]
   id: IDFilterComparison
 }
 
-input CreateOneMainInput {
+input CreateOnePageBodyMainInput {
   """The record to create"""
-  main: CreateMain!
+  pageBodyMain: CreatePageBodyMain!
 }
 
-input CreateMain {
+input CreatePageBodyMain {
   id: ID
   created: DateTime
   updated_at: DateTime
   title: String
 }
 
-input CreateManyMainsInput {
+input CreateManyPageBodyMainsInput {
   """Array of records to create"""
-  mains: [CreateMain!]!
+  pageBodyMains: [CreatePageBodyMain!]!
 }
 
-input UpdateOneMainInput {
+input UpdateOnePageBodyMainInput {
   """The id of the record to update"""
   id: ID!
 
   """The update to apply."""
-  update: UpdateMain!
+  update: UpdatePageBodyMain!
 }
 
-input UpdateMain {
+input UpdatePageBodyMain {
   id: ID
   created: DateTime
   updated_at: DateTime
   title: String
 }
 
-input UpdateManyMainsInput {
+input UpdateManyPageBodyMainsInput {
   """Filter used to find fields to update"""
-  filter: mainUpdateFilter!
+  filter: PageBodyMainUpdateFilter!
 
   """The update to apply to all records found using the filter"""
-  update: UpdateMain!
+  update: UpdatePageBodyMain!
 }
 
-input mainUpdateFilter {
-  and: [mainUpdateFilter!]
-  or: [mainUpdateFilter!]
+input PageBodyMainUpdateFilter {
+  and: [PageBodyMainUpdateFilter!]
+  or: [PageBodyMainUpdateFilter!]
   id: IDFilterComparison
 }
 
-input DeleteOneMainInput {
+input DeleteOnePageBodyMainInput {
   """The id of the record to delete."""
   id: ID!
 }
 
-input DeleteManyMainsInput {
+input DeleteManyPageBodyMainsInput {
   """Filter to find records to delete"""
-  filter: mainDeleteFilter!
+  filter: PageBodyMainDeleteFilter!
 }
 
-input mainDeleteFilter {
-  and: [mainDeleteFilter!]
-  or: [mainDeleteFilter!]
+input PageBodyMainDeleteFilter {
+  and: [PageBodyMainDeleteFilter!]
+  or: [PageBodyMainDeleteFilter!]
   id: IDFilterComparison
 }
 
@@ -1698,65 +1698,65 @@ input PageBodyNavigationDeleteFilter {
   id: IDFilterComparison
 }
 
-input CreateOneSidebarInput {
+input CreateOnePageBodySidebarInput {
   """The record to create"""
-  sidebar: CreateSidebar!
+  pageBodySidebar: CreatePageBodySidebar!
 }
 
-input CreateSidebar {
+input CreatePageBodySidebar {
   id: ID
   created: DateTime
   updated_at: DateTime
   title: String
 }
 
-input CreateManySidebarsInput {
+input CreateManyPageBodySidebarsInput {
   """Array of records to create"""
-  sidebars: [CreateSidebar!]!
+  pageBodySidebars: [CreatePageBodySidebar!]!
 }
 
-input UpdateOneSidebarInput {
+input UpdateOnePageBodySidebarInput {
   """The id of the record to update"""
   id: ID!
 
   """The update to apply."""
-  update: UpdateSidebar!
+  update: UpdatePageBodySidebar!
 }
 
-input UpdateSidebar {
+input UpdatePageBodySidebar {
   id: ID
   created: DateTime
   updated_at: DateTime
   title: String
 }
 
-input UpdateManySidebarsInput {
+input UpdateManyPageBodySidebarsInput {
   """Filter used to find fields to update"""
-  filter: sidebarUpdateFilter!
+  filter: PageBodySidebarUpdateFilter!
 
   """The update to apply to all records found using the filter"""
-  update: UpdateSidebar!
+  update: UpdatePageBodySidebar!
 }
 
-input sidebarUpdateFilter {
-  and: [sidebarUpdateFilter!]
-  or: [sidebarUpdateFilter!]
+input PageBodySidebarUpdateFilter {
+  and: [PageBodySidebarUpdateFilter!]
+  or: [PageBodySidebarUpdateFilter!]
   id: IDFilterComparison
 }
 
-input DeleteOneSidebarInput {
+input DeleteOnePageBodySidebarInput {
   """The id of the record to delete."""
   id: ID!
 }
 
-input DeleteManySidebarsInput {
+input DeleteManyPageBodySidebarsInput {
   """Filter to find records to delete"""
-  filter: sidebarDeleteFilter!
+  filter: PageBodySidebarDeleteFilter!
 }
 
-input sidebarDeleteFilter {
-  and: [sidebarDeleteFilter!]
-  or: [sidebarDeleteFilter!]
+input PageBodySidebarDeleteFilter {
+  and: [PageBodySidebarDeleteFilter!]
+  or: [PageBodySidebarDeleteFilter!]
   id: IDFilterComparison
 }
 

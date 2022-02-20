@@ -1,7 +1,7 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 import { MainDTO } from '../../../main.dto';
 
-@ObjectType('meta')
+@ObjectType('PageHeadMeta')
 export class MetaDTO extends MainDTO {
   @Field()
   charset!: string;

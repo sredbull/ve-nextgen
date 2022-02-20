@@ -1,7 +1,7 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 import { MainDTO } from '../../../../main.dto';
 
-@ObjectType('page_body_header_curved')
+@ObjectType('PageBodyHeaderCurved')
 export class CurvedDTO extends MainDTO {
   @Field()
   title!: string;

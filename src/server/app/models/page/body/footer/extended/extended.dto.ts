@@ -1,7 +1,7 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 import { MainDTO } from '../../../../main.dto';
 
-@ObjectType('page_body_footer_extended')
+@ObjectType('PageBodyFooterExtended')
 export class ExtendedDTO extends MainDTO {
   @Field()
   title!: string;

@@ -21,11 +21,11 @@ const PAGE_QUERY = gql`
     }
     body {
       header {
-        ... on page_body_header_curved {
+        ... on PageBodyHeaderCurved {
           title
           subTitle
         }
-        ... on page_body_header_skewed {
+        ... on PageBodyHeaderSkewed {
           title
           subTitle
         }
@@ -38,12 +38,12 @@ const PAGE_QUERY = gql`
         }
       }
       footer {
-        ... on page_body_footer_extended {
+        ... on PageBodyFooterExtended {
           title
           subTitle
           copyright
         }
-        ... on page_body_footer_simple {
+        ... on PageBodyFooterSimple {
           title
           subTitle
           copyright

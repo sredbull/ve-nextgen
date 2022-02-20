@@ -7,7 +7,7 @@ import { SidebarDTO } from './sidebar/sidebar.dto';
 import { FooterDTO } from './footer/footer.dto';
 import { MainDTO } from './main/main.dto';
 
-@ObjectType('body')
+@ObjectType('PageBody')
 @Relation('header', () => HeaderDTO, { disableRemove: true })
 @Relation('navigation', () => NavigationDTO, { disableRemove: true })
 @Relation('main', () => MainDTO, { disableRemove: true })
