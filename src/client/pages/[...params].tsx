@@ -37,6 +37,15 @@ const PAGE_QUERY = gql`
           target
         }
       }
+      main {
+        articles {
+          ... on PageBodyMainArticleMarkdown {
+            title
+            subTitle
+            markdown
+          }
+        }
+      }
       footer {
         ... on PageBodyFooterExtended {
           title
