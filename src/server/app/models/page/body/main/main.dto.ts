@@ -1,8 +1,8 @@
-import { Field, ObjectType } from '@nestjs/graphql';
+import { UnPagedRelation } from '@nestjs-query/query-graphql';
+import { ObjectType } from '@nestjs/graphql';
 import { MainDTO as MainEntityDTO } from '../../../main.dto';
+import { ArticleDTO } from './article/article.dto';
 
 @ObjectType('PageBodyMain')
-export class MainDTO extends MainEntityDTO {
-  @Field()
-  title!: string;
-}
+@UnPagedRelation('articles', () => ArticleDTO, { disableRemove: true, nullable: true })
+export class MainDTO extends MainEntityDTO {}

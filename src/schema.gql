@@ -148,11 +148,29 @@ type PageBodyFooter {
   type: String!
 }
 
+type PageBodyMainArticle {
+  id: ID!
+  created: DateTime!
+  updated_at: DateTime!
+  type: String!
+}
+
 type PageBodyMain {
   id: ID!
   created: DateTime!
   updated_at: DateTime!
+  articles: [ArticleUnion!]!
+}
+
+union ArticleUnion = PageBodyMainArticleMarkdown
+
+type PageBodyMainArticleMarkdown {
+  id: ID!
+  created: DateTime!
+  updated_at: DateTime!
   title: String!
+  subTitle: String!
+  markdown: String!
 }
 
 type PageBody {
@@ -533,7 +551,6 @@ type PageBodyMainDeleteResponse {
   id: ID
   created: DateTime
   updated_at: DateTime
-  title: String
 }
 
 type PageBodyMainEdge {
@@ -573,6 +590,53 @@ type PageBodyMainMinAggregate {
 }
 
 type PageBodyMainMaxAggregate {
+  id: ID
+}
+
+type PageBodyMainArticleDeleteResponse {
+  id: ID
+  created: DateTime
+  updated_at: DateTime
+  type: String
+}
+
+type PageBodyMainArticleEdge {
+  """The node containing the PageBodyMainArticle"""
+  node: PageBodyMainArticle!
+
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+}
+
+type PageBodyMainArticleConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [PageBodyMainArticleEdge!]!
+}
+
+type PageBodyMainArticleAggregateGroupBy {
+  id: ID
+}
+
+type PageBodyMainArticleCountAggregate {
+  id: Int
+}
+
+type PageBodyMainArticleSumAggregate {
+  id: Float
+}
+
+type PageBodyMainArticleAvgAggregate {
+  id: Float
+}
+
+type PageBodyMainArticleMinAggregate {
+  id: ID
+}
+
+type PageBodyMainArticleMaxAggregate {
   id: ID
 }
 
@@ -820,6 +884,20 @@ type Query {
     """Specify to sort results."""
     sorting: [PageBodyMainSort!] = []
   ): PageBodyMainConnection!
+  pageBodyMainArticle(
+    """The id of the record to find."""
+    id: ID!
+  ): PageBodyMainArticle
+  pageBodyMainArticles(
+    """Limit or page results."""
+    paging: CursorPaging = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: PageBodyMainArticleFilter = {}
+
+    """Specify to sort results."""
+    sorting: [PageBodyMainArticleSort!] = []
+  ): PageBodyMainArticleConnection!
   pageBodyNavigation(
     """The id of the record to find."""
     id: ID!
@@ -1009,6 +1087,22 @@ enum PageBodyMainSortFields {
   id
 }
 
+input PageBodyMainArticleFilter {
+  and: [PageBodyMainArticleFilter!]
+  or: [PageBodyMainArticleFilter!]
+  id: IDFilterComparison
+}
+
+input PageBodyMainArticleSort {
+  field: PageBodyMainArticleSortFields!
+  direction: SortDirection!
+  nulls: SortNulls
+}
+
+enum PageBodyMainArticleSortFields {
+  id
+}
+
 input PageBodyNavigationFilter {
   and: [PageBodyNavigationFilter!]
   or: [PageBodyNavigationFilter!]
@@ -1086,12 +1180,20 @@ type Mutation {
   updateManyPageBodyFooters(input: UpdateManyPageBodyFootersInput!): UpdateManyResponse!
   deleteOnePageBodyFooter(input: DeleteOnePageBodyFooterInput!): PageBodyFooterDeleteResponse!
   deleteManyPageBodyFooters(input: DeleteManyPageBodyFootersInput!): DeleteManyResponse!
+  addArticlesToPageBodyMain(input: AddArticlesToPageBodyMainInput!): PageBodyMain!
+  setArticlesOnPageBodyMain(input: SetArticlesOnPageBodyMainInput!): PageBodyMain!
   createOnePageBodyMain(input: CreateOnePageBodyMainInput!): PageBodyMain!
   createManyPageBodyMains(input: CreateManyPageBodyMainsInput!): [PageBodyMain!]!
   updateOnePageBodyMain(input: UpdateOnePageBodyMainInput!): PageBodyMain!
   updateManyPageBodyMains(input: UpdateManyPageBodyMainsInput!): UpdateManyResponse!
   deleteOnePageBodyMain(input: DeleteOnePageBodyMainInput!): PageBodyMainDeleteResponse!
   deleteManyPageBodyMains(input: DeleteManyPageBodyMainsInput!): DeleteManyResponse!
+  createOnePageBodyMainArticle(input: CreateOnePageBodyMainArticleInput!): PageBodyMainArticle!
+  createManyPageBodyMainArticles(input: CreateManyPageBodyMainArticlesInput!): [PageBodyMainArticle!]!
+  updateOnePageBodyMainArticle(input: UpdateOnePageBodyMainArticleInput!): PageBodyMainArticle!
+  updateManyPageBodyMainArticles(input: UpdateManyPageBodyMainArticlesInput!): UpdateManyResponse!
+  deleteOnePageBodyMainArticle(input: DeleteOnePageBodyMainArticleInput!): PageBodyMainArticleDeleteResponse!
+  deleteManyPageBodyMainArticles(input: DeleteManyPageBodyMainArticlesInput!): DeleteManyResponse!
   addItemsToPageBodyNavigation(input: AddItemsToPageBodyNavigationInput!): PageBodyNavigation!
   setItemsOnPageBodyNavigation(input: SetItemsOnPageBodyNavigationInput!): PageBodyNavigation!
   createOnePageBodyNavigation(input: CreateOnePageBodyNavigationInput!): PageBodyNavigation!
@@ -1558,6 +1660,22 @@ input PageBodyFooterDeleteFilter {
   id: IDFilterComparison
 }
 
+input AddArticlesToPageBodyMainInput {
+  """The id of the record."""
+  id: ID!
+
+  """The ids of the relations."""
+  relationIds: [ID!]!
+}
+
+input SetArticlesOnPageBodyMainInput {
+  """The id of the record."""
+  id: ID!
+
+  """The ids of the relations."""
+  relationIds: [ID!]!
+}
+
 input CreateOnePageBodyMainInput {
   """The record to create"""
   pageBodyMain: CreatePageBodyMain!
@@ -1567,7 +1685,6 @@ input CreatePageBodyMain {
   id: ID
   created: DateTime
   updated_at: DateTime
-  title: String
 }
 
 input CreateManyPageBodyMainsInput {
@@ -1587,7 +1704,6 @@ input UpdatePageBodyMain {
   id: ID
   created: DateTime
   updated_at: DateTime
-  title: String
 }
 
 input UpdateManyPageBodyMainsInput {
@@ -1617,6 +1733,68 @@ input DeleteManyPageBodyMainsInput {
 input PageBodyMainDeleteFilter {
   and: [PageBodyMainDeleteFilter!]
   or: [PageBodyMainDeleteFilter!]
+  id: IDFilterComparison
+}
+
+input CreateOnePageBodyMainArticleInput {
+  """The record to create"""
+  pageBodyMainArticle: CreatePageBodyMainArticle!
+}
+
+input CreatePageBodyMainArticle {
+  id: ID
+  created: DateTime
+  updated_at: DateTime
+  type: String
+}
+
+input CreateManyPageBodyMainArticlesInput {
+  """Array of records to create"""
+  pageBodyMainArticles: [CreatePageBodyMainArticle!]!
+}
+
+input UpdateOnePageBodyMainArticleInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: UpdatePageBodyMainArticle!
+}
+
+input UpdatePageBodyMainArticle {
+  id: ID
+  created: DateTime
+  updated_at: DateTime
+  type: String
+}
+
+input UpdateManyPageBodyMainArticlesInput {
+  """Filter used to find fields to update"""
+  filter: PageBodyMainArticleUpdateFilter!
+
+  """The update to apply to all records found using the filter"""
+  update: UpdatePageBodyMainArticle!
+}
+
+input PageBodyMainArticleUpdateFilter {
+  and: [PageBodyMainArticleUpdateFilter!]
+  or: [PageBodyMainArticleUpdateFilter!]
+  id: IDFilterComparison
+}
+
+input DeleteOnePageBodyMainArticleInput {
+  """The id of the record to delete."""
+  id: ID!
+}
+
+input DeleteManyPageBodyMainArticlesInput {
+  """Filter to find records to delete"""
+  filter: PageBodyMainArticleDeleteFilter!
+}
+
+input PageBodyMainArticleDeleteFilter {
+  and: [PageBodyMainArticleDeleteFilter!]
+  or: [PageBodyMainArticleDeleteFilter!]
   id: IDFilterComparison
 }
 

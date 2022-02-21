@@ -17,6 +17,7 @@ import { BodyModule } from './models/page/body/body.module';
 import { HeaderModule } from './models/page/body/header/header.module';
 import { FooterModule } from './models/page/body/footer/footer.module';
 import { MainModule } from './models/page/body/main/main.module';
+import { ArticleModule } from './models/page/body/main/article/article.module';
 import { NavigationModule } from './models/page/body/navigation/navigation.module';
 import { SidebarModule } from './models/page/body/sidebar/sidebar.module';
 import { AModule } from './models/common/a.module';
@@ -54,6 +55,7 @@ import { AModule } from './models/common/a.module';
     HeaderModule,
     FooterModule,
     MainModule,
+    ArticleModule,
     NavigationModule,
     SidebarModule,
     AModule,
