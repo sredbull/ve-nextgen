@@ -15,21 +15,6 @@ export class ViewController {
       .render(req, res, parsedUrl.pathname, parsedUrl.query);
   }
 
-  @Get()
-  public async showHome(@Req() req: Request, @Res() res: Response) {
-    const parsedUrl = parse(req.url, true);
-    const serverSideProps = { dataFromController: '123' };
-
-    await this.viewService
-      .getNextServer()
-      .render(
-        req,
-        res,
-        '/home',
-        Object.assign(parsedUrl.query, serverSideProps),
-      );
-  }
-
   @UseGuards(JwtAuthGuard)
   @Get('profile')
   public async showProfile(@Req() req: Request, @Res() res: Response) {
@@ -42,5 +27,19 @@ export class ViewController {
     await this.viewService
       .getNextServer()
       .render(req, res, parsedUrl.pathname, parsedUrl.query);
+  }
+
+  @Get('')
+  public async showHome(@Req() req: Request, @Res() res: Response) {
+    const parsedUrl = parse(req.url, true);
+
+    await this.viewService
+      .getNextServer()
+      .render(
+        req,
+        res,
+        '/home',
+        parsedUrl.query,
+      );
   }
 }

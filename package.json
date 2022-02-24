@@ -22,11 +22,15 @@
     "test:e2e": "jest --config ./test/jest-e2e.json --setupFiles dotenv-flow/config",
     "console": "ts-node -r tsconfig-paths/register src/server/console.ts",
     "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
-    "client:generate:schema": "zeus src/schema.gql src/client/app/types --ts"
+    "generate-types": "graphql-codegen"
   },
   "dependencies": {
     "@apollo/client": "^3.5.9",
     "@apollo/gateway": "^0.48.1",
+    "@graphql-codegen/cli": "^2.6.2",
+    "@graphql-codegen/typescript": "^2.4.5",
+    "@graphql-codegen/typescript-operations": "^2.3.2",
+    "@graphql-codegen/typescript-urql": "^3.5.3",
     "@nestjs-query/core": "^0.30.0",
     "@nestjs-query/query-graphql": "^0.30.0",
     "@nestjs-query/query-typeorm": "^0.30.0",
