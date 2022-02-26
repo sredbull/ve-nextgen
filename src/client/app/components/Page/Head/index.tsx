@@ -16,7 +16,6 @@ export const Head = (props) => {
       />
       <NextHead>
         <meta charSet={props.head.meta.charset} />
-        <html lang={props.lang} />
       </NextHead>
     </>
   );
