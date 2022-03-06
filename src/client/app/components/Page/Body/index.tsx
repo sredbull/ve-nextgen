@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic';
 import { BodyFragment } from '../../../graphql/sdk'
 
-const ComponetList = {
+const Components = {
   HeaderCurved: dynamic(() => import('./Header/Curved')),
   Navigation: dynamic(() => import('./Navigation')),
   Main: dynamic(() => import('./Main')),
@@ -9,16 +9,20 @@ const ComponetList = {
 }
 
 export const Body = (props: BodyFragment['body']) => {
+  const components = Object.keys(props).map((key, index) => {
+    switch(props[key].__typename) {
+      case 'PageBodyHeaderCurved':
+        return <Components.HeaderCurved { ...props[key] } key={index} />;
+      case 'PageBodyNavigation':
+        return <Components.Navigation { ...props[key] } key={index} />;
+      case 'PageBodyMain':
+        return <Components.Main { ...props[key] } key={index} />;
+      case 'PageBodyFooterExtended':
+        return <Components.FooterExtended { ...props[key] } key={index} />;
+    }
+  });
+
   return (
-    <>
-      {Object.keys(props).map((key) => (
-        <>
-          {props[key].__typename === 'PageBodyHeaderCurved' && <ComponetList.HeaderCurved { ...props[key] } key={key} />}
-          {props[key].__typename === 'PageBodyNavigation' && <ComponetList.Navigation { ...props[key] } key={key} />}
-          {props[key].__typename === 'PageBodyMain' && <ComponetList.Main { ...props[key] } key={key} />}
-          {props[key].__typename === 'PageBodyFooterExtended' && <ComponetList.FooterExtended { ...props[key] } key={key} />}
-        </>
-      ))}
-    </>
+    <>{components}</>
   );
 };

@@ -2,9 +2,17 @@ import { NavigationFragment } from '../../../../graphql/sdk';
 
 export const Navigation = (props: NavigationFragment['navigation']) => {
   return (
-    <>
-      <pre>{JSON.stringify(props, null, 4)}</pre>
-    </>
+    <nav className="menu">
+      <ul>
+        {props.items.map((item, index) => (
+          <li key={index}>
+            <a href={item.href}>
+              {item.href}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
   );
 };
 
