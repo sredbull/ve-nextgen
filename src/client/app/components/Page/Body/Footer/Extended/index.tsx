@@ -2,9 +2,12 @@ import { ExtendedFragment } from "../../../../../graphql/sdk";
 
 export const Extended = (props: ExtendedFragment) => {
   return (
-    <>
-      <pre>{JSON.stringify(props, null, 4)}</pre>
-    </>
+    <footer>
+      <hr />
+      <p>{props.title}</p>
+      <small>{props.subTitle}</small>
+      <p>{props.copyright}</p>
+    </footer>
   );
 }
 
