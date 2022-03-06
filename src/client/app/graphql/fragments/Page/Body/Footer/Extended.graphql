@@ -1,0 +1,5 @@
+fragment Extended on PageBodyFooterExtended {
+  title
+  subTitle
+  copyright
+}

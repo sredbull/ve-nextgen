@@ -1,0 +1,9 @@
+fragment Navigation on PageBody {
+  navigation {
+    items {
+      href
+      rel
+      target
+    }
+  }
+}

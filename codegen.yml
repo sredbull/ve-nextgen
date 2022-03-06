@@ -1,9 +1,12 @@
 schema: http://localhost:3000/graphql
 overwrite: true
-documents: ./src/client/app/graphql/queries/**/*.graphql
+documents: ./src/client/app/graphql/**/*.graphql
 generates:
   src/client/app/graphql/sdk.ts:
     plugins:
       - typescript
       - typescript-operations
       - typescript-urql
+hooks:
+  afterOneFileWrite:
+    - prettier --write

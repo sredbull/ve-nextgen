@@ -1,0 +1,12 @@
+fragment Head on Page {
+  head {
+    title
+    meta {
+      charset
+      description
+      noindex
+      nofollow
+      viewport
+    }
+  }
+}

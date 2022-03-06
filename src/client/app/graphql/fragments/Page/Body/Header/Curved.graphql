@@ -1,0 +1,4 @@
+fragment Curved on PageBodyHeaderCurved {
+  title
+  subTitle
+}

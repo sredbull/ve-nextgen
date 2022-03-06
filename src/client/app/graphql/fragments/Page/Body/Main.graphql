@@ -1,0 +1,11 @@
+fragment Main on PageBody {
+  main {
+    articles {
+      ... on PageBodyMainArticleMarkdown {
+        title
+        subTitle
+        markdown
+      }
+    }
+  }
+}

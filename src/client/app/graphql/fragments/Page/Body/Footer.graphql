@@ -1,0 +1,6 @@
+fragment Footer on PageBody {
+  footer {
+    ...Extended
+    ...Simple
+  }
+}

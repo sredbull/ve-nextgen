@@ -1,0 +1,8 @@
+fragment Body on Page {
+  body {
+    ...Header
+    ...Navigation
+    ...Main
+    ...Footer
+  }
+}

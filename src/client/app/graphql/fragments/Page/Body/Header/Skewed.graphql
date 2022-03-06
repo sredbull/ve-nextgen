@@ -1,0 +1,4 @@
+fragment Skewed on PageBodyHeaderSkewed {
+  title
+  subTitle
+}

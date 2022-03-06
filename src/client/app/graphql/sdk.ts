@@ -2,9 +2,15 @@ import gql from 'graphql-tag';
 import * as Urql from 'urql';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
-export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+export type Exact<T extends { [key: string]: unknown }> = {
+  [K in keyof T]: T[K];
+};
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]?: Maybe<T[SubKey]>;
+};
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]: Maybe<T[SubKey]>;
+};
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
@@ -115,7 +121,7 @@ export type CommonASort = {
 };
 
 export enum CommonASortFields {
-  Id = 'id'
+  Id = 'id',
 }
 
 export type CommonASumAggregate = {
@@ -550,391 +556,313 @@ export type Mutation = {
   updateOnePageHeadMeta: PageHeadMeta;
 };
 
-
 export type MutationAddArticlesToPageBodyMainArgs = {
   input: AddArticlesToPageBodyMainInput;
 };
-
 
 export type MutationAddItemsToPageBodyNavigationArgs = {
   input: AddItemsToPageBodyNavigationInput;
 };
 
-
 export type MutationCreateManyCommonAsArgs = {
   input: CreateManyCommonAsInput;
 };
-
 
 export type MutationCreateManyPageBodiesArgs = {
   input: CreateManyPageBodiesInput;
 };
 
-
 export type MutationCreateManyPageBodyFootersArgs = {
   input: CreateManyPageBodyFootersInput;
 };
-
 
 export type MutationCreateManyPageBodyHeadersArgs = {
   input: CreateManyPageBodyHeadersInput;
 };
 
-
 export type MutationCreateManyPageBodyMainArticlesArgs = {
   input: CreateManyPageBodyMainArticlesInput;
 };
-
 
 export type MutationCreateManyPageBodyMainsArgs = {
   input: CreateManyPageBodyMainsInput;
 };
 
-
 export type MutationCreateManyPageBodyNavigationsArgs = {
   input: CreateManyPageBodyNavigationsInput;
 };
-
 
 export type MutationCreateManyPageBodySidebarsArgs = {
   input: CreateManyPageBodySidebarsInput;
 };
 
-
 export type MutationCreateManyPageHeadMetasArgs = {
   input: CreateManyPageHeadMetasInput;
 };
-
 
 export type MutationCreateManyPageHeadsArgs = {
   input: CreateManyPageHeadsInput;
 };
 
-
 export type MutationCreateManyPagesArgs = {
   input: CreateManyPagesInput;
 };
-
 
 export type MutationCreateOneCommonAArgs = {
   input: CreateOneCommonAInput;
 };
 
-
 export type MutationCreateOnePageArgs = {
   input: CreateOnePageInput;
 };
-
 
 export type MutationCreateOnePageBodyArgs = {
   input: CreateOnePageBodyInput;
 };
 
-
 export type MutationCreateOnePageBodyFooterArgs = {
   input: CreateOnePageBodyFooterInput;
 };
-
 
 export type MutationCreateOnePageBodyHeaderArgs = {
   input: CreateOnePageBodyHeaderInput;
 };
 
-
 export type MutationCreateOnePageBodyMainArgs = {
   input: CreateOnePageBodyMainInput;
 };
-
 
 export type MutationCreateOnePageBodyMainArticleArgs = {
   input: CreateOnePageBodyMainArticleInput;
 };
 
-
 export type MutationCreateOnePageBodyNavigationArgs = {
   input: CreateOnePageBodyNavigationInput;
 };
-
 
 export type MutationCreateOnePageBodySidebarArgs = {
   input: CreateOnePageBodySidebarInput;
 };
 
-
 export type MutationCreateOnePageHeadArgs = {
   input: CreateOnePageHeadInput;
 };
-
 
 export type MutationCreateOnePageHeadMetaArgs = {
   input: CreateOnePageHeadMetaInput;
 };
 
-
 export type MutationDeleteManyCommonAsArgs = {
   input: DeleteManyCommonAsInput;
 };
-
 
 export type MutationDeleteManyPageBodiesArgs = {
   input: DeleteManyPageBodiesInput;
 };
 
-
 export type MutationDeleteManyPageBodyFootersArgs = {
   input: DeleteManyPageBodyFootersInput;
 };
-
 
 export type MutationDeleteManyPageBodyHeadersArgs = {
   input: DeleteManyPageBodyHeadersInput;
 };
 
-
 export type MutationDeleteManyPageBodyMainArticlesArgs = {
   input: DeleteManyPageBodyMainArticlesInput;
 };
-
 
 export type MutationDeleteManyPageBodyMainsArgs = {
   input: DeleteManyPageBodyMainsInput;
 };
 
-
 export type MutationDeleteManyPageBodyNavigationsArgs = {
   input: DeleteManyPageBodyNavigationsInput;
 };
-
 
 export type MutationDeleteManyPageBodySidebarsArgs = {
   input: DeleteManyPageBodySidebarsInput;
 };
 
-
 export type MutationDeleteManyPageHeadMetasArgs = {
   input: DeleteManyPageHeadMetasInput;
 };
-
 
 export type MutationDeleteManyPageHeadsArgs = {
   input: DeleteManyPageHeadsInput;
 };
 
-
 export type MutationDeleteManyPagesArgs = {
   input: DeleteManyPagesInput;
 };
-
 
 export type MutationDeleteOneCommonAArgs = {
   input: DeleteOneCommonAInput;
 };
 
-
 export type MutationDeleteOnePageArgs = {
   input: DeleteOnePageInput;
 };
-
 
 export type MutationDeleteOnePageBodyArgs = {
   input: DeleteOnePageBodyInput;
 };
 
-
 export type MutationDeleteOnePageBodyFooterArgs = {
   input: DeleteOnePageBodyFooterInput;
 };
-
 
 export type MutationDeleteOnePageBodyHeaderArgs = {
   input: DeleteOnePageBodyHeaderInput;
 };
 
-
 export type MutationDeleteOnePageBodyMainArgs = {
   input: DeleteOnePageBodyMainInput;
 };
-
 
 export type MutationDeleteOnePageBodyMainArticleArgs = {
   input: DeleteOnePageBodyMainArticleInput;
 };
 
-
 export type MutationDeleteOnePageBodyNavigationArgs = {
   input: DeleteOnePageBodyNavigationInput;
 };
-
 
 export type MutationDeleteOnePageBodySidebarArgs = {
   input: DeleteOnePageBodySidebarInput;
 };
 
-
 export type MutationDeleteOnePageHeadArgs = {
   input: DeleteOnePageHeadInput;
 };
-
 
 export type MutationDeleteOnePageHeadMetaArgs = {
   input: DeleteOnePageHeadMetaInput;
 };
 
-
 export type MutationSetArticlesOnPageBodyMainArgs = {
   input: SetArticlesOnPageBodyMainInput;
 };
-
 
 export type MutationSetBodyOnPageArgs = {
   input: SetBodyOnPageInput;
 };
 
-
 export type MutationSetFooterOnPageBodyArgs = {
   input: SetFooterOnPageBodyInput;
 };
-
 
 export type MutationSetHeadOnPageArgs = {
   input: SetHeadOnPageInput;
 };
 
-
 export type MutationSetHeaderOnPageBodyArgs = {
   input: SetHeaderOnPageBodyInput;
 };
-
 
 export type MutationSetItemsOnPageBodyNavigationArgs = {
   input: SetItemsOnPageBodyNavigationInput;
 };
 
-
 export type MutationSetMainOnPageBodyArgs = {
   input: SetMainOnPageBodyInput;
 };
-
 
 export type MutationSetMetaOnPageHeadArgs = {
   input: SetMetaOnPageHeadInput;
 };
 
-
 export type MutationSetNavigationOnPageBodyArgs = {
   input: SetNavigationOnPageBodyInput;
 };
-
 
 export type MutationSetSidebarOnPageBodyArgs = {
   input: SetSidebarOnPageBodyInput;
 };
 
-
 export type MutationUpdateManyCommonAsArgs = {
   input: UpdateManyCommonAsInput;
 };
-
 
 export type MutationUpdateManyPageBodiesArgs = {
   input: UpdateManyPageBodiesInput;
 };
 
-
 export type MutationUpdateManyPageBodyFootersArgs = {
   input: UpdateManyPageBodyFootersInput;
 };
-
 
 export type MutationUpdateManyPageBodyHeadersArgs = {
   input: UpdateManyPageBodyHeadersInput;
 };
 
-
 export type MutationUpdateManyPageBodyMainArticlesArgs = {
   input: UpdateManyPageBodyMainArticlesInput;
 };
-
 
 export type MutationUpdateManyPageBodyMainsArgs = {
   input: UpdateManyPageBodyMainsInput;
 };
 
-
 export type MutationUpdateManyPageBodyNavigationsArgs = {
   input: UpdateManyPageBodyNavigationsInput;
 };
-
 
 export type MutationUpdateManyPageBodySidebarsArgs = {
   input: UpdateManyPageBodySidebarsInput;
 };
 
-
 export type MutationUpdateManyPageHeadMetasArgs = {
   input: UpdateManyPageHeadMetasInput;
 };
-
 
 export type MutationUpdateManyPageHeadsArgs = {
   input: UpdateManyPageHeadsInput;
 };
 
-
 export type MutationUpdateManyPagesArgs = {
   input: UpdateManyPagesInput;
 };
-
 
 export type MutationUpdateOneCommonAArgs = {
   input: UpdateOneCommonAInput;
 };
 
-
 export type MutationUpdateOnePageArgs = {
   input: UpdateOnePageInput;
 };
-
 
 export type MutationUpdateOnePageBodyArgs = {
   input: UpdateOnePageBodyInput;
 };
 
-
 export type MutationUpdateOnePageBodyFooterArgs = {
   input: UpdateOnePageBodyFooterInput;
 };
-
 
 export type MutationUpdateOnePageBodyHeaderArgs = {
   input: UpdateOnePageBodyHeaderInput;
 };
 
-
 export type MutationUpdateOnePageBodyMainArgs = {
   input: UpdateOnePageBodyMainInput;
 };
-
 
 export type MutationUpdateOnePageBodyMainArticleArgs = {
   input: UpdateOnePageBodyMainArticleInput;
 };
 
-
 export type MutationUpdateOnePageBodyNavigationArgs = {
   input: UpdateOnePageBodyNavigationInput;
 };
-
 
 export type MutationUpdateOnePageBodySidebarArgs = {
   input: UpdateOnePageBodySidebarInput;
 };
 
-
 export type MutationUpdateOnePageHeadArgs = {
   input: UpdateOnePageHeadInput;
 };
-
 
 export type MutationUpdateOnePageHeadMetaArgs = {
   input: UpdateOnePageHeadMetaInput;
@@ -1118,7 +1046,7 @@ export type PageBodyFooterSort = {
 };
 
 export enum PageBodyFooterSortFields {
-  Id = 'id'
+  Id = 'id',
 }
 
 export type PageBodyFooterSumAggregate = {
@@ -1226,7 +1154,7 @@ export type PageBodyHeaderSort = {
 };
 
 export enum PageBodyHeaderSortFields {
-  Id = 'id'
+  Id = 'id',
 }
 
 export type PageBodyHeaderSumAggregate = {
@@ -1339,7 +1267,7 @@ export type PageBodyMainArticleSort = {
 };
 
 export enum PageBodyMainArticleSortFields {
-  Id = 'id'
+  Id = 'id',
 }
 
 export type PageBodyMainArticleSumAggregate = {
@@ -1415,7 +1343,7 @@ export type PageBodyMainSort = {
 };
 
 export enum PageBodyMainSortFields {
-  Id = 'id'
+  Id = 'id',
 }
 
 export type PageBodyMainSumAggregate = {
@@ -1447,7 +1375,6 @@ export type PageBodyNavigation = {
   title: Scalars['String'];
   updated_at: Scalars['DateTime'];
 };
-
 
 export type PageBodyNavigationItemsArgs = {
   filter?: InputMaybe<CommonAFilter>;
@@ -1522,7 +1449,7 @@ export type PageBodyNavigationSort = {
 };
 
 export enum PageBodyNavigationSortFields {
-  Id = 'id'
+  Id = 'id',
 }
 
 export type PageBodyNavigationSumAggregate = {
@@ -1612,7 +1539,7 @@ export type PageBodySidebarSort = {
 };
 
 export enum PageBodySidebarSortFields {
-  Id = 'id'
+  Id = 'id',
 }
 
 export type PageBodySidebarSumAggregate = {
@@ -1633,7 +1560,7 @@ export type PageBodySort = {
 };
 
 export enum PageBodySortFields {
-  Id = 'id'
+  Id = 'id',
 }
 
 export type PageBodySumAggregate = {
@@ -1842,7 +1769,7 @@ export type PageHeadMetaSort = {
 };
 
 export enum PageHeadMetaSortFields {
-  Id = 'id'
+  Id = 'id',
 }
 
 export type PageHeadMetaSumAggregate = {
@@ -1870,7 +1797,7 @@ export type PageHeadSort = {
 
 export enum PageHeadSortFields {
   Id = 'id',
-  Title = 'title'
+  Title = 'title',
 }
 
 export type PageHeadSumAggregate = {
@@ -1914,7 +1841,7 @@ export type PageSort = {
 };
 
 export enum PageSortFields {
-  Id = 'id'
+  Id = 'id',
 }
 
 export type PageSumAggregate = {
@@ -1956,11 +1883,9 @@ export type Query = {
   whoAmI: User;
 };
 
-
 export type QueryCommonAArgs = {
   id: Scalars['ID'];
 };
-
 
 export type QueryCommonAsArgs = {
   filter?: InputMaybe<CommonAFilter>;
@@ -1968,11 +1893,9 @@ export type QueryCommonAsArgs = {
   sorting?: InputMaybe<Array<CommonASort>>;
 };
 
-
 export type QueryPageArgs = {
   id: Scalars['ID'];
 };
-
 
 export type QueryPageBodiesArgs = {
   filter?: InputMaybe<PageBodyFilter>;
@@ -1980,16 +1903,13 @@ export type QueryPageBodiesArgs = {
   sorting?: InputMaybe<Array<PageBodySort>>;
 };
 
-
 export type QueryPageBodyArgs = {
   id: Scalars['ID'];
 };
 
-
 export type QueryPageBodyFooterArgs = {
   id: Scalars['ID'];
 };
-
 
 export type QueryPageBodyFootersArgs = {
   filter?: InputMaybe<PageBodyFooterFilter>;
@@ -1997,11 +1917,9 @@ export type QueryPageBodyFootersArgs = {
   sorting?: InputMaybe<Array<PageBodyFooterSort>>;
 };
 
-
 export type QueryPageBodyHeaderArgs = {
   id: Scalars['ID'];
 };
-
 
 export type QueryPageBodyHeadersArgs = {
   filter?: InputMaybe<PageBodyHeaderFilter>;
@@ -2009,16 +1927,13 @@ export type QueryPageBodyHeadersArgs = {
   sorting?: InputMaybe<Array<PageBodyHeaderSort>>;
 };
 
-
 export type QueryPageBodyMainArgs = {
   id: Scalars['ID'];
 };
 
-
 export type QueryPageBodyMainArticleArgs = {
   id: Scalars['ID'];
 };
-
 
 export type QueryPageBodyMainArticlesArgs = {
   filter?: InputMaybe<PageBodyMainArticleFilter>;
@@ -2026,18 +1941,15 @@ export type QueryPageBodyMainArticlesArgs = {
   sorting?: InputMaybe<Array<PageBodyMainArticleSort>>;
 };
 
-
 export type QueryPageBodyMainsArgs = {
   filter?: InputMaybe<PageBodyMainFilter>;
   paging?: InputMaybe<CursorPaging>;
   sorting?: InputMaybe<Array<PageBodyMainSort>>;
 };
 
-
 export type QueryPageBodyNavigationArgs = {
   id: Scalars['ID'];
 };
-
 
 export type QueryPageBodyNavigationsArgs = {
   filter?: InputMaybe<PageBodyNavigationFilter>;
@@ -2045,11 +1957,9 @@ export type QueryPageBodyNavigationsArgs = {
   sorting?: InputMaybe<Array<PageBodyNavigationSort>>;
 };
 
-
 export type QueryPageBodySidebarArgs = {
   id: Scalars['ID'];
 };
-
 
 export type QueryPageBodySidebarsArgs = {
   filter?: InputMaybe<PageBodySidebarFilter>;
@@ -2057,16 +1967,13 @@ export type QueryPageBodySidebarsArgs = {
   sorting?: InputMaybe<Array<PageBodySidebarSort>>;
 };
 
-
 export type QueryPageHeadArgs = {
   id: Scalars['ID'];
 };
 
-
 export type QueryPageHeadMetaArgs = {
   id: Scalars['ID'];
 };
-
 
 export type QueryPageHeadMetasArgs = {
   filter?: InputMaybe<PageHeadMetaFilter>;
@@ -2074,13 +1981,11 @@ export type QueryPageHeadMetasArgs = {
   sorting?: InputMaybe<Array<PageHeadMetaSort>>;
 };
 
-
 export type QueryPageHeadsArgs = {
   filter?: InputMaybe<PageHeadFilter>;
   paging?: InputMaybe<CursorPaging>;
   sorting?: InputMaybe<Array<PageHeadSort>>;
 };
-
 
 export type QueryPagesArgs = {
   filter?: InputMaybe<PageFilter>;
@@ -2101,7 +2006,7 @@ export enum RelEnum {
   Noreferrer = 'NOREFERRER',
   Prev = 'PREV',
   Search = 'SEARCH',
-  Tag = 'TAG'
+  Tag = 'TAG',
 }
 
 export type SetArticlesOnPageBodyMainInput = {
@@ -2177,13 +2082,13 @@ export type SetSidebarOnPageBodyInput = {
 /** Sort Directions */
 export enum SortDirection {
   Asc = 'ASC',
-  Desc = 'DESC'
+  Desc = 'DESC',
 }
 
 /** Sort Nulls Options */
 export enum SortNulls {
   NullsFirst = 'NULLS_FIRST',
-  NullsLast = 'NULLS_LAST'
+  NullsLast = 'NULLS_LAST',
 }
 
 export type StringFieldComparison = {
@@ -2207,7 +2112,7 @@ export enum TargetEnum {
   Blank = 'BLANK',
   Parent = 'PARENT',
   Self = 'SELF',
-  Top = 'TOP'
+  Top = 'TOP',
 }
 
 export type UpdateCommonA = {
@@ -2462,18 +2367,298 @@ export type User = {
   username: Scalars['String'];
 };
 
+export type BodyFragment = {
+  __typename?: 'Page';
+  body: {
+    __typename?: 'PageBody';
+    header:
+      | { __typename?: 'PageBodyHeaderCurved'; title: string; subTitle: string }
+      | {
+          __typename?: 'PageBodyHeaderSkewed';
+          title: string;
+          subTitle: string;
+        };
+    navigation: {
+      __typename?: 'PageBodyNavigation';
+      items?: Array<{
+        __typename?: 'CommonA';
+        href: string;
+        rel: RelEnum;
+        target: TargetEnum;
+      }> | null;
+    };
+    main: {
+      __typename?: 'PageBodyMain';
+      articles: Array<{
+        __typename?: 'PageBodyMainArticleMarkdown';
+        title: string;
+        subTitle: string;
+        markdown: string;
+      }>;
+    };
+    footer:
+      | {
+          __typename?: 'PageBodyFooterExtended';
+          title: string;
+          subTitle: string;
+          copyright: string;
+        }
+      | {
+          __typename?: 'PageBodyFooterSimple';
+          title: string;
+          subTitle: string;
+          copyright: string;
+        };
+  };
+};
+
+export type FooterFragment = {
+  __typename?: 'PageBody';
+  footer:
+    | {
+        __typename?: 'PageBodyFooterExtended';
+        title: string;
+        subTitle: string;
+        copyright: string;
+      }
+    | {
+        __typename?: 'PageBodyFooterSimple';
+        title: string;
+        subTitle: string;
+        copyright: string;
+      };
+};
+
+export type ExtendedFragment = {
+  __typename?: 'PageBodyFooterExtended';
+  title: string;
+  subTitle: string;
+  copyright: string;
+};
+
+export type SimpleFragment = {
+  __typename?: 'PageBodyFooterSimple';
+  title: string;
+  subTitle: string;
+  copyright: string;
+};
+
+export type HeaderFragment = {
+  __typename?: 'PageBody';
+  header:
+    | { __typename?: 'PageBodyHeaderCurved'; title: string; subTitle: string }
+    | { __typename?: 'PageBodyHeaderSkewed'; title: string; subTitle: string };
+};
+
+export type CurvedFragment = {
+  __typename?: 'PageBodyHeaderCurved';
+  title: string;
+  subTitle: string;
+};
+
+export type SkewedFragment = {
+  __typename?: 'PageBodyHeaderSkewed';
+  title: string;
+  subTitle: string;
+};
+
+export type MainFragment = {
+  __typename?: 'PageBody';
+  main: {
+    __typename?: 'PageBodyMain';
+    articles: Array<{
+      __typename?: 'PageBodyMainArticleMarkdown';
+      title: string;
+      subTitle: string;
+      markdown: string;
+    }>;
+  };
+};
+
+export type NavigationFragment = {
+  __typename?: 'PageBody';
+  navigation: {
+    __typename?: 'PageBodyNavigation';
+    items?: Array<{
+      __typename?: 'CommonA';
+      href: string;
+      rel: RelEnum;
+      target: TargetEnum;
+    }> | null;
+  };
+};
+
+export type HeadFragment = {
+  __typename?: 'Page';
+  head: {
+    __typename?: 'PageHead';
+    title: string;
+    meta: {
+      __typename?: 'PageHeadMeta';
+      charset: string;
+      description: string;
+      noindex: boolean;
+      nofollow: boolean;
+      viewport: string;
+    };
+  };
+};
+
 export type PageQueryVariables = Exact<{
   id: Scalars['ID'];
 }>;
 
+export type PageQuery = {
+  __typename?: 'Query';
+  page?: {
+    __typename?: 'Page';
+    lang: string;
+    head: {
+      __typename?: 'PageHead';
+      title: string;
+      meta: {
+        __typename?: 'PageHeadMeta';
+        charset: string;
+        description: string;
+        noindex: boolean;
+        nofollow: boolean;
+        viewport: string;
+      };
+    };
+    body: {
+      __typename?: 'PageBody';
+      header:
+        | {
+            __typename?: 'PageBodyHeaderCurved';
+            title: string;
+            subTitle: string;
+          }
+        | {
+            __typename?: 'PageBodyHeaderSkewed';
+            title: string;
+            subTitle: string;
+          };
+      navigation: {
+        __typename?: 'PageBodyNavigation';
+        items?: Array<{
+          __typename?: 'CommonA';
+          href: string;
+          rel: RelEnum;
+          target: TargetEnum;
+        }> | null;
+      };
+      main: {
+        __typename?: 'PageBodyMain';
+        articles: Array<{
+          __typename?: 'PageBodyMainArticleMarkdown';
+          title: string;
+          subTitle: string;
+          markdown: string;
+        }>;
+      };
+      footer:
+        | {
+            __typename?: 'PageBodyFooterExtended';
+            title: string;
+            subTitle: string;
+            copyright: string;
+          }
+        | {
+            __typename?: 'PageBodyFooterSimple';
+            title: string;
+            subTitle: string;
+            copyright: string;
+          };
+    };
+  } | null;
+};
 
-export type PageQuery = { __typename?: 'Query', page?: { __typename?: 'Page', lang: string, head: { __typename?: 'PageHead', title: string, meta: { __typename?: 'PageHeadMeta', charset: string, description: string, noindex: boolean, nofollow: boolean, viewport: string } }, body: { __typename?: 'PageBody', header: { __typename?: 'PageBodyHeaderCurved', title: string, subTitle: string } | { __typename?: 'PageBodyHeaderSkewed', title: string, subTitle: string }, navigation: { __typename?: 'PageBodyNavigation', items?: Array<{ __typename?: 'CommonA', href: string, rel: RelEnum, target: TargetEnum }> | null }, main: { __typename?: 'PageBodyMain', articles: Array<{ __typename?: 'PageBodyMainArticleMarkdown', title: string, subTitle: string, markdown: string }> }, footer: { __typename?: 'PageBodyFooterExtended', title: string, subTitle: string, copyright: string } | { __typename?: 'PageBodyFooterSimple', title: string, subTitle: string, copyright: string } } } | null };
-
-
-export const PageDocument = gql`
-    query Page($id: ID!) {
-  page(id: $id) {
-    lang
+export const CurvedFragmentDoc = gql`
+  fragment Curved on PageBodyHeaderCurved {
+    title
+    subTitle
+  }
+`;
+export const SkewedFragmentDoc = gql`
+  fragment Skewed on PageBodyHeaderSkewed {
+    title
+    subTitle
+  }
+`;
+export const HeaderFragmentDoc = gql`
+  fragment Header on PageBody {
+    header {
+      ...Curved
+      ...Skewed
+    }
+  }
+  ${CurvedFragmentDoc}
+  ${SkewedFragmentDoc}
+`;
+export const NavigationFragmentDoc = gql`
+  fragment Navigation on PageBody {
+    navigation {
+      items {
+        href
+        rel
+        target
+      }
+    }
+  }
+`;
+export const MainFragmentDoc = gql`
+  fragment Main on PageBody {
+    main {
+      articles {
+        ... on PageBodyMainArticleMarkdown {
+          title
+          subTitle
+          markdown
+        }
+      }
+    }
+  }
+`;
+export const ExtendedFragmentDoc = gql`
+  fragment Extended on PageBodyFooterExtended {
+    title
+    subTitle
+    copyright
+  }
+`;
+export const SimpleFragmentDoc = gql`
+  fragment Simple on PageBodyFooterSimple {
+    title
+    subTitle
+    copyright
+  }
+`;
+export const FooterFragmentDoc = gql`
+  fragment Footer on PageBody {
+    footer {
+      ...Extended
+      ...Simple
+    }
+  }
+  ${ExtendedFragmentDoc}
+  ${SimpleFragmentDoc}
+`;
+export const BodyFragmentDoc = gql`
+  fragment Body on Page {
+    body {
+      ...Header
+      ...Navigation
+      ...Main
+      ...Footer
+    }
+  }
+  ${HeaderFragmentDoc}
+  ${NavigationFragmentDoc}
+  ${MainFragmentDoc}
+  ${FooterFragmentDoc}
+`;
+export const HeadFragmentDoc = gql`
+  fragment Head on Page {
     head {
       title
       meta {
@@ -2484,50 +2669,22 @@ export const PageDocument = gql`
         viewport
       }
     }
-    body {
-      header {
-        ... on PageBodyHeaderCurved {
-          title
-          subTitle
-        }
-        ... on PageBodyHeaderSkewed {
-          title
-          subTitle
-        }
-      }
-      navigation {
-        items {
-          href
-          rel
-          target
-        }
-      }
-      main {
-        articles {
-          ... on PageBodyMainArticleMarkdown {
-            title
-            subTitle
-            markdown
-          }
-        }
-      }
-      footer {
-        ... on PageBodyFooterExtended {
-          title
-          subTitle
-          copyright
-        }
-        ... on PageBodyFooterSimple {
-          title
-          subTitle
-          copyright
-        }
-      }
+  }
+`;
+export const PageDocument = gql`
+  query Page($id: ID!) {
+    page(id: $id) {
+      lang
+      ...Head
+      ...Body
     }
   }
-}
-    `;
+  ${HeadFragmentDoc}
+  ${BodyFragmentDoc}
+`;
 
-export function usePageQuery(options: Omit<Urql.UseQueryArgs<PageQueryVariables>, 'query'>) {
+export function usePageQuery(
+  options: Omit<Urql.UseQueryArgs<PageQueryVariables>, 'query'>,
+) {
   return Urql.useQuery<PageQuery>({ query: PageDocument, ...options });
-};
+}

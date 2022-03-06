@@ -1,7 +1,8 @@
 import { NextSeo } from 'next-seo';
 import { default as NextHead } from 'next/head';
+import { PageQuery } from '../../../graphql/sdk';
 
-export const Head = (props) => {
+export const Head = (props: PageQuery['page']) => {
   return (
     <>
       <NextSeo

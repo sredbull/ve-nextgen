@@ -1,0 +1,7 @@
+query Page($id: ID!) {
+	page(id: $id) {
+    lang
+    ...Head
+    ...Body
+  }
+}
