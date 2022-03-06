@@ -2,7 +2,7 @@ import { NavigationFragment } from '../../../../graphql/sdk';
 
 export const Navigation = (props: NavigationFragment['navigation']) => {
   return (
-    <nav className="menu">
+    <nav>
       <ul>
         {props.items.map((item, index) => (
           <li key={index}>
