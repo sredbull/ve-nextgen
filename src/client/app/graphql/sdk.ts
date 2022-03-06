@@ -2475,6 +2475,23 @@ export type MainFragment = {
   };
 };
 
+export type ArticleFragment = {
+  __typename?: 'PageBodyMain';
+  articles: Array<{
+    __typename?: 'PageBodyMainArticleMarkdown';
+    title: string;
+    subTitle: string;
+    markdown: string;
+  }>;
+};
+
+export type MarkdownFragment = {
+  __typename?: 'PageBodyMainArticleMarkdown';
+  title: string;
+  subTitle: string;
+  markdown: string;
+};
+
 export type NavigationFragment = {
   __typename?: 'PageBody';
   navigation: {
@@ -2606,18 +2623,28 @@ export const NavigationFragmentDoc = gql`
     }
   }
 `;
+export const MarkdownFragmentDoc = gql`
+  fragment Markdown on PageBodyMainArticleMarkdown {
+    title
+    subTitle
+    markdown
+  }
+`;
+export const ArticleFragmentDoc = gql`
+  fragment Article on PageBodyMain {
+    articles {
+      ...Markdown
+    }
+  }
+  ${MarkdownFragmentDoc}
+`;
 export const MainFragmentDoc = gql`
   fragment Main on PageBody {
     main {
-      articles {
-        ... on PageBodyMainArticleMarkdown {
-          title
-          subTitle
-          markdown
-        }
-      }
+      ...Article
     }
   }
+  ${ArticleFragmentDoc}
 `;
 export const ExtendedFragmentDoc = gql`
   fragment Extended on PageBodyFooterExtended {

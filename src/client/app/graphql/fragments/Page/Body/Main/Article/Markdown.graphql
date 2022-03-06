@@ -1,0 +1,5 @@
+fragment Markdown on PageBodyMainArticleMarkdown {
+  title
+  subTitle
+  markdown
+}

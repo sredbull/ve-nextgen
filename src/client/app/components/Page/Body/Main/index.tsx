@@ -1,9 +1,10 @@
 import { MainFragment } from "../../../../graphql/sdk";
+import Article from './Article'
 
 export const Main = (props: MainFragment['main']) => {
   return (
     <>
-      <pre>{JSON.stringify(props, null, 4)}</pre>
+      <Article { ...props.articles } />
     </>
   );
 }

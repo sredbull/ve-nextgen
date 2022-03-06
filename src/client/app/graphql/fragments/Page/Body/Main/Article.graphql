@@ -1,0 +1,5 @@
+fragment Article on PageBodyMain {
+  articles {
+    ...Markdown
+  }
+}
