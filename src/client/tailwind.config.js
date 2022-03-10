@@ -10,5 +10,8 @@ module.exports = {
   darkMode: 'class',
   theme: {},
   plugins: [
+    require('@tailwindcss/aspect-ratio'),
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/typography'),
   ],
 }
