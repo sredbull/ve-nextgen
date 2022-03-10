@@ -1,4 +1,4 @@
-import { Controller, Get, Res, Req, UseGuards } from '@nestjs/common';
+import { Controller, Get, Res, Req, Next, UseGuards } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { parse } from 'url';
 import { JwtAuthGuard } from '../auth/jwt/jwt-auth.guard';
@@ -29,8 +29,12 @@ export class ViewController {
       .render(req, res, parsedUrl.pathname, parsedUrl.query);
   }
 
-  @Get('')
-  public async showHome(@Req() req: Request, @Res() res: Response) {
+  @Get('*')
+  public async showHome(@Req() req: Request, @Res() res: Response, @Next() next) {
+    if (req.path === '/graphql') {
+      next();
+    }
+
     const parsedUrl = parse(req.url, true);
 
     await this.viewService
