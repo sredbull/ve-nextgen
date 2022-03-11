@@ -41,6 +41,9 @@ export class A extends Main {
   navigation: Navigation
 
   @Column({ nullable: false })
+  name: string;
+
+  @Column({ nullable: false })
   href: string;
 
   @Column({

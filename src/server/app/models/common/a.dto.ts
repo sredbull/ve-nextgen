@@ -6,6 +6,9 @@ import { Navigation } from '../page/body/navigation/navigation.entity';
 @ObjectType('CommonA')
 export class ADTO extends MainDTO {
   @Field()
+  name: string;
+
+  @Field()
   href: string;
 
   @Field(type => RelEnum)

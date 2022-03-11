@@ -47,6 +47,7 @@ type CommonA {
   id: ID!
   created: DateTime!
   updated_at: DateTime!
+  name: String!
   href: String!
   rel: RelEnum!
   target: TargetEnum!
@@ -738,6 +739,7 @@ type CommonADeleteResponse {
   id: ID
   created: DateTime
   updated_at: DateTime
+  name: String
   href: String
   rel: RelEnum
   target: TargetEnum
@@ -1947,6 +1949,7 @@ input CreateCommonA {
   id: ID
   created: DateTime
   updated_at: DateTime
+  name: String
   href: String
   rel: RelEnum
   target: TargetEnum
@@ -1969,6 +1972,7 @@ input UpdateCommonA {
   id: ID
   created: DateTime
   updated_at: DateTime
+  name: String
   href: String
   rel: RelEnum
   target: TargetEnum

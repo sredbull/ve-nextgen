@@ -46,6 +46,7 @@ export type CommonA = {
   created: Scalars['DateTime'];
   href: Scalars['String'];
   id: Scalars['ID'];
+  name: Scalars['String'];
   rel: RelEnum;
   target: TargetEnum;
   updated_at: Scalars['DateTime'];
@@ -85,6 +86,7 @@ export type CommonADeleteResponse = {
   created?: Maybe<Scalars['DateTime']>;
   href?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['ID']>;
+  name?: Maybe<Scalars['String']>;
   rel?: Maybe<RelEnum>;
   target?: Maybe<TargetEnum>;
   updated_at?: Maybe<Scalars['DateTime']>;
@@ -139,6 +141,7 @@ export type CreateCommonA = {
   created?: InputMaybe<Scalars['DateTime']>;
   href?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['ID']>;
+  name?: InputMaybe<Scalars['String']>;
   rel?: InputMaybe<RelEnum>;
   target?: InputMaybe<TargetEnum>;
   updated_at?: InputMaybe<Scalars['DateTime']>;
@@ -2119,6 +2122,7 @@ export type UpdateCommonA = {
   created?: InputMaybe<Scalars['DateTime']>;
   href?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['ID']>;
+  name?: InputMaybe<Scalars['String']>;
   rel?: InputMaybe<RelEnum>;
   target?: InputMaybe<TargetEnum>;
   updated_at?: InputMaybe<Scalars['DateTime']>;
@@ -2380,8 +2384,10 @@ export type BodyFragment = {
         };
     navigation: {
       __typename?: 'PageBodyNavigation';
+      title: string;
       items?: Array<{
         __typename?: 'CommonA';
+        name: string;
         href: string;
         rel: RelEnum;
         target: TargetEnum;
@@ -2496,8 +2502,10 @@ export type NavigationFragment = {
   __typename?: 'PageBody';
   navigation: {
     __typename?: 'PageBodyNavigation';
+    title: string;
     items?: Array<{
       __typename?: 'CommonA';
+      name: string;
       href: string;
       rel: RelEnum;
       target: TargetEnum;
@@ -2557,8 +2565,10 @@ export type PageQuery = {
           };
       navigation: {
         __typename?: 'PageBodyNavigation';
+        title: string;
         items?: Array<{
           __typename?: 'CommonA';
+          name: string;
           href: string;
           rel: RelEnum;
           target: TargetEnum;
@@ -2615,7 +2625,9 @@ export const HeaderFragmentDoc = gql`
 export const NavigationFragmentDoc = gql`
   fragment Navigation on PageBody {
     navigation {
+      title
       items {
+        name
         href
         rel
         target

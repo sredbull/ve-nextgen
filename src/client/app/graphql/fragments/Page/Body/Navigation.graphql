@@ -1,6 +1,8 @@
 fragment Navigation on PageBody {
   navigation {
+    title
     items {
+      name
       href
       rel
       target
