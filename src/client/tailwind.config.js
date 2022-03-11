@@ -1,5 +1,3 @@
-const defaultTheme = require('tailwindcss/defaultTheme');
-const colors = require('tailwindcss/colors');
 const { join } = require('path');
 
 module.exports = {
@@ -8,10 +6,18 @@ module.exports = {
     join(__dirname, 'app', '**', '*.{js,ts,jsx,tsx}'),
   ],
   darkMode: 'class',
-  theme: {},
+  theme: {
+    fontFamily: {
+      sans: ['Inter', 'sans-serif']
+    },
+    container: {
+      center: true,
+    },
+  },
   plugins: [
-    require('@tailwindcss/aspect-ratio'),
-    require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),
+    require('daisyui'),
   ],
-}
+  corePlugins: {
+  }
+};
