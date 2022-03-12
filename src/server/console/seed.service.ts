@@ -97,7 +97,7 @@ export class SeedService {
           extendedRepo.create({
             title: "It's my footer",
             subTitle: "ain't that right, or what?",
-            copyright: 'Sven Roodbol 2022',
+            copyright: '© 2022, Sven Roodbol',
           }),
         ),
       },

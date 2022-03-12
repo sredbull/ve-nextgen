@@ -5,9 +5,9 @@ export const Markdown = (props: MarkdownFragment) => {
   return (
     <article>
       <header>
-        <h1>{props.title}</h1>
+        <h2>{props.title}</h2>
+        <p>{props.subTitle}</p>
       </header>
-      <h2>{props.subTitle}</h2>
       <MarkdownToJsx>{props.markdown}</MarkdownToJsx>
     </article>
   );
