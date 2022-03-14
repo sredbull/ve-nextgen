@@ -7,7 +7,6 @@
   "scripts": {
     "nest": "nest",
     "next": "cd src/client && next",
-    "prebuild": "rimraf dist",
     "build": "NODE_ENV=production nest build && cd src/client && next build",
     "start": "nest start",
     "start:dev": "nest start --watch --preserveWatchOutput",
