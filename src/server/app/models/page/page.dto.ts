@@ -1,8 +1,8 @@
 import { Relation } from '@nestjs-query/query-graphql';
 import { Field, ObjectType } from '@nestjs/graphql';
 import { MainDTO } from '../main.dto';
-import { HeadDTO } from './head/head.dto'
-import { BodyDTO } from './body/body.dto'
+import { HeadDTO } from './head/head.dto';
+import { BodyDTO } from './body/body.dto';
 
 @ObjectType('Page')
 @Relation('head', () => HeadDTO, { disableRemove: true })

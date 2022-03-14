@@ -1,14 +1,11 @@
 import { Console, Command, createSpinner } from 'nestjs-console';
-
 import { Page } from '../app/models/page/page.entity';
 import { Curved } from '../app/models/page/body/header/curved/curved.entity';
-
 import { InjectConnection } from '@nestjs/typeorm';
 import { Connection, Repository } from 'typeorm';
 import { Extended } from '../app/models/page/body/footer/extended/extended.entity';
 import { Navigation } from '../app/models/page/body/navigation/navigation.entity';
 import { A, RelEnum, TargetEnum } from '../app/models/common/a.entity';
-import { Article } from '../app/models/page/body/main/article/article.entity';
 import { Markdown } from '../app/models/page/body/main/article/markdown/markdown.entity';
 
 @Console()
@@ -53,7 +50,11 @@ export class SeedService {
             title: 'main-navigation',
             items: [
               await aRepo.save(
-                aRepo.create({ name: 'Home', href: '/home', rel: RelEnum.NOFOLLOW }),
+                aRepo.create({
+                  name: 'Home',
+                  href: '/home',
+                  rel: RelEnum.NOFOLLOW,
+                }),
               ),
               await aRepo.save(
                 aRepo.create({

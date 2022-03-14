@@ -8,11 +8,17 @@ export class Page extends Main {
   @Column({ default: 'en', nullable: false })
   lang: string;
 
-  @OneToOne((_type) => Head, (head) => head.page, { nullable: false, cascade: true })
+  @OneToOne((_type) => Head, (head) => head.page, {
+    nullable: false,
+    cascade: true,
+  })
   @JoinColumn()
   head: Head;
 
-  @OneToOne((_type) => Body, (body) => body.page, { nullable: false, cascade: true })
+  @OneToOne((_type) => Body, (body) => body.page, {
+    nullable: false,
+    cascade: true,
+  })
   @JoinColumn()
   body: Body;
 }

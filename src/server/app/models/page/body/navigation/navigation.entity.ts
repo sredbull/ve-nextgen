@@ -12,5 +12,5 @@ export class Navigation extends Main {
   title: string;
 
   @OneToMany((_type) => A, (a) => a.navigation, { nullable: true })
-  items?: A[]
+  items?: A[];
 }

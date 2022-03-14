@@ -5,13 +5,10 @@ import { ArticleUnion } from './article/article.dto';
 import { MainDTO } from './main.dto';
 import { Main } from './main.entity';
 
-
 @Resolver(() => MainDTO)
 // @ts-ignore
 export class MainResolver extends CRUDResolver(MainDTO) {
-  constructor(
-    @InjectQueryService(Main) readonly service: QueryService<Main>
-  ) {
+  constructor(@InjectQueryService(Main) readonly service: QueryService<Main>) {
     // @ts-ignore
     super(service);
   }

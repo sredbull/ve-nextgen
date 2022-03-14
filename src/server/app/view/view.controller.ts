@@ -30,7 +30,11 @@ export class ViewController {
   }
 
   @Get('*')
-  public async showHome(@Req() req: Request, @Res() res: Response, @Next() next) {
+  public async showHome(
+    @Req() req: Request,
+    @Res() res: Response,
+    @Next() next,
+  ) {
     if (req.path === '/graphql') {
       next();
     }
@@ -39,11 +43,6 @@ export class ViewController {
 
     await this.viewService
       .getNextServer()
-      .render(
-        req,
-        res,
-        '/home',
-        parsedUrl.query,
-      );
+      .render(req, res, '/home', parsedUrl.query);
   }
 }

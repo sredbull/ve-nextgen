@@ -9,7 +9,9 @@ import { Simple } from './simple/simple.entity';
 @Module({
   imports: [
     NestjsQueryGraphQLModule.forFeature({
-      imports: [NestjsQueryTypeOrmModule.forFeature([Footer, Extended, Simple])],
+      imports: [
+        NestjsQueryTypeOrmModule.forFeature([Footer, Extended, Simple]),
+      ],
       resolvers: [{ DTOClass: FooterDTO, EntityClass: Footer }],
     }),
   ],

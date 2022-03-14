@@ -16,23 +16,38 @@ export class Body extends MainEntity {
   @OneToOne((_type) => Page, (page) => page.head, { nullable: false })
   page: Page;
 
-  @OneToOne((_type) => Header, (header) => header.body, { nullable: false, cascade: true })
+  @OneToOne((_type) => Header, (header) => header.body, {
+    nullable: false,
+    cascade: true,
+  })
   @JoinColumn()
   header: Curved | Skewed;
 
-  @OneToOne((_type) => Navigation, (navigation) => navigation.body, { nullable: false, cascade: true })
+  @OneToOne((_type) => Navigation, (navigation) => navigation.body, {
+    nullable: false,
+    cascade: true,
+  })
   @JoinColumn()
   navigation: Navigation;
 
-  @OneToOne((_type) => Main, (main) => main.body, { nullable: false, cascade: true })
+  @OneToOne((_type) => Main, (main) => main.body, {
+    nullable: false,
+    cascade: true,
+  })
   @JoinColumn()
   main: Main;
 
-  @OneToOne((_type) => Sidebar, (sidebar) => sidebar.body, { nullable: true, cascade: true })
+  @OneToOne((_type) => Sidebar, (sidebar) => sidebar.body, {
+    nullable: true,
+    cascade: true,
+  })
   @JoinColumn()
   sidebar: Sidebar;
 
-  @OneToOne((_type) => Footer, (footer) => footer.body, { nullable: false, cascade: true })
+  @OneToOne((_type) => Footer, (footer) => footer.body, {
+    nullable: false,
+    cascade: true,
+  })
   @JoinColumn()
   footer: Extended | Simple;
 }

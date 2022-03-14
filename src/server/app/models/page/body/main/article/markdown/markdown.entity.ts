@@ -12,5 +12,5 @@ export class Markdown extends Article {
   @Column({ type: 'text', nullable: false })
   markdown: string;
 
-  type: SourceType.MARKDOWN
+  type: SourceType.MARKDOWN;
 }

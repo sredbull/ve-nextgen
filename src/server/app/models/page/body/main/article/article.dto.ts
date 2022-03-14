@@ -1,15 +1,14 @@
 import { Field, ObjectType, createUnionType } from '@nestjs/graphql';
 import { MainDTO } from '../../../../main.dto';
 import { MarkdownDTO } from './markdown/markdown.dto';
-import CamelCase from 'camelcase'
-import { Article } from './article.entity';
+import CamelCase from 'camelcase';
 
 export const ArticleUnion = createUnionType({
   name: 'ArticleUnion',
   types: () => [MarkdownDTO],
   resolveType: (value) => {
-    return CamelCase(value.type, {pascalCase: true})
-  }
+    return CamelCase(value.type, { pascalCase: true });
+  },
 });
 
 @ObjectType('PageBodyMainArticle')

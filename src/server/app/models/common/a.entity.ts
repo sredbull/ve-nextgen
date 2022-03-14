@@ -1,4 +1,4 @@
-import { Column, Entity, OneToOne, JoinColumn, ManyToOne } from 'typeorm';
+import { Column, Entity, ManyToOne } from 'typeorm';
 import { registerEnumType } from '@nestjs/graphql';
 import { Main } from '../main.entity';
 import { Navigation } from '../page/body/navigation/navigation.entity';
@@ -34,11 +34,12 @@ registerEnumType(TargetEnum, {
   name: 'TargetEnum',
 });
 
-
 @Entity('common_a')
 export class A extends Main {
-  @ManyToOne((_type) => Navigation, (navigation) => navigation.items, { nullable: true })
-  navigation: Navigation
+  @ManyToOne((_type) => Navigation, (navigation) => navigation.items, {
+    nullable: true,
+  })
+  navigation: Navigation;
 
   @Column({ nullable: false })
   name: string;
@@ -57,7 +58,7 @@ export class A extends Main {
     type: 'enum',
     enum: TargetEnum,
     nullable: false,
-    default: TargetEnum.SELF
+    default: TargetEnum.SELF,
   })
   target: TargetEnum;
 }

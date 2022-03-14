@@ -1,4 +1,4 @@
-import { Resolver, ResolveField, Parent } from '@nestjs/graphql';
+import { Resolver, ResolveField } from '@nestjs/graphql';
 import { QueryService, InjectQueryService } from '@nestjs-query/core';
 import { CRUDResolver } from '@nestjs-query/query-graphql';
 import { HeaderUnion } from './header/header.dto';
@@ -9,9 +9,7 @@ import { Body } from './body.entity';
 @Resolver(() => BodyDTO)
 // @ts-ignore
 export class BodyResolver extends CRUDResolver(BodyDTO) {
-  constructor(
-    @InjectQueryService(Body) readonly service: QueryService<Body>
-  ) {
+  constructor(@InjectQueryService(Body) readonly service: QueryService<Body>) {
     // @ts-ignore
     super(service);
   }

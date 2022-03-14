@@ -1,5 +1,5 @@
 import MarkdownToJsx from 'markdown-to-jsx';
-import { MarkdownFragment } from "../../../../../../graphql/sdk";
+import { MarkdownFragment } from '../../../../../../graphql/sdk';
 
 export const Markdown = (props: MarkdownFragment) => {
   return (
@@ -11,6 +11,6 @@ export const Markdown = (props: MarkdownFragment) => {
       <MarkdownToJsx>{props.markdown}</MarkdownToJsx>
     </article>
   );
-}
+};
 
 export default Markdown;

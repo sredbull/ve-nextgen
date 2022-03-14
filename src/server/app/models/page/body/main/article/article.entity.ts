@@ -1,4 +1,4 @@
-import { Column, Entity, TableInheritance, OneToOne, ManyToOne } from 'typeorm';
+import { Column, Entity, TableInheritance, ManyToOne } from 'typeorm';
 import { Main as MainEntity } from '../../../../main.entity';
 import { Main } from '../main.entity';
 
@@ -10,7 +10,7 @@ export enum SourceType {
 @TableInheritance({ column: { type: 'enum', enum: SourceType, name: 'type' } })
 export class Article extends MainEntity {
   @ManyToOne((_type) => Main, (main) => main.articles, { nullable: true })
-  main: Main
+  main: Main;
 
   @Column({
     type: 'enum',

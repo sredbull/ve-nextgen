@@ -1,4 +1,4 @@
-import { Column, Entity, OneToOne, OneToMany } from 'typeorm';
+import { Entity, OneToOne, OneToMany } from 'typeorm';
 import { Main as MainEntity } from '../../../main.entity';
 import { Body } from '../body.entity';
 import { Article } from './article/article.entity';
@@ -9,5 +9,5 @@ export class Main extends MainEntity {
   body: Body;
 
   @OneToMany((_type) => Article, (article) => article.main, { nullable: true })
-  articles?: Article[]
+  articles?: Article[];
 }

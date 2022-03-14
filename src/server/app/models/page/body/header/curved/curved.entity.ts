@@ -9,5 +9,5 @@ export class Curved extends Header {
   @Column({ nullable: false })
   subTitle: string;
 
-  type: SourceType.CURVED
+  type: SourceType.CURVED;
 }
