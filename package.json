@@ -14,11 +14,11 @@
     "start:debug": "nest start --debug --watch --preserveWatchOutput",
     "start:prod": "NODE_ENV=production node dist/src/server/main",
     "lint": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\" && eslint --fix \"{src,test}/**/*.{ts,tsx}\"",
-    "test": "jest --collect-coverage --setupFiles dotenv-flow/config",
+    "test": "jest --passWithNoTests --coverage --collect-coverage --setupFiles dotenv-flow/config",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json --setupFiles dotenv-flow/config",
+    "test:e2e": "jest --passWithNoTests --config ./test/jest-e2e.json --setupFiles dotenv-flow/config",
     "console": "ts-node -r tsconfig-paths/register src/server/console.ts",
     "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
     "generate-types": "graphql-codegen"
