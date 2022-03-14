@@ -11,8 +11,8 @@ export default withUrqlClient(
   () => ({
     url:
       typeof window === 'undefined'
-        ? 'http://web:3000/graphql'
-        : 'http://localhost:3000',
+        ? process.env.INTERNAL_URL + '/graphql'
+        : process.env.EXTERNAL_URL + '/graphql',
   }),
   { ssr: true },
 )(Index);
