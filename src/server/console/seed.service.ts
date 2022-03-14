@@ -73,20 +73,18 @@ export class SeedService {
               markdownRepo.create({
                 title: 'My first article',
                 subTitle: 'A brief example of a markdown article',
-                markdown: `
-                # H1
-                ## H2
-                ### H3
-                #### H4
-                ##### H5
-                ##### H6
-                * A list
-                * **bold**
-                * *italic*
-                * \`code\`
-                * [Link](http://localhost:3000/home)
-                * ...
-                `,
+                markdown: `# H1
+## H2
+### H3
+#### H4
+##### H5
+##### H6
+* A list
+* **bold**
+* *italic*
+* \`code\`
+* [Link](http://localhost:3000/home)
+* ...`,
               }),
             ),
           ],
