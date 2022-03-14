@@ -11,6 +11,9 @@ export = {
     migrationsDir: 'src/server/migration',
   },
   extra: {
-    ssl: process.env.NODE_ENV === 'production' ? true : false,
+    ssl:
+      process.env.NODE_ENV === 'production'
+        ? { rejectUnauthorized: false }
+        : false,
   },
 };
